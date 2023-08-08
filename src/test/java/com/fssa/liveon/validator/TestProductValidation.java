@@ -1,11 +1,38 @@
 package com.fssa.liveon.validator;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
+import com.fssa.liveon.model.Product;
 
 public class TestProductValidation {
+//	Valid test case for product details
+	@Test
+	public void testValidteProduct() {
+		List<String> images = new ArrayList<>();
+		images.add("https://iili.io/Hv6Okvf.png");
+		images.add("https://iili.io/Hv6Okvf.png");
+
+		Product product = new Product("Car", "AirFilter", 2000.0, 4, images, "Sample product description",
+				"SampleAboutproduct");
+		Assertions.assertTrue(ProductValidation.validateProduct(product));
+	}
+
+//	Invalid test cSER FOR PRODUCT Details
+	@Test
+	public void testInvaidProduct() {
+		try {
+			ProductValidation.validateProduct(null);
+			Assertions.fail("Test case failed");
+		} catch (InvalidProductDetailsException e) {
+			Assertions.assertEquals(ProductValidationsErrors.INVALID_PRODUCTOBJECT, e.getMessage());
+		}
+	}
+
 //	Valid test case for Product Name
 	@Test
 	public void testValidProductName() {
@@ -22,7 +49,7 @@ public class TestProductValidation {
 		} catch (InvalidProductDetailsException e) {
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_PRODUCT_NAME_NULL, e.getMessage());
 		}
-		
+
 		try {
 			ProductValidation.validateProductName("u");
 			Assertions.fail("Test case failed");
@@ -81,7 +108,7 @@ public class TestProductValidation {
 		} catch (InvalidProductDetailsException e) {
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_ABOUTPRODUCT_NULL, e.getMessage());
 		}
-		
+
 		try {
 			ProductValidation.validateAboutProduct("s");
 			Assertions.fail("Test case failed");
@@ -106,7 +133,7 @@ public class TestProductValidation {
 		} catch (InvalidProductDetailsException e) {
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION_NULL, e.getMessage());
 		}
-		
+
 		try {
 			ProductValidation.validateProductDescription("yib");
 			Assertions.fail("Tset case failed");
@@ -153,21 +180,23 @@ public class TestProductValidation {
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_VEHICLETYPE, e.getMessage());
 		}
 	}
+
 	@Test
 //	Valid image url test case
 	public void testImageUrl() {
 		ArrayList<String> validImages = new ArrayList<>();
-		 validImages.add("https://iili.io/Hv6Okvf.png");
-		 validImages.add("https://iili.io/Hv6tFqu.png");
-	//	String imageUrl = "https://iili.io/Hv6Okvf.png";
+		validImages.add("https://iili.io/Hv6Okvf.png");
+		validImages.add("https://iili.io/Hv6tFqu.png");
+		// String imageUrl = "https://iili.io/Hv6Okvf.png";
 		Assertions.assertTrue(ProductValidation.productImagesValidator(validImages));
 	}
+
 	@Test
 //	Invalid image Url  test case
 	public void inValidImageUrl() {
 		ArrayList<String> invalidImages = new ArrayList<>();
-	        invalidImages.add("https://example.com/image1");
-	        invalidImages.add("https://example.com/image2.jpg.doc");
+		invalidImages.add("https://example.com/image1");
+		invalidImages.add("https://example.com/image2.jpg.doc");
 		try {
 			ProductValidation.productImagesValidator(null);
 			Assertions.fail("Test case failed");
@@ -180,6 +209,21 @@ public class TestProductValidation {
 			Assertions.fail("Test case failed");
 		} catch (InvalidProductDetailsException e) {
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_PRODUCTIMAGE, e.getMessage());
+		}
+	}
+
+//	Valid product id
+	@Test
+	public void validProductId() {
+		Assertions.assertTrue(ProductValidation.productIdValidate(1));
+	}
+
+//	Invalid product Id 
+	public void inValidProductId() {
+		try {
+			ProductValidation.productIdValidate(-1);
+		} catch (InvalidProductDetailsException e) {
+			Assertions.assertEquals(ProductValidationsErrors.INVALID_PRODUCTID, e.getMessage());
 		}
 	}
 }

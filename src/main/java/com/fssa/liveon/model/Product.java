@@ -11,6 +11,7 @@ public class Product {
 	private String aboutProduct;
     private String description;
     private int productId;
+    
 	
 
 	public Product(String vehicleType, String productName, double price, int rating, List<String> imageUrl,
@@ -28,6 +29,7 @@ public class Product {
 	public Product(int productId, String vehicleType, String productName, double price, int rating, List<String> imageUrl,
 			String aboutProduct, String description) {
 		super();
+		this.productId=productId;
 		this.vehicleType = vehicleType;
 		this.productName = productName;
 		this.price = price;

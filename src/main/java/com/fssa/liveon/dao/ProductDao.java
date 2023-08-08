@@ -13,28 +13,32 @@ import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 import com.fssa.liveon.util.ConnectionUtil;
-import com.fssa.liveon.validator.ProductValidationsErrors;
+import com.fssa.liveon.util.Logger;
 
 public class ProductDao {
+	static Logger logger = new Logger();
+
 	public static boolean addProduct(Product product) throws DAOException, SQLException {
 		String storedProcedureCall = "{call InsertProduct(?, ?, ?, ?, ?, ?, ?)}";
 		boolean rows;
-		try (Connection con = ConnectionUtil.getConnection();
-				CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
+		try (Connection con = ConnectionUtil.getConnection()) {
 
-			callableStatement.setString(1, product.getProductName());
-			callableStatement.setString(2, product.getVehicleType());
-			callableStatement.setDouble(3, product.getPrice());
-			callableStatement.setInt(4, product.getRating());
-			callableStatement.setString(5, product.getAboutProduct());
-			callableStatement.setString(6, product.getDescription());
+			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
 
-			String productImagesStr = String.join(",", product.getImageUrl());
+				callableStatement.setString(1, product.getProductName());
+				callableStatement.setString(2, product.getVehicleType());
+				callableStatement.setDouble(3, product.getPrice());
+				callableStatement.setInt(4, product.getRating());
+				callableStatement.setString(5, product.getAboutProduct());
+				callableStatement.setString(6, product.getDescription());
 
-			callableStatement.setString(7, productImagesStr);
+				String productImagesStr = String.join(",", product.getImageUrl());
 
-			rows = callableStatement.execute();
+				callableStatement.setString(7, productImagesStr);
 
+				rows = callableStatement.execute();
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException(productDaoErrors.INVALID_ADD_PRODUCT);
@@ -43,25 +47,28 @@ public class ProductDao {
 	}
 
 	public static boolean updateProduct(Product product) throws DAOException, SQLException {
+
+		if (product.getProductId() <= 0) {
+			throw new InvalidProductDetailsException(productDaoErrors.INVALID_PRODUCT_ID);
+		}
 		String storedProcedureCall = "{call UpdateProduct(?, ?, ?, ?, ?, ?, ?,?)}";
 		boolean rows;
-		try (Connection con = ConnectionUtil.getConnection();
-				CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
+		try (Connection con = ConnectionUtil.getConnection()) {
+			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
 
-			callableStatement.setInt(1, product.getProductId());
-			callableStatement.setString(2, product.getProductName());
-			callableStatement.setString(3, product.getVehicleType());
-			callableStatement.setDouble(4, product.getPrice());
-			callableStatement.setInt(5, product.getRating());
-			callableStatement.setString(6, product.getAboutProduct());
-			callableStatement.setString(7, product.getDescription());
+				callableStatement.setInt(1, product.getProductId());
+				callableStatement.setString(2, product.getProductName());
+				callableStatement.setString(3, product.getVehicleType());
+				callableStatement.setDouble(4, product.getPrice());
+				callableStatement.setInt(5, product.getRating());
+				callableStatement.setString(6, product.getAboutProduct());
+				callableStatement.setString(7, product.getDescription());
+				String productImagesStr = String.join(",", product.getImageUrl());
 
-			String productImagesStr = String.join(",", product.getImageUrl());
+				callableStatement.setString(8, productImagesStr);
 
-			callableStatement.setString(8, productImagesStr);
-
-			rows = callableStatement.execute();
-
+				rows = callableStatement.execute();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException(productDaoErrors.INVALID_UPDATE_PRODUCT);
@@ -77,13 +84,15 @@ public class ProductDao {
 		}
 		String storedProcedureCall = "{call DeleteProduct(?)}";
 		boolean rows;
-		try (Connection con = ConnectionUtil.getConnection();
-				CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
+		try (Connection con = ConnectionUtil.getConnection()){
+			
+		
+			try	(CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
 
 			callableStatement.setInt(1, productId);
 
 			rows = callableStatement.execute();
-
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException(productDaoErrors.INVALID_DELETE_PRODUCT);
@@ -101,13 +110,13 @@ public class ProductDao {
 		 */
 
 		String selectQuery = "SELECT p.*, "
-				+ "(SELECT GROUP_CONCAT(imageUrl) FROM ProductImages pi WHERE pi.product_Id = p.id) AS imageUrls, "
-				+ "FROM Ground p";
+	            + "(SELECT GROUP_CONCAT(imageUrl) FROM ProductImages pi WHERE pi.product_Id = p.product_id) AS imageUrls "
+	            + "FROM Product p";
 
-		try (Connection con = ConnectionUtil.getConnection();
+		try (Connection con = ConnectionUtil.getConnection()){
 
-				PreparedStatement preparedStatement = con.prepareStatement(selectQuery);
-				ResultSet rs = preparedStatement.executeQuery()) {
+			try (PreparedStatement preparedStatement = con.prepareStatement(selectQuery)){
+			try(ResultSet rs = preparedStatement.executeQuery()) {
 
 			while (rs.next()) {
 				int productId = rs.getInt("product_id");
@@ -129,15 +138,33 @@ public class ProductDao {
 				} else {
 					product.setImageUrl(new ArrayList<>());
 				}
+				logger.info(rs.getString("productName"));
+				logger.info(rs.getString("vehicle_type"));
+				logger.info(rs.getDouble("price"));
+				logger.info(rs.getInt("rating"));
+				logger.info(rs.getString("aboutProduct"));
+				logger.info(rs.getString("description"));
+				logger.info(rs.getString("imageUrls"));
 
 				productList.add(product);
 			}
 
-		} catch (SQLException e) {
+		} 
+			}
+	}
+		catch (SQLException e) {
 
 			throw new DAOException(productDaoErrors.INVALID_ALL_PRODUCT);
 		}
 
 		return true;
 	}
+	
+	public static void main(String[] args) throws DAOException, SQLException {
+		
+		 getAllProduct();
+		
+	}
+	
 }
+

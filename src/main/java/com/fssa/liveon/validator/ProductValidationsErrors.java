@@ -23,4 +23,6 @@ public class ProductValidationsErrors {
 	public static final String INVALID_PRODUCTIMAGE = "Images url is invalid";
 //	Add Product
 	public static final String INVALID_ADD_PRODUCT = "The method getProductPrice() returns null";
+//	Product id validate
+	public static final String INVALID_PRODUCTID = "The product id is invalid";
 }
