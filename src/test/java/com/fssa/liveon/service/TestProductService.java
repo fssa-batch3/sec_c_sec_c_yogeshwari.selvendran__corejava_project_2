@@ -28,7 +28,7 @@ public class TestProductService {
 		images.add("https://iili.io/Hv6Okvf.png");
 		images.add("https://iili.io/Hv6Okvf.png");
 
-		Product product = new Product(5, "Car", "AirFilter", 2000.0, 4, images, "Sampleproductdescription",
+		Product product = new Product(8, "Car", "AirFilter", 2000.0, 4, images, "Sampleproductdescription",
 				"SampleAboutproduct");
 		return product;
 	}
@@ -61,7 +61,7 @@ public class TestProductService {
 	public void testDeleteProduct()throws DAOException, SQLException{
 		Product product = getProduct2();
 		ProductService productService = getProductService();
-		Assertions.assertTrue(productService.deleteProduct(7));
+		Assertions.assertTrue(productService.deleteProduct(10));
 		
 	}
 	@Test

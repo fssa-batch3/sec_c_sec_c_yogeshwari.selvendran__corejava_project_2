@@ -160,11 +160,7 @@ public class ProductDao {
 		return true;
 	}
 	
-	public static void main(String[] args) throws DAOException, SQLException {
-		
-		 getAllProduct();
-		
-	}
+
 	
 }
 

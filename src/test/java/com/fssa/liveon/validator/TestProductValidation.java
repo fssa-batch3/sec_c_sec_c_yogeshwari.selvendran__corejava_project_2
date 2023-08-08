@@ -17,7 +17,7 @@ public class TestProductValidation {
 		images.add("https://iili.io/Hv6Okvf.png");
 		images.add("https://iili.io/Hv6Okvf.png");
 
-		Product product = new Product("Car", "AirFilter", 2000.0, 4, images, "Sample product description",
+		Product product = new Product("Car", "AirFilter", 2000.0, 4, images, "Sampleproductdescription",
 				"SampleAboutproduct");
 		Assertions.assertTrue(ProductValidation.validateProduct(product));
 	}

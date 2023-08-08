@@ -16,7 +16,7 @@ public class TestProductDao {
 		images.add("https://iili.io/Hv6Okvf.png");
 		images.add("https://iili.io/Hv6Okvf.png");
 		Product product = new Product();
-		product.setProductId(2);
+		product.setProductId(4);
 		product.setVehicleType("Car");
 		product.setProductName("Air filter");
 		product.setPrice(2500);
@@ -61,7 +61,7 @@ public class TestProductDao {
 
 	@Test
 	public void testValidDeleteProduct() throws DAOException, SQLException {
-		Assertions.assertTrue(ProductDao.deleteProduct(3));
+		Assertions.assertTrue(ProductDao.deleteProduct(5));
 	}
 
 	@Test
