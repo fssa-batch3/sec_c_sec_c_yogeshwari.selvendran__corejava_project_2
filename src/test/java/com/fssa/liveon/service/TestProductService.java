@@ -13,7 +13,10 @@ import com.fssa.liveon.model.Product;
 import com.fssa.liveon.validator.ProductValidation;
 
 public class TestProductService {
-	// Helper method to create a valid Product instance for testing
+	/**
+	 * Helper method to create a valid Product instance for testing
+	 */
+	
 	public Product getProduct() {
 		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();
@@ -49,7 +52,7 @@ public class TestProductService {
 
 	// Test for adding a product
 	@Test
-	public void testAddProduct() throws DAOException, SQLException {
+	void testAddProduct() throws DAOException, SQLException {
 		// Creating a valid Product instance
 		Product product = getProduct();
 
@@ -62,7 +65,7 @@ public class TestProductService {
 
 	// Test for updating a product
 	@Test
-	public void testUpdateProduct() throws DAOException, SQLException {
+	void testUpdateProduct() throws DAOException, SQLException {
 		// Creating a valid Product instance with a specific product ID
 		Product product = getProduct2();
 		// Creating a ProductService instance
@@ -74,7 +77,7 @@ public class TestProductService {
 
 	// Test for deleting a product
 	@Test
-	public void testDeleteProduct() throws DAOException, SQLException {
+	void testDeleteProduct() throws DAOException, SQLException {
 		// Creating a valid Product instance with a specific product ID
 		Product product = getProduct2();
 		// Creating a ProductService instance
@@ -87,7 +90,7 @@ public class TestProductService {
 
 	// Test for getting product details
 	@Test
-	public void testGetProductDetails() throws DAOException, SQLException {
+	void testGetProductDetails() throws DAOException, SQLException {
 		// Creating a valid Product instance
 		Product product = getProduct();
 		// Creating a ProductService instance

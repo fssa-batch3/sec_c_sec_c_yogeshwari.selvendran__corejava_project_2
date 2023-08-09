@@ -1,23 +1,29 @@
 package com.fssa.liveon.validator;
-import com.fssa.liveon.enums.VehicleType;
+import com.fssa.liveon.enums.Category;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 
 
 public class EnamValidation {
-	// create a validation for vehicle type
-	
-		public static boolean ValidVehicleType(String vehicleType)throws InvalidProductDetailsException {
+
+	/**
+	 *  validation method for validating vehicle types
+	 * @param vehicleType
+	 * @return
+	 * @throws InvalidProductDetailsException
+	 */
+		public static boolean validVehicleType(String vehicleType)throws InvalidProductDetailsException {
 			if(vehicleType==null) {
 				
 				  throw new InvalidProductDetailsException(ProductValidationsErrors.EMPTY_VEHICLETYPE); 
 			}
 			
-	        for (VehicleType type : VehicleType.values()) {
-	            if (!(type.getVehicletype().equalsIgnoreCase(vehicleType))) {
-	            	
-	            	  throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_VEHICLETYPE); 
+	        for (Category category : Category.values()) {
+	            if(category.getVehicleType().equalsIgnoreCase(vehicleType)) {
+	            	   return true;
+	            	  
 	            }
 	        }
-	        return true;
+	        throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_VEHICLETYPE); 
 }
+	
 }

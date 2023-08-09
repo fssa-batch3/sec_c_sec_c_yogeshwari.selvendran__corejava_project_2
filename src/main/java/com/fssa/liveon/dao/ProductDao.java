@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
@@ -20,7 +21,7 @@ public class ProductDao {
 	// Method to add a product to the database
 	public static boolean addProduct(Product product) throws DAOException, SQLException {
 		String storedProcedureCall = "{call InsertProduct(?, ?, ?, ?, ?, ?, ?)}";
-		boolean rows;
+
 		try (Connection con = ConnectionUtil.getConnection()) {
 
 			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
@@ -36,12 +37,12 @@ public class ProductDao {
 
 				callableStatement.setString(7, productImagesStr);
 				// Executing the stored procedure
-				rows = callableStatement.execute();
+				callableStatement.execute();
 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(productDaoErrors.INVALID_ADD_PRODUCT);
+			throw new DAOException(ProductDaoErrors.INVALID_ADD_PRODUCT);
 		}
 		return true;
 	}
@@ -50,10 +51,10 @@ public class ProductDao {
 	public static boolean updateProduct(Product product) throws DAOException, SQLException {
 		// Checking if the product ID is valid
 		if (product.getProductId() <= 0) {
-			throw new InvalidProductDetailsException(productDaoErrors.INVALID_PRODUCT_ID);
+			throw new InvalidProductDetailsException(ProductDaoErrors.INVALID_PRODUCT_ID);
 		}
 		String storedProcedureCall = "{call UpdateProduct(?, ?, ?, ?, ?, ?, ?,?)}";
-		boolean rows;
+
 		try (Connection con = ConnectionUtil.getConnection()) {
 			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
 
@@ -68,11 +69,11 @@ public class ProductDao {
 
 				callableStatement.setString(8, productImagesStr);
 				// Executing the stored procedure
-				rows = callableStatement.execute();
+				callableStatement.execute();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(productDaoErrors.INVALID_UPDATE_PRODUCT);
+			throw new DAOException(ProductDaoErrors.INVALID_UPDATE_PRODUCT);
 
 		}
 		return true;
@@ -82,21 +83,21 @@ public class ProductDao {
 	public static boolean deleteProduct(int productId) throws DAOException, SQLException {
 		// Checking if the product ID is valid
 		if (productId <= 0) {
-			throw new InvalidProductDetailsException(productDaoErrors.INVALID_PRODUCT_ID);
+			throw new InvalidProductDetailsException(ProductDaoErrors.INVALID_PRODUCT_ID);
 		}
 		String storedProcedureCall = "{call DeleteProduct(?)}";
-		boolean rows;
+
 		try (Connection con = ConnectionUtil.getConnection()) {
 
 			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
 
 				callableStatement.setInt(1, productId);
 				// Executing the stored procedure
-				rows = callableStatement.execute();
+				callableStatement.execute();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(productDaoErrors.INVALID_DELETE_PRODUCT);
+			throw new DAOException(ProductDaoErrors.INVALID_DELETE_PRODUCT);
 
 		}
 		return true;
@@ -137,7 +138,7 @@ public class ProductDao {
 						} else {
 							product.setImageUrl(new ArrayList<>());
 						}
-						
+
 						// Logging retrieved product details
 						logger.info(rs.getString("productName"));
 						logger.info(rs.getString("vehicle_type"));
@@ -154,7 +155,7 @@ public class ProductDao {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(productDaoErrors.INVALID_ALL_PRODUCT);
+			throw new DAOException(ProductDaoErrors.INVALID_ALL_PRODUCT);
 		}
 
 		return true;

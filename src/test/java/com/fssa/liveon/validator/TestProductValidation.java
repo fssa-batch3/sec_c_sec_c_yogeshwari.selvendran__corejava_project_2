@@ -12,7 +12,7 @@ import com.fssa.liveon.model.Product;
 public class TestProductValidation {
 	// Valid test case for product details
 	@Test
-	public void testValidteProduct() {
+	void testValidteProduct() {
 		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();
 		images.add("https://iili.io/Hv6Okvf.png");
@@ -28,7 +28,7 @@ public class TestProductValidation {
 	// Invalid test case for product details
 
 	@Test
-	public void testInvaidProduct() {
+	void testInvaidProduct() {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
@@ -42,7 +42,7 @@ public class TestProductValidation {
 
 //	Valid test case for Product Name
 	@Test
-	public void testValidProductName() {
+	void testValidProductName() {
 		String productName = "Air filter";
 		// Asserting that the product name validation returns true for this valid
 		// Product object
@@ -51,7 +51,7 @@ public class TestProductValidation {
 
 //	Invalid test case for product name
 	@Test
-	public void testInvalidProductName() {
+	void testInvalidProductName() {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
@@ -75,7 +75,7 @@ public class TestProductValidation {
 
 //	Valid test case for product price
 	@Test
-	public void validProductPrice() {
+	void validProductPrice() {
 		double productPrice = 2600;
 		// Asserting that the product price validation returns true for this valid
 		// Product object
@@ -84,7 +84,7 @@ public class TestProductValidation {
 
 //	Invalid test case for product price
 	@Test
-	public void inValidProductPrice() {
+	void inValidProductPrice() {
 		try {
 			// Validating a 0 Product price should throw an InvalidProductDetailsException
 			ProductValidation.validateProductPrice(0);
@@ -96,7 +96,7 @@ public class TestProductValidation {
 
 // 	Valid test case for product rating
 	@Test
-	public void validProductRating() {
+	void validProductRating() {
 		int rating = 4;
 		// Asserting that the product rating validation returns true for this valid
 		// Product object
@@ -105,7 +105,7 @@ public class TestProductValidation {
 
 //	Invalid test case for product rating 
 	@Test
-	public void inValidProductRating() {
+	void inValidProductRating() {
 		try {
 			// Validating a negative Product rating should throw an
 			// InvalidProductDetailsException
@@ -118,7 +118,7 @@ public class TestProductValidation {
 
 //	Valid test case for about Product 
 	@Test
-	public void testValidAboutProduct() {
+	void testValidAboutProduct() {
 		String about = "Sampleaboutproduct";
 		// Asserting that the about product validation returns true for this valid
 		// Product object
@@ -127,7 +127,7 @@ public class TestProductValidation {
 
 //	Invalid test case for about product
 	@Test
-	public void testInvalidAboutProduct() {
+	void testInvalidAboutProduct() {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
@@ -149,7 +149,7 @@ public class TestProductValidation {
 
 //	Valid test case for Product Description
 	@Test
-	public void testValidProductDescription() {
+	void testValidProductDescription() {
 		String description = "Sampleproductdescription";
 		// Asserting that the product description validation returns true for this valid
 		// Product object
@@ -158,7 +158,7 @@ public class TestProductValidation {
 
 //	Invalid test case for  product Description
 	@Test
-	public void testInvalidProductDescription() {
+	void testInvalidProductDescription() {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
@@ -182,10 +182,10 @@ public class TestProductValidation {
 	// test valid vehicle type
 
 	@Test
-	public void testVehicleType() {
+	void testVehicleType() {
 		String VehicleType = "Car";
 		try {
-			EnamValidation.ValidVehicleType(VehicleType);
+			EnamValidation.validVehicleType(VehicleType);
 		} catch (InvalidProductDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_VEHICLETYPE, e.getMessage());
@@ -194,7 +194,7 @@ public class TestProductValidation {
 		String VehicleType2 = "Bike";
 
 		try {
-			EnamValidation.ValidVehicleType(VehicleType2);
+			EnamValidation.validVehicleType(VehicleType2);
 		} catch (InvalidProductDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_VEHICLETYPE, e.getMessage());
@@ -204,12 +204,12 @@ public class TestProductValidation {
 
 // Test invalid vehicle type
 	@Test
-	public void testInvalidVehicletype() {
+	void testInvalidVehicletype() {
 //	empty vehicle type
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
-			EnamValidation.ValidVehicleType(null);
+			EnamValidation.validVehicleType(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidProductDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -217,7 +217,7 @@ public class TestProductValidation {
 		}
 //	invalid vehicle type
 		try {
-			EnamValidation.ValidVehicleType("Truck");
+			EnamValidation.validVehicleType("Truck");
 			Assertions.fail("Test case failed");
 		} catch (InvalidProductDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -227,7 +227,7 @@ public class TestProductValidation {
 
 	@Test
 //	Valid image url test case
-	public void testImageUrl() {
+	void testImageUrl() {
 		ArrayList<String> validImages = new ArrayList<>();
 		validImages.add("https://iili.io/Hv6Okvf.png");
 		validImages.add("https://iili.io/Hv6tFqu.png");
@@ -238,7 +238,7 @@ public class TestProductValidation {
 
 	@Test
 //	Invalid image Url  test case
-	public void inValidImageUrl() {
+	void inValidImageUrl() {
 		ArrayList<String> invalidImages = new ArrayList<>();
 		invalidImages.add("https://example.com/image1");
 		invalidImages.add("https://example.com/image2.jpg.doc");
@@ -263,14 +263,14 @@ public class TestProductValidation {
 
 //	Valid product id
 	@Test
-	public void validProductId() {
+	void validProductId() {
 		// Asserting that the product Id validation returns true for this valid Product
 		// object
 		Assertions.assertTrue(ProductValidation.productIdValidate(1));
 	}
 
 //	Invalid product Id 
-	public void inValidProductId() {
+	void inValidProductId() {
 		try {
 			// Attempt to validate an invalid product ID, should throw an exception
 			ProductValidation.productIdValidate(-1);

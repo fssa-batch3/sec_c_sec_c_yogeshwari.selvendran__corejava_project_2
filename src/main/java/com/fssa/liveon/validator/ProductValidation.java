@@ -21,6 +21,7 @@ public class ProductValidation {
 		validateAboutProduct(product.getAboutProduct());
 		validateProductDescription(product.getDescription());
 		productImagesValidator(product.getImageUrl());
+		EnamValidation.validVehicleType(product.getVehicleType());
 		return true;
 	}
 
@@ -29,16 +30,17 @@ public class ProductValidation {
 		if (productName == null || "".equals(productName.trim())) {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME_NULL);
 		}
-		// minimum 2 charcter and max 35 charcter
+		// minimum 2 character and max 35 character
 		String nameregex = "^[a-zA-Z ]{2,35}$";
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productName);
 		Boolean isMatch = matcher.matches();
 
-		if (!isMatch) {
-			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME);
+		if (isMatch) {
+			return true;
+
 		}
-		return true;
+		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME);
 	}
 
 	// Product price validation
@@ -64,17 +66,17 @@ public class ProductValidation {
 		if (productAbout == null || "".equals(productAbout.trim())) {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT_NULL);
 		}
-		// minimum 2 charcter and max 35 charcter
-		String nameregex = "^[a-zA-Z0-9\\\\\\\\p{Punct}\\\\\\\\s]{10,250}$";
+		// minimum 2 character and max 35 character
+		String nameregex = "^[a-zA-Z0-9\\\\p{Punct}\\\\s]{10,250}$";
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productAbout);
 		Boolean isMatch = matcher.matches();
 
-		if (!isMatch) {
-			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT);
+		if (isMatch) {
+			return true;
 
 		}
-		return true;
+		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT);
 	}
 
 	// Product description validation
@@ -82,17 +84,17 @@ public class ProductValidation {
 		if (productDescription == null || "".equals(productDescription.trim())) {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION_NULL);
 		}
-		// minimum 2 charcter and max 35 charcter
+		// minimum 2 character and max 35 character
 		String nameregex = "^[a-zA-Z0-9\\\\p{Punct}\\\\s]{10,250}$";
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productDescription);
 		Boolean isMatch = matcher.matches();
 
-		if (!isMatch) {
-			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
+		if (isMatch) {
+			return true;
 
 		}
-		return true;
+		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
 	}
 
 	// imageUrl validate
@@ -105,11 +107,12 @@ public class ProductValidation {
 			String urlRegex = "(?i)\\b((https?|ftp)://)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?\\.(jpg|jpeg|gif|png|bmp)\\b";
 			Pattern pattern = Pattern.compile(urlRegex);
 			Matcher matcher = pattern.matcher(image);
-			if (!matcher.matches()) {
-				throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCTIMAGE);
+			if (matcher.matches()) {
+				return true;
 			}
 		}
-		return true;
+		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCTIMAGE);
+	
 	}
 
 	public static boolean productIdValidate(int productId) throws InvalidProductDetailsException {
