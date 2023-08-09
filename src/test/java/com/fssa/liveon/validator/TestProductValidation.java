@@ -10,25 +10,29 @@ import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 
 public class TestProductValidation {
-//	Valid test case for product details
+	// Valid test case for product details
 	@Test
 	public void testValidteProduct() {
+		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();
 		images.add("https://iili.io/Hv6Okvf.png");
 		images.add("https://iili.io/Hv6Okvf.png");
-
+		 // Creating a valid Product object
 		Product product = new Product("Car", "AirFilter", 2000.0, 4, images, "Sampleproductdescription",
 				"SampleAboutproduct");
+		 // Asserting that the product validation returns true for this valid Product object
 		Assertions.assertTrue(ProductValidation.validateProduct(product));
 	}
 
-//	Invalid test cSER FOR PRODUCT Details
+	// Invalid test case for product details
 	@Test
 	public void testInvaidProduct() {
 		try {
+			 // Validating a null Product object should throw an InvalidProductDetailsException
 			ProductValidation.validateProduct(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidProductDetailsException e) {
+			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(ProductValidationsErrors.INVALID_PRODUCTOBJECT, e.getMessage());
 		}
 	}
