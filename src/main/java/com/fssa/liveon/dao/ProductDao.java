@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
@@ -18,13 +17,14 @@ import com.fssa.liveon.util.Logger;
 public class ProductDao {
 	static Logger logger = new Logger();
 
+	// Method to add a product to the database
 	public static boolean addProduct(Product product) throws DAOException, SQLException {
 		String storedProcedureCall = "{call InsertProduct(?, ?, ?, ?, ?, ?, ?)}";
 		boolean rows;
 		try (Connection con = ConnectionUtil.getConnection()) {
 
 			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
-
+				// Setting parameters for the stored procedure
 				callableStatement.setString(1, product.getProductName());
 				callableStatement.setString(2, product.getVehicleType());
 				callableStatement.setDouble(3, product.getPrice());
@@ -35,7 +35,7 @@ public class ProductDao {
 				String productImagesStr = String.join(",", product.getImageUrl());
 
 				callableStatement.setString(7, productImagesStr);
-
+				// Executing the stored procedure
 				rows = callableStatement.execute();
 
 			}
@@ -46,8 +46,9 @@ public class ProductDao {
 		return true;
 	}
 
+	// Method to update a product in the database
 	public static boolean updateProduct(Product product) throws DAOException, SQLException {
-
+		// Checking if the product ID is valid
 		if (product.getProductId() <= 0) {
 			throw new InvalidProductDetailsException(productDaoErrors.INVALID_PRODUCT_ID);
 		}
@@ -66,7 +67,7 @@ public class ProductDao {
 				String productImagesStr = String.join(",", product.getImageUrl());
 
 				callableStatement.setString(8, productImagesStr);
-
+				// Executing the stored procedure
 				rows = callableStatement.execute();
 			}
 		} catch (SQLException e) {
@@ -77,21 +78,21 @@ public class ProductDao {
 		return true;
 	}
 
+	// Method to delete a product from the database
 	public static boolean deleteProduct(int productId) throws DAOException, SQLException {
-
+		// Checking if the product ID is valid
 		if (productId <= 0) {
 			throw new InvalidProductDetailsException(productDaoErrors.INVALID_PRODUCT_ID);
 		}
 		String storedProcedureCall = "{call DeleteProduct(?)}";
 		boolean rows;
-		try (Connection con = ConnectionUtil.getConnection()){
-			
-		
-			try	(CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
+		try (Connection con = ConnectionUtil.getConnection()) {
 
-			callableStatement.setInt(1, productId);
+			try (CallableStatement callableStatement = con.prepareCall(storedProcedureCall)) {
 
-			rows = callableStatement.execute();
+				callableStatement.setInt(1, productId);
+				// Executing the stored procedure
+				rows = callableStatement.execute();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,66 +102,62 @@ public class ProductDao {
 		return true;
 	}
 
+	// Method to retrieve all product details from the database
 	public static boolean getAllProduct() throws DAOException, SQLException {
 
 		List<Product> productList = new ArrayList<>();
 
-		/**
-		 * The Query for selecting all grounddetails from all the table
-		 */
-
+		// SQL query to retrieve product details along with image URLs
 		String selectQuery = "SELECT p.*, "
-	            + "(SELECT GROUP_CONCAT(imageUrl) FROM ProductImages pi WHERE pi.product_Id = p.product_id) AS imageUrls "
-	            + "FROM Product p";
+				+ "(SELECT GROUP_CONCAT(imageUrl) FROM ProductImages pi WHERE pi.product_Id = p.product_id) AS imageUrls "
+				+ "FROM Product p";
 
-		try (Connection con = ConnectionUtil.getConnection()){
+		try (Connection con = ConnectionUtil.getConnection()) {
 
-			try (PreparedStatement preparedStatement = con.prepareStatement(selectQuery)){
-			try(ResultSet rs = preparedStatement.executeQuery()) {
+			try (PreparedStatement preparedStatement = con.prepareStatement(selectQuery)) {
+				try (ResultSet rs = preparedStatement.executeQuery()) {
 
-			while (rs.next()) {
-				int productId = rs.getInt("product_id");
+					while (rs.next()) {
+						int productId = rs.getInt("product_id");
 
-				Product product = new Product();
+						Product product = new Product();
+						// Setting product attributes from the retrieved data
+						product.setProductId(productId);
+						product.setProductName(rs.getString("productName"));
+						product.setVehicleType(rs.getString("vehicle_type"));
+						product.setPrice(rs.getDouble("price"));
+						product.setRating(rs.getInt("rating"));
+						product.setAboutProduct(rs.getString("aboutProduct"));
+						product.setDescription(rs.getString("description"));
+						// Splitting and setting image URLs
+						String imageUrlsdata = rs.getString("imageUrls");
+						if (imageUrlsdata != null) {
+							String[] imageUrl = imageUrlsdata.split(",");
+							product.setImageUrl(Arrays.asList(imageUrl));
+						} else {
+							product.setImageUrl(new ArrayList<>());
+						}
+						
+						// Logging retrieved product details
+						logger.info(rs.getString("productName"));
+						logger.info(rs.getString("vehicle_type"));
+						logger.info(rs.getDouble("price"));
+						logger.info(rs.getInt("rating"));
+						logger.info(rs.getString("aboutProduct"));
+						logger.info(rs.getString("description"));
+						logger.info(rs.getString("imageUrls"));
 
-				product.setProductId(productId);
-				product.setProductName(rs.getString("productName"));
-				product.setVehicleType(rs.getString("vehicle_type"));
-				product.setPrice(rs.getDouble("price"));
-				product.setRating(rs.getInt("rating"));
-				product.setAboutProduct(rs.getString("aboutProduct"));
-				product.setDescription(rs.getString("description"));
+						productList.add(product);
+					}
 
-				String imageUrlsdata = rs.getString("imageUrls");
-				if (imageUrlsdata != null) {
-					String[] imageUrl = imageUrlsdata.split(",");
-					product.setImageUrl(Arrays.asList(imageUrl));
-				} else {
-					product.setImageUrl(new ArrayList<>());
 				}
-				logger.info(rs.getString("productName"));
-				logger.info(rs.getString("vehicle_type"));
-				logger.info(rs.getDouble("price"));
-				logger.info(rs.getInt("rating"));
-				logger.info(rs.getString("aboutProduct"));
-				logger.info(rs.getString("description"));
-				logger.info(rs.getString("imageUrls"));
-
-				productList.add(product);
 			}
-
-		} 
-			}
-	}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 
 			throw new DAOException(productDaoErrors.INVALID_ALL_PRODUCT);
 		}
 
 		return true;
 	}
-	
 
-	
 }
-

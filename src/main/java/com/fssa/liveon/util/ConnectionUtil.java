@@ -57,7 +57,9 @@ public class ConnectionUtil {
 	        }
 	    }
 	    
+	    
 	    public static void main(String[] args){
 	    	Connection con =getConnection();	    	
 		}
+	    
 }

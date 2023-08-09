@@ -26,6 +26,7 @@ public class Product {
 		this.description = description;
 	}
 	
+	
 	public Product(int productId, String vehicleType, String productName, double price, int rating, List<String> imageUrl,
 			String aboutProduct, String description) {
 		super();
