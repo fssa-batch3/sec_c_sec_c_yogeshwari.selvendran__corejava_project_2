@@ -182,6 +182,7 @@ class TestProductValidation {
 	// test valid vehicle type
 
 	@Test
+	
 	void testVehicleType() {
 		String VehicleType = "Car";
 		try {

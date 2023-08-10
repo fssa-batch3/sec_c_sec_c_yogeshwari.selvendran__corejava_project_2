@@ -44,7 +44,7 @@ class TestProductService {
 	public ProductService getProductService() {
 		// Creating instances for ProductValidation, ProductDao, and ProductService
 //		ProductValidation productValidate = new ProductValidation();
-		ProductDao productDa0 = new ProductDao();
+//		ProductDao productDa0 = new ProductDao();
 		ProductService productService = new ProductService();
 		return productService;
 

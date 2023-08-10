@@ -3,9 +3,12 @@ package com.fssa.liveon.validator;
 import com.fssa.liveon.enums.Category;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 
-public final class EnamValidation {
+public  class EnamValidation {
+	private EnamValidation() {
+		// private constructor
+	}
 
-	/**F
+	/**
 	 * validation method for validating vehicle types
 	 * 
 	 * @param vehicleType

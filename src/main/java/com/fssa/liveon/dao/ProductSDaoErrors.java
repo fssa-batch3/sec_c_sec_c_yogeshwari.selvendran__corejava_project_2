@@ -3,7 +3,10 @@ package com.fssa.liveon.dao;
 /**
  * This class contains error messages related to product DAO operations.
  */
-public final class ProductSDaoErrors {
+public class ProductSDaoErrors {
+	private ProductSDaoErrors() {
+		// private constructor
+	}
 
 	/**
 	 * Error message for failed attempt to add product details to the database.

@@ -7,14 +7,16 @@ import java.util.regex.Pattern;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 
-public final class ProductValidation {
-	
-
-//	Validations for object 
+public class ProductValidation {
 
 	private ProductValidation() {
 		// private constructor
 	}
+//	Validations for object 
+//
+//	private ProductValidation() {
+//		// private constructor
+//	}
 
 	public static boolean validateProduct(Product product) {
 		if (product == null) {

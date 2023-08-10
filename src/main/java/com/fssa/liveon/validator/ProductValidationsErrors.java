@@ -1,6 +1,12 @@
 package com.fssa.liveon.validator;
 
-public final class ProductValidationsErrors {
+public class ProductValidationsErrors {
+	
+	
+	private ProductValidationsErrors() {
+		//private constructor
+	}
+	
 	public static final String INVALID_PRODUCTOBJECT = "product inputs can not be null or empty";
 //	Invalid product name
 	public static final String INVALID_PRODUCT_NAME_NULL = "Product name  cannot be empty or null";

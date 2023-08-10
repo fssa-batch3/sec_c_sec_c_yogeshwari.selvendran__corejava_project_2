@@ -6,7 +6,7 @@ import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.Product;
 import com.fssa.liveon.validator.ProductValidation;
 
-public final class ProductService {
+public class ProductService {
 	/**
 	 * Declare member variables for ProductValidation and ProductDao
 	 */
