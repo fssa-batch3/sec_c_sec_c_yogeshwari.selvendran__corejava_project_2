@@ -42,7 +42,7 @@ public final class ProductDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(ProductDaoErrors.INVALID_ADD_PRODUCT);
+			throw new DAOException(ProductSDaoErrors .INVALID_ADD_PRODUCT);
 		}
 		return true;
 	}
@@ -51,7 +51,7 @@ public final class ProductDao {
 	public static boolean updateProduct(Product product) throws DAOException, SQLException {
 		// Checking if the product ID is valid
 		if (product.getProductId() <= 0) {
-			throw new InvalidProductDetailsException(ProductDaoErrors.INVALID_PRODUCT_ID);
+			throw new InvalidProductDetailsException(ProductSDaoErrors .INVALID_PRODUCT_ID);
 		}
 		String storedProcedureCall = "{call UpdateProduct(?, ?, ?, ?, ?, ?, ?,?)}";
 
@@ -73,7 +73,7 @@ public final class ProductDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(ProductDaoErrors.INVALID_UPDATE_PRODUCT);
+			throw new DAOException(ProductSDaoErrors .INVALID_UPDATE_PRODUCT);
 
 		}
 		return true;
@@ -83,7 +83,7 @@ public final class ProductDao {
 	public static boolean deleteProduct(int productId) throws DAOException, SQLException {
 		// Checking if the product ID is valid
 		if (productId <= 0) {
-			throw new InvalidProductDetailsException(ProductDaoErrors.INVALID_PRODUCT_ID);
+			throw new InvalidProductDetailsException(ProductSDaoErrors .INVALID_PRODUCT_ID);
 		}
 		String storedProcedureCall = "{call DeleteProduct(?)}";
 
@@ -97,7 +97,7 @@ public final class ProductDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DAOException(ProductDaoErrors.INVALID_DELETE_PRODUCT);
+			throw new DAOException(ProductSDaoErrors .INVALID_DELETE_PRODUCT);
 
 		}
 		return true;
@@ -155,7 +155,7 @@ public final class ProductDao {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(ProductDaoErrors.INVALID_ALL_PRODUCT);
+			throw new DAOException(ProductSDaoErrors .INVALID_ALL_PRODUCT);
 		}
 
 		return true;

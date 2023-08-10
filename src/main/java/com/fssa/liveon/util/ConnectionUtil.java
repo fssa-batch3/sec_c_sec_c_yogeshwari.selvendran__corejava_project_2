@@ -12,6 +12,13 @@ import com.fssa.liveon.exceptions.DAOException;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
+	
+	
+	
+	private ConnectionUtil() {
+		// private constructor
+	}
+
 	static Logger logger = new Logger();
 
 	public static Connection getConnection() throws DAOException {

@@ -5,7 +5,7 @@ import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 
 public final class EnamValidation {
 
-	/**
+	/**F
 	 * validation method for validating vehicle types
 	 * 
 	 * @param vehicleType

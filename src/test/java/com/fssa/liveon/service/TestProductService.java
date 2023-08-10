@@ -43,7 +43,7 @@ class TestProductService {
 	// Helper method to create and configure a ProductService instance for testing
 	public ProductService getProductService() {
 		// Creating instances for ProductValidation, ProductDao, and ProductService
-		ProductValidation productValidate = new ProductValidation();
+//		ProductValidation productValidate = new ProductValidation();
 		ProductDao productDa0 = new ProductDao();
 		ProductService productService = new ProductService();
 		return productService;

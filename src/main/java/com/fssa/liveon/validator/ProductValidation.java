@@ -7,9 +7,14 @@ import java.util.regex.Pattern;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 
-public  final class ProductValidation {
+public final class ProductValidation {
+	
 
 //	Validations for object 
+
+	private ProductValidation() {
+		// private constructor
+	}
 
 	public static boolean validateProduct(Product product) {
 		if (product == null) {
@@ -38,7 +43,6 @@ public  final class ProductValidation {
 
 		if (isMatch.equals(Boolean.FALSE)) {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME);
-			
 
 		}
 		return true;
@@ -75,7 +79,6 @@ public  final class ProductValidation {
 
 		if (isMatch.equals(Boolean.FALSE)) {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT);
-		
 
 		}
 		return true;
@@ -94,7 +97,6 @@ public  final class ProductValidation {
 
 		if (isMatch.equals(Boolean.FALSE)) {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
-	
 
 		}
 		return true;
@@ -115,7 +117,7 @@ public  final class ProductValidation {
 			}
 		}
 		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCTIMAGE);
-	
+
 	}
 
 	public static boolean productIdValidate(int productId) throws InvalidProductDetailsException {

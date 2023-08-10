@@ -3,7 +3,7 @@ package com.fssa.liveon.validator;
 public final class ProductValidationsErrors {
 	public static final String INVALID_PRODUCTOBJECT = "product inputs can not be null or empty";
 //	Invalid product name
-	public static final String INVALID_PRODUCT_NAME_NULL= "Product name  cannot be empty or null";
+	public static final String INVALID_PRODUCT_NAME_NULL = "Product name  cannot be empty or null";
 	public static final String INVALID_PRODUCT_NAME = "The name should be  minimum 2 letters and maximum 35 letters";
 //	Invalid product price
 	public static final String INVALID_PRODUCTPRICE = "Product price should be  greater than or equal to 500  and lesser then or equal to 30000";

@@ -88,7 +88,7 @@ class TestProductDao {
 			ProductDao.addProduct(productValidate());
 		} catch (InvalidProductDetailsException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(ProductDaoErrors.INVALID_ADD_PRODUCT, e.getMessage());
+			Assertions.assertEquals(ProductSDaoErrors.INVALID_ADD_PRODUCT, e.getMessage());
 		}
 	}
 
@@ -100,7 +100,7 @@ class TestProductDao {
 			ProductDao.updateProduct(inValidProduct());
 		} catch (InvalidProductDetailsException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(ProductDaoErrors.INVALID_PRODUCT_ID, e.getMessage());
+			Assertions.assertEquals(ProductSDaoErrors.INVALID_PRODUCT_ID, e.getMessage());
 		}
 	}
 
@@ -112,7 +112,7 @@ class TestProductDao {
 			ProductDao.deleteProduct(inValidProduct().getProductId());
 		} catch (InvalidProductDetailsException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(ProductDaoErrors.INVALID_PRODUCT_ID, e.getMessage());
+			Assertions.assertEquals(ProductSDaoErrors.INVALID_PRODUCT_ID, e.getMessage());
 		}
 	}
 }
