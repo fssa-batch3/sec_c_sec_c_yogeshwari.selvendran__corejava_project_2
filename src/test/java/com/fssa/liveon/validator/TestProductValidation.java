@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 
-public class TestProductValidation {
+class TestProductValidation {
 	// Valid test case for product details
 	@Test
 	void testValidteProduct() {

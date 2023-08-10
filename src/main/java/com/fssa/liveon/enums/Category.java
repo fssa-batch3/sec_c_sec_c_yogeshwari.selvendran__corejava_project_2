@@ -5,7 +5,7 @@ public enum Category {
 	 * Define two enum constants: BIKE and Car
 	 */
 
-	BIKE("Bike"), Car("Car");
+	BIKE("Bike"), CAR("Car");
 
 	/**
 	 * Declare a private final instance variable to store the vehicle type

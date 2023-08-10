@@ -11,7 +11,7 @@ import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 
-public class TestProductDao {
+class TestProductDao {
 	// Create a valid Product instance for testing
 	public static Product productValidate() {
 		// Creating a list of image URLs
@@ -60,21 +60,21 @@ public class TestProductDao {
 
 	// Test for adding a valid product
 	@Test
-	 void testValidAddProduct() throws DAOException, SQLException {
+	void testValidAddProduct() throws DAOException, SQLException {
 		// Assert that the ProductDao.addProduct method returns true for a valid product
 		Assertions.assertTrue(ProductDao.addProduct(productValidate2()));
 	}
 
 	// Test for updating a valid product
 	@Test
-	 void testValidUpdateProduct() throws DAOException, SQLException {
+	void testValidUpdateProduct() throws DAOException, SQLException {
 		// Assert that the ProductDao.addProduct method returns true for a valid product
 		Assertions.assertTrue(ProductDao.addProduct(productValidate()));
 	}
 
 	// Test for deleting a valid product
 	@Test
-	 void testValidDeleteProduct() throws DAOException, SQLException {
+	void testValidDeleteProduct() throws DAOException, SQLException {
 		// Assert that the ProductDao.deleteProduct method returns true for a valid
 		// product ID
 		Assertions.assertTrue(ProductDao.deleteProduct(5));
@@ -82,7 +82,7 @@ public class TestProductDao {
 
 	// Test for adding an invalid product
 	@Test
-	 void testInvalidAddProduct() throws DAOException, SQLException {
+	void testInvalidAddProduct() throws DAOException, SQLException {
 		try {
 			// Attempt to add an invalid product, should throw an exception
 			ProductDao.addProduct(productValidate());
@@ -94,7 +94,7 @@ public class TestProductDao {
 
 	// Test for updating a product with an invalid ID
 	@Test
-	 void testInvalidUpdateProduct() throws DAOException, SQLException {
+	void testInvalidUpdateProduct() throws DAOException, SQLException {
 		try {
 			// Attempt to update a product with an invalid ID, should throw an exception
 			ProductDao.updateProduct(inValidProduct());
@@ -106,7 +106,7 @@ public class TestProductDao {
 
 	// Test for deleting a product with an invalid ID
 	@Test
-	 void testInvalidDeleteProduct() throws DAOException, SQLException {
+	void testInvalidDeleteProduct() throws DAOException, SQLException {
 		try {
 			// Attempt to delete a product with an invalid ID, should throw an exception
 			ProductDao.deleteProduct(inValidProduct().getProductId());

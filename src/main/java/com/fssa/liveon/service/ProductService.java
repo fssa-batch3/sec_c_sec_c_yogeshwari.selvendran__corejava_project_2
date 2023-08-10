@@ -6,13 +6,13 @@ import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.Product;
 import com.fssa.liveon.validator.ProductValidation;
 
-public class ProductService {
+public final class ProductService {
 	/**
 	 * Declare member variables for ProductValidation and ProductDao
 	 */
 
-	private ProductValidation productValidation;
-	private ProductDao productDao;
+	public ProductValidation productValidation;
+	public ProductDao productDao;
 
 	/**
 	 * Constructor that accepts instances of ProductValidation and ProductDao
@@ -22,9 +22,9 @@ public class ProductService {
 	 */
 
 	public ProductService(ProductValidation productValidation, ProductDao productDao) {
-		super();
-		productValidation = productValidation;
-		productDao = productDao;
+
+		this.productValidation = productValidation;
+		this.productDao = productDao;
 	}
 
 	/**
@@ -59,24 +59,25 @@ public class ProductService {
 		return true;
 	}
 
-/**
- * Method to update a product
- * @param product
- * @return
- * @throws DAOException
- * @throws SQLException
- */
-	
+	/**
+	 * Method to update a product
+	 * 
+	 * @param product
+	 * @return
+	 * @throws DAOException
+	 * @throws SQLException
+	 */
+
 	public boolean updateProduct(Product product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
-	
+
 		if (ProductValidation.validateProduct(product)) {
 			/**
 			 * Call the updateProduct method in ProductDao
 			 */
-	
+
 			ProductDao.updateProduct(product);
 		}
 		return true;
@@ -93,15 +94,10 @@ public class ProductService {
 
 	public boolean deleteProduct(int productId) throws DAOException, SQLException {
 		/**
-		 * Create an instance of ProductValidation
-		 */
-
-		ProductValidation productValidation = new ProductValidation();
-		/**
 		 * Validate the productId using ProductValidation
 		 */
 
-		if (productValidation.productIdValidate(productId)) {
+		if (ProductValidation.productIdValidate(productId)) {
 			/**
 			 * Call the deleteProduct method in ProductDao
 			 */
@@ -121,15 +117,10 @@ public class ProductService {
 
 	public static boolean getProductDetail() throws DAOException, SQLException {
 		/**
-		 * Create an instance of ProductDao
-		 */
-
-		ProductDao productdao = new ProductDao();
-		/**
 		 * Call the getAllProduct method in ProductDao
 		 */
 
-		productdao.getAllProduct();
+		ProductDao.getAllProduct();
 		return true;
 	}
 }

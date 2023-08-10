@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
 
-public class ProductValidation {
+public  final class ProductValidation {
 
 //	Validations for object 
 
@@ -36,11 +36,12 @@ public class ProductValidation {
 		Matcher matcher = pattern.matcher(productName);
 		Boolean isMatch = matcher.matches();
 
-		if (isMatch) {
-			return true;
+		if (isMatch.equals(Boolean.FALSE)) {
+			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME);
+			
 
 		}
-		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME);
+		return true;
 	}
 
 	// Product price validation
@@ -72,11 +73,12 @@ public class ProductValidation {
 		Matcher matcher = pattern.matcher(productAbout);
 		Boolean isMatch = matcher.matches();
 
-		if (isMatch) {
-			return true;
+		if (isMatch.equals(Boolean.FALSE)) {
+			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT);
+		
 
 		}
-		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT);
+		return true;
 	}
 
 	// Product description validation
@@ -90,11 +92,12 @@ public class ProductValidation {
 		Matcher matcher = pattern.matcher(productDescription);
 		Boolean isMatch = matcher.matches();
 
-		if (isMatch) {
-			return true;
+		if (isMatch.equals(Boolean.FALSE)) {
+			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
+	
 
 		}
-		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
+		return true;
 	}
 
 	// imageUrl validate

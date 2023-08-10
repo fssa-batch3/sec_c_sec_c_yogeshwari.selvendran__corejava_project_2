@@ -12,11 +12,11 @@ import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.Product;
 import com.fssa.liveon.validator.ProductValidation;
 
-public class TestProductService {
+class TestProductService {
 	/**
 	 * Helper method to create a valid Product instance for testing
 	 */
-	
+
 	public Product getProduct() {
 		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();

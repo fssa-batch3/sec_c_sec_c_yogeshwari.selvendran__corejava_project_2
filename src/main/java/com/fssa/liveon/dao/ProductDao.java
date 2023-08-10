@@ -15,7 +15,7 @@ import com.fssa.liveon.model.Product;
 import com.fssa.liveon.util.ConnectionUtil;
 import com.fssa.liveon.util.Logger;
 
-public class ProductDao {
+public final class ProductDao {
 	static Logger logger = new Logger();
 
 	// Method to add a product to the database
