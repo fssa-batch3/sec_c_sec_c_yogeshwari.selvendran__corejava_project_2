@@ -46,7 +46,7 @@ public class ProductDao {
 
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			throw new DAOException(ProductSDaoErrors.INVALID_ADD_PRODUCT);
 		}
 		return true;
@@ -77,7 +77,7 @@ public class ProductDao {
 				callableStatement1.execute();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			throw new DAOException(ProductSDaoErrors.INVALID_UPDATE_PRODUCT);
 
 		}
@@ -101,7 +101,7 @@ public class ProductDao {
 				callableStatement2.execute();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			throw new DAOException(ProductSDaoErrors.INVALID_DELETE_PRODUCT);
 
 		}

@@ -7,10 +7,10 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.fssa.liveon.dao.ProductDao;
+
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.Product;
-import com.fssa.liveon.validator.ProductValidation;
+
 
 class TestProductService {
 	/**
@@ -41,14 +41,7 @@ class TestProductService {
 	}
 
 	// Helper method to create and configure a ProductService instance for testing
-	public ProductService getProductService() {
-		// Creating instances for ProductValidation, ProductDao, and ProductService
-//		ProductValidation productValidate = new ProductValidation();
-//		ProductDao productDa0 = new ProductDao();
-		ProductService productService = new ProductService();
-		return productService;
 
-	}
 
 	// Test for adding a product
 	@Test
@@ -57,9 +50,9 @@ class TestProductService {
 		Product product = getProduct();
 
 		// Creating a ProductService instance
-		ProductService productService = getProductService();
+		
 		// Asserting that the addProduct method returns true for the valid Product
-		Assertions.assertTrue(productService.addProduct(product));
+		Assertions.assertTrue(ProductService.addProduct(product));
 
 	}
 
@@ -69,9 +62,9 @@ class TestProductService {
 		// Creating a valid Product instance with a specific product ID
 		Product product = getProduct2();
 		// Creating a ProductService instance
-		ProductService productService = getProductService();
+		
 		// Asserting that the updateProduct method returns true for the valid Product
-		Assertions.assertTrue(productService.updateProduct(product));
+		Assertions.assertTrue(ProductService.updateProduct(product));
 
 	}
 
@@ -81,10 +74,10 @@ class TestProductService {
 		// Creating a valid Product instance with a specific product ID
 		Product product = getProduct2();
 		// Creating a ProductService instance
-		ProductService productService = getProductService();
+	
 		// Asserting that the deleteProduct method returns true for the specific product
 		// ID
-		Assertions.assertTrue(productService.deleteProduct(10));
+		Assertions.assertTrue(ProductService.deleteProduct(10));
 
 	}
 
@@ -94,9 +87,9 @@ class TestProductService {
 		// Creating a valid Product instance
 		Product product = getProduct();
 		// Creating a ProductService instance
-		ProductService productService = getProductService();
+		
 		// Asserting that the getProductDetail method returns true
-		Assertions.assertTrue(productService.getProductDetail());
+		Assertions.assertTrue(ProductService.getProductDetail());
 	}
 
 }

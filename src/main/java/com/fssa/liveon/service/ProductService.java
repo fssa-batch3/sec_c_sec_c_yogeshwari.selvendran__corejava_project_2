@@ -11,8 +11,6 @@ public class ProductService {
 	 * Declare member variables for ProductValidation and ProductDao
 	 */
 
-	public ProductValidation productValidation;
-	public ProductDao productDao;
 
 	/**
 	 * Constructor that accepts instances of ProductValidation and ProductDao
@@ -21,17 +19,12 @@ public class ProductService {
 	 * @param productDao
 	 */
 
-	public ProductService(ProductValidation productValidation, ProductDao productDao) {
-
-		this.productValidation = productValidation;
-		this.productDao = productDao;
-	}
 
 	/**
 	 * Default constructor
 	 */
 
-	public ProductService() {
+	private ProductService() {
 
 	}
 
@@ -44,7 +37,7 @@ public class ProductService {
 	 * @throws SQLException
 	 */
 
-	public boolean addProduct(Product product) throws DAOException, SQLException {
+	public static boolean addProduct(Product product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
@@ -68,7 +61,7 @@ public class ProductService {
 	 * @throws SQLException
 	 */
 
-	public boolean updateProduct(Product product) throws DAOException, SQLException {
+	public static boolean updateProduct(Product product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
@@ -92,7 +85,7 @@ public class ProductService {
 	 * @throws SQLException
 	 */
 
-	public boolean deleteProduct(int productId) throws DAOException, SQLException {
+	public static boolean deleteProduct(int productId) throws DAOException, SQLException {
 		/**
 		 * Validate the productId using ProductValidation
 		 */
