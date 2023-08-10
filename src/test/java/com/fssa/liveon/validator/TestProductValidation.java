@@ -12,7 +12,7 @@ import com.fssa.liveon.model.Product;
 class TestProductValidation {
 	// Valid test case for product details
 	@Test
-	void testValidteProduct() {
+	void testValidateProduct() {
 		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();
 		images.add("https://iili.io/Hv6Okvf.png");

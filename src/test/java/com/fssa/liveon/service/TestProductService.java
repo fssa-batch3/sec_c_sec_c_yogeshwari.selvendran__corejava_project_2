@@ -7,10 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.Product;
-
 
 class TestProductService {
 	/**
@@ -42,7 +40,6 @@ class TestProductService {
 
 	// Helper method to create and configure a ProductService instance for testing
 
-
 	// Test for adding a product
 	@Test
 	void testAddProduct() throws DAOException, SQLException {
@@ -50,7 +47,7 @@ class TestProductService {
 		Product product = getProduct();
 
 		// Creating a ProductService instance
-		
+
 		// Asserting that the addProduct method returns true for the valid Product
 		Assertions.assertTrue(ProductService.addProduct(product));
 
@@ -62,7 +59,7 @@ class TestProductService {
 		// Creating a valid Product instance with a specific product ID
 		Product product = getProduct2();
 		// Creating a ProductService instance
-		
+
 		// Asserting that the updateProduct method returns true for the valid Product
 		Assertions.assertTrue(ProductService.updateProduct(product));
 
@@ -74,7 +71,7 @@ class TestProductService {
 		// Creating a valid Product instance with a specific product ID
 		Product product = getProduct2();
 		// Creating a ProductService instance
-	
+
 		// Asserting that the deleteProduct method returns true for the specific product
 		// ID
 		Assertions.assertTrue(ProductService.deleteProduct(10));
@@ -87,9 +84,19 @@ class TestProductService {
 		// Creating a valid Product instance
 		Product product = getProduct();
 		// Creating a ProductService instance
-		
+
 		// Asserting that the getProductDetail method returns true
 		Assertions.assertTrue(ProductService.getProductDetail());
+	}
+
+	@Test
+	void testGetProductDetailsByType() throws DAOException, SQLException {
+		// Creating a valid Product instance
+		Product product = getProduct();
+		// Creating a ProductService instance
+
+		// Asserting that the getProductDetail method returns true
+		Assertions.assertTrue(ProductService.getProductDetailByType());
 	}
 
 }

@@ -116,4 +116,14 @@ public class ProductService {
 		ProductDao.getAllProduct();
 		return true;
 	}
+
+	public static boolean getProductDetailByType() throws DAOException, SQLException {
+		/**
+		 * Call the getAllProduct method in ProductDao
+		 */
+
+		ProductDao.findProductByVehicleType("Bike");
+		return true;
+	}
+	
 }
