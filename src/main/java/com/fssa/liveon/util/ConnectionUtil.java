@@ -1,6 +1,7 @@
 package com.fssa.liveon.util;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,7 +52,7 @@ public class ConnectionUtil {
 		return con;
 	}
 
-	public static void close(Connection conn, Statement stmt, PreparedStatement ps, ResultSet rs) {
+	public static void close(Connection conn, Statement stmt, PreparedStatement ps, ResultSet rs) throws DAOException {
 
 		try {
 			if (rs != null) {
@@ -67,7 +68,8 @@ public class ConnectionUtil {
 				conn.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DAOException("Unable to close to the database");
+		
 		}
 	}
 
