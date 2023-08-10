@@ -27,5 +27,6 @@
 | product_Id  | INT       | NOT NULL, FOREIGN KEY (Product)        | References the associated product's ID    |
 | imageUrl    | VARCHAR   | NOT NULL                              | URL of the image associated with product  |
 
-![Screenshot (148)](https://github.com/fssa-batch3/sec_c_sec_c_yogeshwari.selvendran__corejava_project_2/assets/116252201/904306e2-47a8-42c9-8922-9be179d9b6c6)
+## Dtabace Design
+![Screenshot (149)](https://github.com/fssa-batch3/sec_c_sec_c_yogeshwari.selvendran__corejava_project_2/assets/116252201/27cc2bdc-f98a-45a0-b0ab-020002c464a0)
 
