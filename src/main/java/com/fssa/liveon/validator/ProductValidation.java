@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import com.fssa.liveon.exceptions.InvalidProductDetailsException;
 import com.fssa.liveon.model.Product;
+import com.fssa.liveon.regexpattern.RegexPattern;
 
 public class ProductValidation {
 
@@ -33,7 +34,7 @@ public class ProductValidation {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_NAME_NULL);
 		}
 		// minimum 2 character and max 35 character
-		String nameregex = "^[a-zA-Z ]{2,35}$";
+		String nameregex =  RegexPattern.PRODUCT_NAME_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productName);
 		Boolean isMatch = matcher.matches();
@@ -69,7 +70,7 @@ public class ProductValidation {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_ABOUTPRODUCT_NULL);
 		}
 		// minimum 2 character and max 35 character
-		String nameregex = "^[a-zA-Z0-9\\\\p{Punct}\\\\s]{10,250}$";
+		String nameregex = RegexPattern.ABOUT_PRODUCT_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productAbout);
 		Boolean isMatch = matcher.matches();
@@ -87,7 +88,7 @@ public class ProductValidation {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCT_DESCRIPTION_NULL);
 		}
 		// minimum 2 character and max 35 character
-		String nameregex = "^[a-zA-Z0-9\\\\p{Punct}\\\\s]{10,250}$";
+		String nameregex = RegexPattern.PRODUCT_DESCRIPTION_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(productDescription);
 		Boolean isMatch = matcher.matches();
@@ -106,7 +107,7 @@ public class ProductValidation {
 			throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_PRODUCTIMAGE_NULL);
 		}
 		for (String image : imageUrl) {
-			String urlRegex = "(?i)\\b((https?|ftp)://)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?\\.(jpg|jpeg|gif|png|bmp)\\b";
+			String urlRegex = RegexPattern.PRODUCT_IMAGE_REGEX;
 			Pattern pattern = Pattern.compile(urlRegex);
 			Matcher matcher = pattern.matcher(image);
 			if (matcher.matches()) {
