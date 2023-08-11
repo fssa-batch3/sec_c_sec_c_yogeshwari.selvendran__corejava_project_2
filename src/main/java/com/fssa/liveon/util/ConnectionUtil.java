@@ -22,7 +22,7 @@ public class ConnectionUtil {
 
 	static Logger logger = new Logger();
 
-	public static Connection getConnection() throws DAOException {
+	public static Connection getConnection() {
 		Connection con = null;
 
 		String url;

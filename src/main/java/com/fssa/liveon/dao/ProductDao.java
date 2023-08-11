@@ -22,7 +22,14 @@ public class ProductDao {
 
 	static Logger logger = new Logger();
 
-	// Method to add a product to the database
+	final static String PRODUCT_NAME_KEY = "productName";
+	final static String VEHICLE_TYPE = "vehicle_type";
+	final static String PRICE_KEY = "price";
+	final static String PRODUCT_RATING = "rating";
+	final static String ABOUT_PRODUCT = "aboutProduct";
+	final static String PRODUCT_DESCRIPTION = "description";
+	final static String IMAGES_URL = "imageUrls";
+
 	public static boolean addProduct(Product product) throws DAOException, SQLException {
 
 		String storedProcedureCall = "{call InsertProduct(?, ?, ?, ?, ?, ?, ?)}";
@@ -129,15 +136,16 @@ public class ProductDao {
 
 						Product product = new Product();
 						// Setting product attributes from the retrieved data
+
 						product.setProductId(productId);
-						product.setProductName(rs.getString("productName"));
-						product.setVehicleType(rs.getString("vehicle_type"));
-						product.setPrice(rs.getDouble("price"));
-						product.setRating(rs.getInt("rating"));
-						product.setAboutProduct(rs.getString("aboutProduct"));
-						product.setDescription(rs.getString("description"));
+						product.setProductName(rs.getString(PRODUCT_NAME_KEY));
+						product.setVehicleType(rs.getString(VEHICLE_TYPE));
+						product.setPrice(rs.getDouble(PRICE_KEY));
+						product.setRating(rs.getInt(PRODUCT_RATING));
+						product.setAboutProduct(rs.getString(ABOUT_PRODUCT));
+						product.setDescription(rs.getString(PRODUCT_DESCRIPTION));
 						// Splitting and setting image URLs
-						String imageUrlsdata = rs.getString("imageUrls");
+						String imageUrlsdata = rs.getString(IMAGES_URL);
 						if (imageUrlsdata != null) {
 							String[] imageUrl = imageUrlsdata.split(",");
 							product.setImageUrl(Arrays.asList(imageUrl));
@@ -146,13 +154,13 @@ public class ProductDao {
 						}
 
 						// Logging retrieved product details
-						logger.info(rs.getString("productName"));
-						logger.info(rs.getString("vehicle_type"));
-						logger.info(rs.getDouble("price"));
-						logger.info(rs.getInt("rating"));
-						logger.info(rs.getString("aboutProduct"));
-						logger.info(rs.getString("description"));
-						logger.info(rs.getString("imageUrls"));
+						logger.info(rs.getString(PRODUCT_NAME_KEY));
+						logger.info(rs.getString(VEHICLE_TYPE));
+						logger.info(rs.getDouble(PRICE_KEY));
+						logger.info(rs.getInt(PRODUCT_RATING));
+						logger.info(rs.getString(ABOUT_PRODUCT));
+						logger.info(rs.getString(PRODUCT_DESCRIPTION));
+						logger.info(rs.getString(IMAGES_URL));
 
 						productList.add(product);
 					}
@@ -191,14 +199,14 @@ public class ProductDao {
 						Product readProduct = new Product();
 						// Setting product attributes from the retrieved data
 						readProduct.setProductId(productId);
-						readProduct.setProductName(ys.getString("productName"));
-						readProduct.setVehicleType(ys.getString("vehicle_type"));
-						readProduct.setPrice(ys.getDouble("price"));
-						readProduct.setRating(ys.getInt("rating"));
-						readProduct.setAboutProduct(ys.getString("aboutProduct"));
-						readProduct.setDescription(ys.getString("description"));
+						readProduct.setProductName(ys.getString(PRODUCT_NAME_KEY));
+						readProduct.setVehicleType(ys.getString(VEHICLE_TYPE));
+						readProduct.setPrice(ys.getDouble(PRICE_KEY));
+						readProduct.setRating(ys.getInt(PRODUCT_RATING));
+						readProduct.setAboutProduct(ys.getString(ABOUT_PRODUCT));
+						readProduct.setDescription(ys.getString(PRODUCT_DESCRIPTION));
 						// Splitting and setting image URLs
-						String imageUrlsdata = ys.getString("imageUrls");
+						String imageUrlsdata = ys.getString(IMAGES_URL);
 						if (imageUrlsdata != null) {
 							String[] imageUrl = imageUrlsdata.split(",");
 							readProduct.setImageUrl(Arrays.asList(imageUrl));
@@ -206,13 +214,13 @@ public class ProductDao {
 							readProduct.setImageUrl(new ArrayList<>());
 						}
 						// Logging retrieved product details
-						logger.info(ys.getString("productName"));
-						logger.info(ys.getString("vehicle_type"));
-						logger.info(ys.getDouble("price"));
-						logger.info(ys.getInt("rating"));
-						logger.info(ys.getString("aboutProduct"));
-						logger.info(ys.getString("description"));
-						logger.info(ys.getString("imageUrls"));
+						logger.info(ys.getString(PRODUCT_NAME_KEY));
+						logger.info(ys.getString(VEHICLE_TYPE));
+						logger.info(ys.getDouble(PRICE_KEY));
+						logger.info(ys.getInt(PRODUCT_RATING));
+						logger.info(ys.getString(ABOUT_PRODUCT));
+						logger.info(ys.getString(PRODUCT_DESCRIPTION));
+						logger.info(ys.getString(IMAGES_URL));
 
 						productList.add(readProduct);
 					}
