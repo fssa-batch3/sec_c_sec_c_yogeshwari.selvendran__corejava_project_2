@@ -22,13 +22,13 @@ public class ProductDao {
 
 	static Logger logger = new Logger();
 
-	final static String PRODUCT_NAME_KEY = "productName";
-	final static String VEHICLE_TYPE = "vehicle_type";
-	final static String PRICE_KEY = "price";
-	final static String PRODUCT_RATING = "rating";
-	final static String ABOUT_PRODUCT = "aboutProduct";
-	final static String PRODUCT_DESCRIPTION = "description";
-	final static String IMAGES_URL = "imageUrls";
+	static final String PRODUCT_NAME_KEY = "productName";
+	static final String VEHICLE_TYPE = "vehicle_type";
+	static final String PRICE_KEY = "price";
+	static final String PRODUCT_RATING = "rating";
+	static final String ABOUT_PRODUCT = "aboutProduct";
+	static final String PRODUCT_DESCRIPTION = "description";
+	static final String IMAGES_URL = "imageUrls";
 
 	public static boolean addProduct(Product product) throws DAOException, SQLException {
 
