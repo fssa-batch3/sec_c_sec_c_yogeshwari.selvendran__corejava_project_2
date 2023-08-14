@@ -1,7 +1,7 @@
 package com.fssa.liveon.validator;
 
 import com.fssa.liveon.enums.Category;
-import com.fssa.liveon.exceptions.InvalidProductDetailsException;
+import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 
 public  class EnamValidation {
 	private EnamValidation() {
@@ -13,12 +13,12 @@ public  class EnamValidation {
 	 * 
 	 * @param vehicleType
 	 * @return
-	 * @throws InvalidProductDetailsException
+	 * @throws InvalidSparePartDetailsException
 	 */
-	public static boolean validVehicleType(String vehicleType) throws InvalidProductDetailsException {
+	public static boolean validVehicleType(String vehicleType) throws InvalidSparePartDetailsException {
 		if (vehicleType == null) {
 
-			throw new InvalidProductDetailsException(ProductValidationsErrors.EMPTY_VEHICLETYPE);
+			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.EMPTY_VEHICLETYPE);
 		}
 
 		for (Category category : Category.values()) {
@@ -27,7 +27,7 @@ public  class EnamValidation {
 
 			}
 		}
-		throw new InvalidProductDetailsException(ProductValidationsErrors.INVALID_VEHICLETYPE);
+		throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_VEHICLETYPE);
 	}
 
 }
