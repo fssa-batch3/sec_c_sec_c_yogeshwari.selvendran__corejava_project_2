@@ -9,7 +9,7 @@ price DOUBLE NOT NULL,
 rating INT NOT NULL,
 description TEXT NOT NULL
 );
-select * from Sparepart;
+
 CREATE TABLE SparePartImages (
 -- img_id for image table
     img_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -18,7 +18,7 @@ CREATE TABLE SparePartImages (
     imageUrl TEXT NOT NULL,
     FOREIGN KEY (SparePart_Id) REFERENCES Sparepart(id)
 );
-select * from SparePartImages;
+
 DELIMITER &&
 CREATE  PROCEDURE `InsertSparepart`(
 IN name VARCHAR(255),
@@ -57,26 +57,26 @@ DELIMITER;
 DELIMITER &&
 CREATE  PROCEDURE `UpdateSpare_part`(
  IN sparePartsIdin INT ,
-IN name VARCHAR(255),
-IN vehicle_type enum('Bike','Car'),
-IN price DOUBLE,
-IN rating INT,
-IN description TEXT,
-IN SparepartImagesList TEXT -- Comma-separated list of image URLs
+IN namein VARCHAR(255),
+IN vehicle_typein enum('Bike','Car'),
+IN pricein DOUBLE,
+IN ratingin INT,
+IN descriptionin TEXT,
+IN SparepartImagesListin TEXT -- Comma-separated list of image URLs
 )
 BEGIN
     -- Insert the data into the Ground table
    UPDATE Sparepart SET
-		  name =name,
-        vehicle_type = vehicle_type,
-        price = price,
-        rating = rating,
-        description = description
+		  name =namein,
+        vehicle_type = vehicle_typein,
+        price = pricein,
+        rating = ratingin,
+        description = descriptionin
         WHERE
        id = sparePartsIdin;
     DELETE FROM SparePartImages WHERE SparePart_Id = sparePartsIdin;
     -- Insert productImages into the GroundImages table
-    SET @SparepartImagesList = SparepartImagesList;
+    SET @SparepartImagesList = SparepartImagesListin;
     WHILE CHAR_LENGTH(@SparepartImagesList) > 0 DO
         SET @imageUrl = SUBSTRING_INDEX(@SparepartImagesList, ',', 1);
         INSERT INTO SparePartImages (SparePart_Id, imageUrl) VALUES (sparePartsIdin, @imageUrl);
