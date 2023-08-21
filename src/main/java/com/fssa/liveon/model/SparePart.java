@@ -12,7 +12,7 @@ public class SparePart {
 	private int rating;
 	private List<String> imageUrl;
 	private String description;
-	private int Id;
+	private int id;
 
 	/**
 	 * Constructor with parameters for initializing all instance variables
@@ -59,7 +59,7 @@ public class SparePart {
 		 * Calling the constructor of the parent class (Object) Initialize instance
 		 * variables with values from the parameters
 		 */
-		this.Id = Id;
+		this.id = Id;
 		this.vehicleType = vehicleType;
 		this.name = name;
 		this.price = price;
@@ -131,11 +131,11 @@ public class SparePart {
 	}
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int productId) {
-		this.Id = productId;
+		this.id = productId;
 	}
 
 }

@@ -56,7 +56,7 @@ public class SparePartsDao {
 	}
 
 	// Method to update a product in the database
-	public static boolean UpdateSparePart(SparePart product) throws DAOException, SQLException {
+	public static boolean updateSparePart(SparePart product) throws DAOException, SQLException {
 
 		// Checking if the product ID is valid
 		if (product.getId() <= 0) {
@@ -146,13 +146,7 @@ public class SparePartsDao {
 	                        product.setImageUrl(new ArrayList<>());
 	                    }
 
-	                    // Logging retrieved product details
-//	                    logger.info(rs.getString(PRODUCT_NAME_KEY));
-//	                    logger.info(rs.getString(VEHICLE_TYPE));
-//	                    logger.info(rs.getDouble(PRICE_KEY));
-//	                    logger.info(rs.getInt(PRODUCT_RATING));
-//	                    logger.info(rs.getString(PRODUCT_DESCRIPTION));
-//	                    logger.info(rs.getString(IMAGES_URL));
+
 
 	                    sparePartList.add(product);
 	                }
@@ -208,12 +202,7 @@ public class SparePartsDao {
 							readProduct.setImageUrl(new ArrayList<>());
 						}
 						// Logging retrieved product details
-//						logger.info(ys.getString(PRODUCT_NAME_KEY));
-//						logger.info(ys.getString(VEHICLE_TYPE));
-//						logger.info(ys.getDouble(PRICE_KEY));
-//						logger.info(ys.getInt(PRODUCT_RATING));
-//						logger.info(ys.getString(PRODUCT_DESCRIPTION));
-//						logger.info(ys.getString(IMAGES_URL));
+
 
 						sparePartList.add(readProduct);
 					}

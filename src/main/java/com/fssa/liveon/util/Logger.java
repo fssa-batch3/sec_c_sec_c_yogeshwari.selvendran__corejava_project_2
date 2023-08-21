@@ -6,13 +6,6 @@ public class Logger {
 	 * 
 	 * @param obj
 	 */
-	public void debug(Object obj) {
-		/**
-		 * Print the provided object to the console as a debug message
-		 */
-		System.out.println(obj);
-
-	}
 
 	/**
 	 * Second define the info method to log informational messages

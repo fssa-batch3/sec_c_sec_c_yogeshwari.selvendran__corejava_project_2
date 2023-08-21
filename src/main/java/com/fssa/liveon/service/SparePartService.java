@@ -69,7 +69,7 @@ public class SparePartService {
 			 * Call the updateProduct method in ProductDao
 			 */
 
-			SparePartsDao.UpdateSparePart(product);
+			SparePartsDao.updateSparePart(product);
 		}
 		return true;
 	}

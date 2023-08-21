@@ -96,7 +96,7 @@ class TestSparePartsDao {
 	void testInvalidUpdateProduct() throws DAOException, SQLException {
 		try {
 			// Attempt to update a product with an invalid ID, should throw an exception
-			SparePartsDao.UpdateSparePart(inValidProduct());
+			SparePartsDao.updateSparePart(inValidProduct());
 		} catch (InvalidSparePartDetailsException e) {
 			// Assert that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartsDaoErrors.INVALID_ID, e.getMessage());
