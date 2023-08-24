@@ -15,6 +15,7 @@ public class SparePartValidation {
 
 	public static boolean validateSparePart(SparePart sparepart) {
 		if (sparepart == null) {
+			
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCTOBJECT);
 		}
 		validateSparePartName(sparepart.getName());

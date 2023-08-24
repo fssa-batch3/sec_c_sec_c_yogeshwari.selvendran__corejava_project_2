@@ -23,7 +23,7 @@ public class SparePartValidationsErrors {
 	public static final String INVALID_ABOUTPRODUCT = "The name should be  minimum 2 letters and maximum 100 letters";
 //	Product Description
 	public static final String INVALID_PRODUCT_DESCRIPTION_NULL = "Product description is cannot be empty or null";
-	public static final String INVALID_PRODUCT_DESCRIPTION = "The name should be  minimum 2 letters and maximum 300 letters";
+	public static final String INVALID_PRODUCT_DESCRIPTION = "The Description should be  minimum 2 letters and maximum 300 letters";
 //	Product image url 
 	public static final String INVALID_PRODUCTIMAGE_NULL = "Images is cannot be in null or empty ";
 	public static final String INVALID_PRODUCTIMAGE = "Images url is invalid";

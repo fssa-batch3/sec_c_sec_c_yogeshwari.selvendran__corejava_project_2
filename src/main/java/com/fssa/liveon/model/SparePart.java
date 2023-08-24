@@ -118,6 +118,7 @@ public class SparePart {
 		return imageUrl;
 	}
 
+	
 	public void setImageUrl(List<String> imageUrl) {
 		this.imageUrl = imageUrl;
 	}

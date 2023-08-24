@@ -114,4 +114,5 @@ class TestSparePartsDao {
 			Assertions.assertEquals(SparePartsDaoErrors.INVALID_ID, e.getMessage());
 		}
 	}
+	
 }

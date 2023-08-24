@@ -49,6 +49,7 @@ public class SparePartsDao {
 
 			}
 		} catch (SQLException e) {
+			
 
 			throw new DAOException(SparePartsDaoErrors.INVALID_ADD_SPAREPART);
 		}
