@@ -2,7 +2,6 @@ package com.fssa.liveon.util;
 
 import java.sql.Connection;
 
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +13,7 @@ import com.fssa.liveon.exceptions.DAOException;
 //import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
-	
-	
-	
+
 	private ConnectionUtil() {
 		// private constructor
 	}
@@ -30,23 +27,17 @@ public class ConnectionUtil {
 		String userName;
 		String passWord;
 
-
-			
-			url = System.getenv("DATABASE_HOST");
-			userName = System.getenv("DATABASE_USERNAME");
-			passWord = System.getenv("DATABASE_PASSWORD");
-		
-		
-		
-		
+		url = System.getenv("DATABASE_HOST");
+		userName = System.getenv("DATABASE_USERNAME");
+		passWord = System.getenv("DATABASE_PASSWORD");
 
 		try {
-		
+
 			con = DriverManager.getConnection(url, userName, passWord);
 			logger.info("success");
 
 		} catch (Exception e) {
-			
+
 			throw new RuntimeException("Unable to connect to the database");
 		}
 		return con;
@@ -69,7 +60,7 @@ public class ConnectionUtil {
 			}
 		} catch (SQLException e) {
 			throw new DAOException("Unable to close to the database");
-		
+
 		}
 	}
 

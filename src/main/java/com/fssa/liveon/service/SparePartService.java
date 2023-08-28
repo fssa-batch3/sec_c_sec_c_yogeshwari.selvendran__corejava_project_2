@@ -1,6 +1,8 @@
 package com.fssa.liveon.service;
 
 import java.sql.SQLException;
+import java.util.List;
+
 import com.fssa.liveon.dao.SparePartsDao;
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.SparePart;
@@ -22,10 +24,11 @@ public class SparePartService {
 	 * Default constructor
 	 */
 
-	private SparePartService() {
+	public SparePartService() {
 
 	}
-
+	SparePartsDao spareparts = new SparePartsDao();
+	SparePartValidation sparePartsValidation = new SparePartValidation();
 	/**
 	 * Method to add a product
 	 * 
@@ -35,17 +38,17 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 
-	public static boolean addSparePart(SparePart product) throws DAOException, SQLException {
+	public  boolean addSparePart(SparePart product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
 
-		if (SparePartValidation.validateSparePart(product)) {
+		if (sparePartsValidation.validateSparePart(product)) {
 			/**
 			 * Call the addProduct method in ProductDao
 			 */
 
-			SparePartsDao.addSparePart(product);
+			spareparts.addSparePart(product);
 		}
 		return true;
 	}
@@ -59,17 +62,16 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 
-	public static boolean updateSparePart(SparePart product) throws DAOException, SQLException {
+	public  boolean updateSparePart(SparePart product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
-
-		if (SparePartValidation.validateSparePart(product)) {
+		if (sparePartsValidation.validateSparePart(product)) {
 			/**
 			 * Call the updateProduct method in ProductDao
 			 */
 
-			SparePartsDao.updateSparePart(product);
+			spareparts.updateSparePart(product);
 		}
 		return true;
 	}
@@ -83,17 +85,17 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 
-	public static boolean deleteSparePart(int productId) throws DAOException, SQLException {
+	public  boolean deleteSparePart(int productId) throws DAOException, SQLException {
 		/**
 		 * Validate the productId using ProductValidation
 		 */
 
-		if (SparePartValidation.idValidate(productId)) {
+		if (sparePartsValidation.idValidate(productId)) {
 			/**
 			 * Call the deleteProduct method in ProductDao
 			 */
 
-			SparePartsDao.deleteSparePart(productId);
+			spareparts.deleteSparePart(productId);
 		}
 		return true;
 	}
@@ -106,21 +108,22 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 	
-	public static boolean getProductDetail() throws DAOException, SQLException {
+	public List<SparePart>  getSparepartDetails() throws DAOException, SQLException {
 		/**
 		 * Call the getAllProduct method in ProductDao
 		 */
-		SparePartsDao.getAllParts();
-		return true;
+		
+		return spareparts.getAllParts();
 	}
 
-	public static boolean getProductDetailByType() throws DAOException, SQLException {
+	public  List<SparePart> getProductDetailByType() throws DAOException, SQLException {
 		/**
 		 * Call the getAllProduct method in ProductDao
 		 */
-		SparePartsDao.findSparePartByVehicleType("Bike");
-		return true;
+return spareparts.findSparePartByVehicleType("Bike");
+		
 
 	}
+
 
 }

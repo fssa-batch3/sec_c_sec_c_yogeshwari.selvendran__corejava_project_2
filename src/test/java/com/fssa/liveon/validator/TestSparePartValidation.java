@@ -10,6 +10,11 @@ import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 import com.fssa.liveon.model.SparePart;
 
 class TestSparePartValidation {
+	
+	
+	SparePartValidation sparepartsValidation = new SparePartValidation();
+	
+	EnamValidation enamValidation = new EnamValidation();
 	// Valid test case for product details
 	@Test
 	void testValidateProduct() {
@@ -21,7 +26,7 @@ class TestSparePartValidation {
 		SparePart product = new SparePart("Bike", "AirFilter", 2000.0, 4, images, "Sampleproductdescription");
 		// Asserting that the product validation returns true for this valid Product
 		// object
-		Assertions.assertTrue(SparePartValidation.validateSparePart(product));
+		Assertions.assertTrue(sparepartsValidation.validateSparePart(product));
 	}
 
 	// Invalid test case for product details
@@ -31,7 +36,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.validateSparePart(null);
+			sparepartsValidation.validateSparePart(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -45,7 +50,7 @@ class TestSparePartValidation {
 		String productName = "Air filter";
 		// Asserting that the product name validation returns true for this valid
 		// Product object
-		Assertions.assertTrue(SparePartValidation.validateSparePartName(productName));
+		Assertions.assertTrue(sparepartsValidation.validateSparePartName(productName));
 	}
 
 //	Invalid test case for product name
@@ -54,7 +59,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.validateSparePartName(null);
+			sparepartsValidation.validateSparePartName(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -64,7 +69,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a single character Product name should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.validateSparePartName("u");
+			sparepartsValidation.validateSparePartName("u");
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -78,7 +83,7 @@ class TestSparePartValidation {
 		double productPrice = 2600;
 		// Asserting that the product price validation returns true for this valid
 		// Product object
-		Assertions.assertTrue(SparePartValidation.validateSparePartPrice(productPrice));
+		Assertions.assertTrue(sparepartsValidation.validateSparePartPrice(productPrice));
 	}
 
 //	Invalid test case for product price
@@ -86,7 +91,7 @@ class TestSparePartValidation {
 	void inValidProductPrice() {
 		try {
 			// Validating a 0 Product price should throw an InvalidProductDetailsException
-			SparePartValidation.validateSparePartPrice(0);
+			sparepartsValidation.validateSparePartPrice(0);
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartValidationsErrors.INVALID_PRODUCTPRICE, e.getMessage());
@@ -99,7 +104,7 @@ class TestSparePartValidation {
 		int rating = 4;
 		// Asserting that the product rating validation returns true for this valid
 		// Product object
-		Assertions.assertTrue(SparePartValidation.validateSparePartRating(rating));
+		Assertions.assertTrue(sparepartsValidation.validateSparePartRating(rating));
 	}
 
 //	Invalid test case for product rating 
@@ -108,7 +113,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a negative Product rating should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.validateSparePartRating(-2);
+			sparepartsValidation.validateSparePartRating(-2);
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartValidationsErrors.INVALID_PRODUCTRATING, e.getMessage());
@@ -121,7 +126,7 @@ class TestSparePartValidation {
 		String description = "Sampleproductdescription";
 		// Asserting that the product description validation returns true for this valid
 		// Product object
-		Assertions.assertTrue(SparePartValidation.validateSparePartDescription(description));
+		Assertions.assertTrue(sparepartsValidation.validateSparePartDescription(description));
 	}
 
 //	Invalid test case for  product Description
@@ -130,7 +135,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.validateSparePartDescription(null);
+			sparepartsValidation.validateSparePartDescription(null);
 			Assertions.fail("Tset case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -140,7 +145,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a three letter Product description should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.validateSparePartDescription("yib");
+			sparepartsValidation.validateSparePartDescription("yib");
 			Assertions.fail("Tset case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -154,7 +159,7 @@ class TestSparePartValidation {
 	void testVehicleType() {
 		String VehicleType = "Car";
 		try {
-			EnamValidation.validVehicleType(VehicleType);
+			enamValidation.validVehicleType(VehicleType);
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartValidationsErrors.INVALID_VEHICLETYPE, e.getMessage());
@@ -163,7 +168,7 @@ class TestSparePartValidation {
 		String VehicleType2 = "Bike";
 
 		try {
-			EnamValidation.validVehicleType(VehicleType2);
+			enamValidation.validVehicleType(VehicleType2);
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartValidationsErrors.INVALID_VEHICLETYPE, e.getMessage());
@@ -178,7 +183,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
-			EnamValidation.validVehicleType(null);
+			enamValidation.validVehicleType(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -186,7 +191,7 @@ class TestSparePartValidation {
 		}
 //	invalid vehicle type
 		try {
-			EnamValidation.validVehicleType("Truck");
+			enamValidation.validVehicleType("Truck");
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -202,7 +207,7 @@ class TestSparePartValidation {
 		validImages.add("https://iili.io/Hv6tFqu.png");
 		// Asserting that the product images validation returns true for this valid
 		// Product object
-		Assertions.assertTrue(SparePartValidation.sparePartImagesValidator(validImages));
+		Assertions.assertTrue(sparepartsValidation.sparePartImagesValidator(validImages));
 	}
 
 	@Test
@@ -214,7 +219,7 @@ class TestSparePartValidation {
 		try {
 			// Validating a null Product object should throw an
 			// InvalidProductDetailsException
-			SparePartValidation.sparePartImagesValidator(null);
+			sparepartsValidation.sparePartImagesValidator(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -222,7 +227,7 @@ class TestSparePartValidation {
 		}
 
 		try {
-			SparePartValidation.sparePartImagesValidator(invalidImages);
+			sparepartsValidation.sparePartImagesValidator(invalidImages);
 			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -235,14 +240,14 @@ class TestSparePartValidation {
 	void validProductId() {
 		// Asserting that the product Id validation returns true for this valid Product
 		// object
-		Assertions.assertTrue(SparePartValidation.idValidate(1));
+		Assertions.assertTrue(sparepartsValidation.idValidate(1));
 	}
 
 //	Invalid product Id 
 	void inValidProductId() {
 		try {
 			// Attempt to validate an invalid product ID, should throw an exception
-			SparePartValidation.idValidate(-1);
+			sparepartsValidation.idValidate(-1);
 		} catch (InvalidSparePartDetailsException e) {
 			// Assert that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartValidationsErrors.INVALID_PRODUCTID, e.getMessage());

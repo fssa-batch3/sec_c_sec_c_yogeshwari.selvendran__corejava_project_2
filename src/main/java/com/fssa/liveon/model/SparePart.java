@@ -3,6 +3,16 @@ package com.fssa.liveon.model;
 import java.util.List;
 
 public class SparePart {
+	@Override
+	public String toString() {
+		return "SparePart [vehicleType=" + vehicleType + ", name=" + name + ", price=" + price + ", rating=" + rating
+				+ ", imageUrl=" + imageUrl + ", description=" + description + ", id=" + id + ", getVehicleType()="
+				+ getVehicleType() + ", getName()=" + getName() + ", getPrice()=" + getPrice() + ", getRating()="
+				+ getRating() + ", getImageUrl()=" + getImageUrl() + ", getDescription()=" + getDescription()
+				+ ", getId()=" + getId() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
 	/**
 	 * Declare instance variables for the Product class
 	 */

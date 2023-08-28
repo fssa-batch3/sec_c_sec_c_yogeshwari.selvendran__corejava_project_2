@@ -4,7 +4,7 @@ import com.fssa.liveon.enums.Category;
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 
 public  class EnamValidation {
-	private EnamValidation() {
+	public EnamValidation() {
 		// private constructor
 	}
 
@@ -15,7 +15,7 @@ public  class EnamValidation {
 	 * @return
 	 * @throws InvalidSparePartDetailsException
 	 */
-	public static boolean validVehicleType(String vehicleType) throws InvalidSparePartDetailsException {
+	public  boolean validVehicleType(String vehicleType) throws InvalidSparePartDetailsException {
 		if (vehicleType == null) {
 
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.EMPTY_VEHICLETYPE);

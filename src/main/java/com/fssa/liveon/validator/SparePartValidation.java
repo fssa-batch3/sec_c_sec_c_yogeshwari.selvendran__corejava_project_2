@@ -3,17 +3,19 @@ package com.fssa.liveon.validator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.fssa.liveon.constant.SparePartPrice;
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 import com.fssa.liveon.model.SparePart;
 import com.fssa.liveon.regexpattern.RegexPattern;
 
 public class SparePartValidation {
 
-	private SparePartValidation() {
+	public SparePartValidation() {
 		// private constructor
 	}
-
-	public static boolean validateSparePart(SparePart sparepart) {
+	EnamValidation enamValidation = new EnamValidation();
+	public  boolean validateSparePart(SparePart sparepart) {
 		if (sparepart == null) {
 			
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCTOBJECT);
@@ -23,12 +25,12 @@ public class SparePartValidation {
 		validateSparePartRating(sparepart.getRating());
 		validateSparePartDescription(sparepart.getDescription());
 		sparePartImagesValidator(sparepart.getImageUrl());
-		EnamValidation.validVehicleType(sparepart.getVehicleType());
+		enamValidation.validVehicleType(sparepart.getVehicleType());
 		return true;
 	}
 
 // Product Name validation
-	public static boolean validateSparePartName(String productName) throws InvalidSparePartDetailsException {
+	public  boolean validateSparePartName(String productName) throws InvalidSparePartDetailsException {
 		if (productName == null || "".equals(productName.trim())) {
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_NAME_NULL);
 		}
@@ -46,15 +48,15 @@ public class SparePartValidation {
 	}
 
 	// Product price validation
-	public static boolean validateSparePartPrice(double price) throws InvalidSparePartDetailsException {
-		if (price >= 500 && price <= 30000) {
+	public  boolean validateSparePartPrice(double price) throws InvalidSparePartDetailsException {
+		if (price >= SparePartPrice.SPAREPART_MIN_PRICE && price <=  SparePartPrice.SPAREPART_MAX_PRICE) {
 			return true;
 		}
 		throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCTPRICE);
 	}
 
 	// Product rating validation
-	public static boolean validateSparePartRating(int rating) throws InvalidSparePartDetailsException {
+	public  boolean validateSparePartRating(int rating) throws InvalidSparePartDetailsException {
 		if (rating >= 1 && rating <= 5) {
 			return true;
 		}
@@ -63,7 +65,7 @@ public class SparePartValidation {
 	}
 
 	// Product description validation
-	public static boolean validateSparePartDescription(String productDescription) throws InvalidSparePartDetailsException {
+	public  boolean validateSparePartDescription(String productDescription) throws InvalidSparePartDetailsException {
 		if (productDescription == null || "".equals(productDescription.trim())) {
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_DESCRIPTION_NULL);
 		}
@@ -81,7 +83,7 @@ public class SparePartValidation {
 	}
 
 	// imageUrl validate
-	public static boolean sparePartImagesValidator(List<String> imageUrl) throws InvalidSparePartDetailsException {
+	public  boolean sparePartImagesValidator(List<String> imageUrl) throws InvalidSparePartDetailsException {
 
 		if (imageUrl == null || imageUrl.isEmpty()) {
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCTIMAGE_NULL);
@@ -95,10 +97,9 @@ public class SparePartValidation {
 			}
 		}
 		throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCTIMAGE);
-
 	}
 
-	public static boolean idValidate(int id) throws InvalidSparePartDetailsException {
+	public  boolean idValidate(int id) throws InvalidSparePartDetailsException {
 		if (id <= 0) {
 			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCTID);
 		}

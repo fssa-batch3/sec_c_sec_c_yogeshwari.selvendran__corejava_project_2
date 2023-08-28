@@ -16,7 +16,7 @@ import com.fssa.liveon.util.Logger;
 
 public class SparePartsDao {
 
-	private SparePartsDao() {
+	public SparePartsDao() {
 		// private constructor
 	}
 

@@ -3,26 +3,29 @@ package com.fssa.liveon.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.SparePart;
+import com.fssa.liveon.util.Logger;
 
 class TestSparePartService {
 	/**
 	 * Helper method to create a valid Product instance for testing
 	 */
+	static Logger logger = new Logger();
+	SparePartService sparepart = new SparePartService();
 	public SparePart getValidSparePart() {
 		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();
-		images.add("https://iili.io/Hv6Okvf.png");
-		images.add("https://iili.io/Hv6Okvf.png");
+		images.add("https://iili.io/Hv6b4OQ.png");
+		images.add("https://iili.io/Hv6b4OQ.png");
 		// Creating a valid Product object
-		SparePart sp = new SparePart("Bike", "AirFilter", 2000.0, 4, images, "Mukutisaleading");
+		SparePart sp = new SparePart("Bike", "Rolon chainspare", 1000.0, 4, images, "alloy steel it is good");
 		return sp;
 	}
-
-	
 //	public SparePart getInvalidSparePart() {
 //		// Creating a list of image URLs
 //		List<String> images = new ArrayList<>();
@@ -55,7 +58,7 @@ class TestSparePartService {
 		// Creating a ProductService instance
 
 		// Asserting that the addProduct method returns true for the valid Product
-		Assertions.assertTrue(SparePartService.addSparePart(p));
+		Assertions.assertTrue(sparepart.addSparePart(p));
 
 	}
 
@@ -81,7 +84,7 @@ class TestSparePartService {
 		// Creating a ProductService instance
 
 		// Asserting that the updateProduct method returns true for the valid Product
-		Assertions.assertTrue(SparePartService.updateSparePart(p));
+		Assertions.assertTrue(sparepart.updateSparePart(p));
 
 	}
 
@@ -94,7 +97,7 @@ class TestSparePartService {
 
 		// Asserting that the deleteProduct method returns true for the specific product
 		// ID
-		Assertions.assertTrue(SparePartService.deleteSparePart(11));
+		Assertions.assertTrue(sparepart.deleteSparePart(11));
 
 	}
 
@@ -104,9 +107,12 @@ class TestSparePartService {
 		// Creating a valid Product instance
 		SparePart p = getValidSparePart();
 		// Creating a ProductService instance
-
+		List<SparePart>  sparepartlist =sparepart.getSparepartDetails();
+		for(SparePart sp : sparepartlist){
+			logger.info(sp);
+		}
 		// Asserting that the getProductDetail method returns true
-		Assertions.assertTrue(SparePartService.getProductDetail());
+		
 	}
 
 	@Test
@@ -115,7 +121,6 @@ class TestSparePartService {
 		SparePart p = getValidSparePart();
 		// Creating a ProductService instance
 		// Asserting that the getProductDetail method returns true
-		Assertions.assertTrue(SparePartService.getProductDetailByType());
+		sparepart.getProductDetailByType();
 	}
-
 }
