@@ -29,7 +29,7 @@ public class SparePartsDao {
 	static final String SPAREPART_DESCRIPTION = "description";
 	static final String IMAGES_URL = "imageUrls";
 
-	public static boolean addSparePart(SparePart sparepart) throws DAOException, SQLException {
+	public  boolean addSparePart(SparePart sparepart) throws DAOException, SQLException {
 
 		String storedProcedureCall = "{call InsertSparepart(?, ?, ?, ?, ?, ?)}";
 
@@ -57,7 +57,7 @@ public class SparePartsDao {
 	}
 
 	// Method to update a product in the database
-	public static boolean updateSparePart(SparePart product) throws DAOException, SQLException {
+	public  boolean updateSparePart(SparePart product) throws DAOException, SQLException {
 
 		// Checking if the product ID is valid
 		if (product.getId() <= 0) {
@@ -89,7 +89,7 @@ public class SparePartsDao {
 	}
 
 	// Method to delete a product from the database
-	public static boolean deleteSparePart(int productId) throws DAOException, SQLException {
+	public  boolean deleteSparePart(int productId) throws DAOException, SQLException {
 		// Checking if the product ID is valid
 		if (productId <= 0) {
 			throw new InvalidSparePartDetailsException(SparePartsDaoErrors.INVALID_ID);
@@ -112,7 +112,7 @@ public class SparePartsDao {
 		return true;
 	}
 
-	public static List<SparePart> getAllParts() throws DAOException, SQLException {
+	public  List<SparePart> getAllParts() throws DAOException, SQLException {
 
 	    List<SparePart> sparePartList = new ArrayList<>();
 

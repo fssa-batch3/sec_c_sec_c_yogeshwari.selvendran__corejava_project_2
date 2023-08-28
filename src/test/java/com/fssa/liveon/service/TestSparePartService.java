@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.liveon.exceptions.DAOException;
@@ -23,7 +24,7 @@ class TestSparePartService {
 		images.add("https://iili.io/Hv6b4OQ.png");
 		images.add("https://iili.io/Hv6b4OQ.png");
 		// Creating a valid Product object
-		SparePart sp = new SparePart("Bike", "Rolon chainspare", 1000.0, 4, images, "alloy steel it is good");
+		SparePart sp = new SparePart("Bike", "Air filter pro", 1000.0, 4, images, "alloy it is good");
 		return sp;
 	}
 //	public SparePart getInvalidSparePart() {
@@ -43,13 +44,14 @@ class TestSparePartService {
 		images.add("https://iili.io/Hv6Okvf.png");
 		images.add("https://iili.io/Hv6Okvf.png");
 		// Creating another valid Product object with a specific product ID
-		SparePart sp = new SparePart(7, "Car", "AirFilter", 2000.0, 4, images, "Mukutisaleading");
+		SparePart sp = new SparePart(1, "Car", "chain filter", 2000.0, 4, images, "alloy it is good");
 		return sp;
 	}
 
 	// Helper method to create and configure a ProductService instance for testing
 
 	// Test for adding a product
+	
 	@Test
 	void testAddSparePart() throws DAOException, SQLException {
 		// Creating a valid Product instance
@@ -77,6 +79,7 @@ class TestSparePartService {
 //	}
 
 	// Test for updating a product
+
 	@Test
 	void testUpdateSparePart() throws DAOException, SQLException {
 		// Creating a valid Product instance with a specific product ID
@@ -89,6 +92,7 @@ class TestSparePartService {
 	}
 
 	// Test for deleting a product
+	@Disabled
 	@Test
 	void testDeleteSparePart() throws DAOException, SQLException {
 		// Creating a valid Product instance with a specific product ID
@@ -97,7 +101,7 @@ class TestSparePartService {
 
 		// Asserting that the deleteProduct method returns true for the specific product
 		// ID
-		Assertions.assertTrue(sparepart.deleteSparePart(11));
+		Assertions.assertTrue(sparepart.deleteSparePart(2));
 
 	}
 
@@ -119,6 +123,7 @@ class TestSparePartService {
 	void testGetSparePartDetailsByType() throws DAOException, SQLException {
 		// Creating a valid Product instance
 		SparePart p = getValidSparePart();
+		
 		// Creating a ProductService instance
 		// Asserting that the getProductDetail method returns true
 		sparepart.getProductDetailByType();

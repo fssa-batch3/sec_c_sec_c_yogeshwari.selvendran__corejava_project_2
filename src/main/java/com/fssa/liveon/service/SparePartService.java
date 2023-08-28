@@ -27,8 +27,10 @@ public class SparePartService {
 	public SparePartService() {
 
 	}
+
 	SparePartsDao spareparts = new SparePartsDao();
 	SparePartValidation sparePartsValidation = new SparePartValidation();
+
 	/**
 	 * Method to add a product
 	 * 
@@ -38,7 +40,7 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 
-	public  boolean addSparePart(SparePart product) throws DAOException, SQLException {
+	public boolean addSparePart(SparePart product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
@@ -62,7 +64,7 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 
-	public  boolean updateSparePart(SparePart product) throws DAOException, SQLException {
+	public boolean updateSparePart(SparePart product) throws DAOException, SQLException {
 		/**
 		 * Validate the product using ProductValidation
 		 */
@@ -85,7 +87,7 @@ public class SparePartService {
 	 * @throws SQLException
 	 */
 
-	public  boolean deleteSparePart(int productId) throws DAOException, SQLException {
+	public boolean deleteSparePart(int productId) throws DAOException, SQLException {
 		/**
 		 * Validate the productId using ProductValidation
 		 */
@@ -107,23 +109,21 @@ public class SparePartService {
 	 * @throws DAOException
 	 * @throws SQLException
 	 */
-	
-	public List<SparePart>  getSparepartDetails() throws DAOException, SQLException {
+
+	public List<SparePart> getSparepartDetails() throws DAOException, SQLException {
 		/**
 		 * Call the getAllProduct method in ProductDao
 		 */
-		
+
 		return spareparts.getAllParts();
 	}
 
-	public  List<SparePart> getProductDetailByType() throws DAOException, SQLException {
+	public List<SparePart> getProductDetailByType() throws DAOException, SQLException {
 		/**
 		 * Call the getAllProduct method in ProductDao
 		 */
-return spareparts.findSparePartByVehicleType("Bike");
-		
+		return spareparts.findSparePartByVehicleType("Bike");
 
 	}
-
 
 }

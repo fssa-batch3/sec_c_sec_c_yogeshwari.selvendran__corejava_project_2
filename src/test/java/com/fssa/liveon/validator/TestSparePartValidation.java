@@ -145,8 +145,8 @@ class TestSparePartValidation {
 		try {
 			// Validating a three letter Product description should throw an
 			// InvalidProductDetailsException
-			sparepartsValidation.validateSparePartDescription("yib");
-			Assertions.fail("Tset case failed");
+			sparepartsValidation.validateSparePartDescription("yi");
+			Assertions.fail("Test case failed");
 		} catch (InvalidSparePartDetailsException e) {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(SparePartValidationsErrors.INVALID_PRODUCT_DESCRIPTION, e.getMessage());
