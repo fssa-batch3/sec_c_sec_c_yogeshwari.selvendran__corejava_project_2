@@ -62,14 +62,14 @@ public class SparePart {
 	 * @param aboutProduct
 	 * @param description
 	 */
-	public SparePart(int Id, String vehicleType, String name, double price, int rating,
+	public SparePart(int id, String vehicleType, String name, double price, int rating,
 			List<String> imageUrl, String description) {
 		super();
 		/**
 		 * Calling the constructor of the parent class (Object) Initialize instance
 		 * variables with values from the parameters
 		 */
-		this.id = Id;
+		this.id = id;
 		this.vehicleType = vehicleType;
 		this.name = name;
 		this.price = price;

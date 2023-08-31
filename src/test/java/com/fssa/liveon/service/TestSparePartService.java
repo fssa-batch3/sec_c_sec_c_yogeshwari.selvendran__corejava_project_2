@@ -24,18 +24,9 @@ class TestSparePartService {
 		images.add("https://iili.io/Hv6b4OQ.png");
 		images.add("https://iili.io/Hv6b4OQ.png");
 		// Creating a valid Product object
-		SparePart sp = new SparePart("Bike", "Air filter pro", 1000.0, 4, images, "alloy it is good");
+		SparePart sp = new SparePart("Bike", "Chain", 1000.0, 4, images, "alloy it is good");
 		return sp;
 	}
-//	public SparePart getInvalidSparePart() {
-//		// Creating a list of image URLs
-//		List<String> images = new ArrayList<>();
-//		images.add("https://iili.io/Hv6Okvf.png");
-//		images.add("https://iili.io/Hv6Okvf.png");
-//		// Creating a valid Product object
-//		SparePart sp = new SparePart(null, "AirFilter", 2000.0, 4, images, "Mukut isaleading");
-//		return sp;
-//	}
 
 	// Helper method to create another valid Product instance for testing
 	public SparePart getValidSparePart2() {
@@ -115,17 +106,28 @@ class TestSparePartService {
 		for(SparePart sp : sparepartlist){
 			logger.info(sp);
 		}
-		// Asserting that the getProductDetail method returns true
-		
+		// Asserting that the getProductDetail method returns true		
 	}
 
 	@Test
 	void testGetSparePartDetailsByType() throws DAOException, SQLException {
 		// Creating a valid Product instance
 		SparePart p = getValidSparePart();
-		
+		List<SparePart> spList = sparepart.getSparepartsDetailByType();
+		for(SparePart sp : spList) {
+			logger.info(sp);
+		}
 		// Creating a ProductService instance
 		// Asserting that the getProductDetail method returns true
-		sparepart.getProductDetailByType();
+		
+	}
+	
+	@Test
+	void testGetSparePartDetailsById() throws DAOException {
+		// Creating a valid Product instance
+	
+		// Creating a ProductService instance
+		// Asserting that the getProductDetail method returns true
+		sparepart.getSparePartDetailById(1);
 	}
 }

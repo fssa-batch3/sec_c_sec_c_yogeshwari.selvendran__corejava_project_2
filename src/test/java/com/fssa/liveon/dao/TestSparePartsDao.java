@@ -50,7 +50,7 @@ class TestSparePartsDao {
 		return product;
 	}
 
-	SparePartsDao sparePartDao =new SparePartsDao();
+	SparePartsDAO sparePartDao =new SparePartsDAO();
 	// Create an invalid Product instance for testing
 	public static SparePart inValidProduct() {
 		// Creating an invalid Product object with a negative product ID

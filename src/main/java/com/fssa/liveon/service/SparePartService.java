@@ -3,7 +3,7 @@ package com.fssa.liveon.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.fssa.liveon.dao.SparePartsDao;
+import com.fssa.liveon.dao.SparePartsDAO;
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.SparePart;
 import com.fssa.liveon.validator.SparePartValidation;
@@ -28,7 +28,7 @@ public class SparePartService {
 
 	}
 
-	SparePartsDao spareparts = new SparePartsDao();
+	SparePartsDAO sparepartsDao = new SparePartsDAO();
 	SparePartValidation sparePartsValidation = new SparePartValidation();
 
 	/**
@@ -50,7 +50,7 @@ public class SparePartService {
 			 * Call the addProduct method in ProductDao
 			 */
 
-			spareparts.addSparePart(product);
+			sparepartsDao.addSparePart(product);
 		}
 		return true;
 	}
@@ -73,7 +73,7 @@ public class SparePartService {
 			 * Call the updateProduct method in ProductDao
 			 */
 
-			spareparts.updateSparePart(product);
+			sparepartsDao.updateSparePart(product);
 		}
 		return true;
 	}
@@ -97,7 +97,7 @@ public class SparePartService {
 			 * Call the deleteProduct method in ProductDao
 			 */
 
-			spareparts.deleteSparePart(productId);
+			sparepartsDao.deleteSparePart(productId);
 		}
 		return true;
 	}
@@ -115,14 +115,21 @@ public class SparePartService {
 		 * Call the getAllProduct method in ProductDao
 		 */
 
-		return spareparts.getAllParts();
+		return sparepartsDao.getAllParts();
 	}
 
-	public List<SparePart> getProductDetailByType() throws DAOException, SQLException {
+	public List<SparePart> getSparepartsDetailByType() throws DAOException, SQLException {
 		/**
 		 * Call the getAllProduct method in ProductDao
 		 */
-		return spareparts.findSparePartByVehicleType("Bike");
+		return sparepartsDao.findSparePartByVehicleType("Bike");
+
+	}
+	public SparePart getSparePartDetailById(int id) throws DAOException {
+		/**
+		 * Call the getAllProduct method in ProductDao
+		 */
+		return sparepartsDao.getSparePartDetailById(id);
 
 	}
 
