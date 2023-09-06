@@ -118,8 +118,10 @@ public class SparePartsDAO {
 		// SQL query to retrieve product details along with image URLs
 		String selectQuery = "SELECT sp.*, "
 		        + "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
-		        + "FROM Sparepart sp"
+		        + "FROM Sparepart sp "
 		        + "WHERE sp.sparepartstatus = 1";
+
+
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 

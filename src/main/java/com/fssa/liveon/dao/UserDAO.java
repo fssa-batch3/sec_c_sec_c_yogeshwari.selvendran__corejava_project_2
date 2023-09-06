@@ -78,21 +78,5 @@ public class UserDAO {
 		return true;
 	}
 
-	public boolean deleteUserDetails(int userId) throws DAOException, SQLException {
-		if (userId <= 0) {
-			throw new InvalidSparePartDetailsException(LiveOnDaoErrors.INVALID_ID);
-		}
-		 String deleteQuery = "UPDATE USER SET status = 0 WHERE id=?";
-		try (Connection con = ConnectionUtil.getConnection()) {
-
-			try (PreparedStatement preparedStatement = con.prepareStatement(deleteQuery)) {
-				preparedStatement.setInt(1, userId);
-				preparedStatement.execute();
-			}
-		} catch (SQLException e) {
-
-			throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_USER);
-		}
-		return true;
-	}
+	
 }
