@@ -28,10 +28,11 @@ public class SparePartsDAO {
 	static final String SPAREPART_RATING = "rating";
 	static final String SPAREPART_DESCRIPTION = "description";
 	static final String IMAGES_URL = "imageUrls";
+	static final String SPAREPART_STATUS = "sparepartstatus";
 
 	public boolean addSparePart(SparePart sparepart) throws DAOException, SQLException {
 
-		String storedProcedureCall = "{call InsertSparepart(?, ?, ?, ?, ?, ?)}";
+		String storedProcedureCall = "{call InsertSparepart(?, ?, ?, ?, ?, ?,?)}";
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
@@ -44,13 +45,13 @@ public class SparePartsDAO {
 				callableStatement.setString(5, sparepart.getDescription());
 				String productImagesStr = String.join(",", sparepart.getImageUrl());
 				callableStatement.setString(6, productImagesStr);
-				// Executing the stored procedure
+				callableStatement.setBoolean(7, sparepart.getSparepartstatus());
 				callableStatement.execute();
 
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(SparePartsDaoErrors.INVALID_ADD_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_ADD_SPAREPART);
 		}
 		return true;
 	}
@@ -60,7 +61,7 @@ public class SparePartsDAO {
 
 		// Checking if the product ID is valid
 		if (product.getId() <= 0) {
-			throw new InvalidSparePartDetailsException(SparePartsDaoErrors.INVALID_ID);
+			throw new InvalidSparePartDetailsException(LiveOnDaoErrors.INVALID_ID);
 		}
 		String storedProcedureCall = "{call UpdateSpare_part(?, ?, ?, ?, ?, ?, ?)}";
 
@@ -81,7 +82,7 @@ public class SparePartsDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(SparePartsDaoErrors.INVALID_UPDATE_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_UPDATE_SPAREPART);
 
 		}
 		return true;
@@ -90,9 +91,9 @@ public class SparePartsDAO {
 	public boolean deleteSparePart(int productId) throws DAOException, SQLException {
 		// Checking if the product ID is valid
 		if (productId <= 0) {
-			throw new InvalidSparePartDetailsException(SparePartsDaoErrors.INVALID_ID);
+			throw new InvalidSparePartDetailsException(LiveOnDaoErrors.INVALID_ID);
 		}
-		String storedProcedureCall = "{call DeleteSpareParts(?)}";
+		String storedProcedureCall = "{call DeleteSparePart(?)}";
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
@@ -104,7 +105,7 @@ public class SparePartsDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(SparePartsDaoErrors.INVALID_DELETE_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_SPAREPART);
 
 		}
 		return true;
@@ -116,8 +117,9 @@ public class SparePartsDAO {
 
 		// SQL query to retrieve product details along with image URLs
 		String selectQuery = "SELECT sp.*, "
-				+ "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
-				+ "FROM Sparepart sp";
+		        + "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
+		        + "FROM Sparepart sp"
+		        + "WHERE sp.sparepartstatus = 1";
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
@@ -150,7 +152,7 @@ public class SparePartsDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(SparePartsDaoErrors.INVALID_ALL_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_ALL_SPAREPART);
 		}
 		return sparePartList;
 	}
@@ -202,7 +204,7 @@ public class SparePartsDAO {
 
 		} catch (SQLException e) {
 
-			throw new DAOException(SparePartsDaoErrors.INVALID_ALL_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_ALL_SPAREPART);
 		}
 
 		return sparePartList;
@@ -211,9 +213,6 @@ public class SparePartsDAO {
 	
 
 public  SparePart getSparePartDetailById(int id) throws DAOException {
-
-		
-
 		// SQL query to retrieve product details along with image URLs
 
 		String selectQuery = "SELECT sp.*, "
@@ -249,22 +248,14 @@ public  SparePart getSparePartDetailById(int id) throws DAOException {
 						}
 						// Logging retrieved product details
 
-					
 					}
-
 				}
 			}
 
 		} catch (SQLException e) {
 
-			throw new DAOException(SparePartsDaoErrors.INVALID_ALL_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_ALL_SPAREPART);
 		}
-
 		return readProduct;
-
 	}
-
-	
-	
-
 }

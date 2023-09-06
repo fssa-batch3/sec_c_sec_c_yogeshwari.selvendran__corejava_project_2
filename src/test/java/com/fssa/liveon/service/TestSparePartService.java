@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+
 import org.junit.jupiter.api.Test;
 
 import com.fssa.liveon.exceptions.DAOException;
@@ -16,6 +16,7 @@ class TestSparePartService {
 	/**
 	 * Helper method to create a valid Product instance for testing
 	 */
+	
 	static Logger logger = new Logger();
 	SparePartService sparepart = new SparePartService();
 	public SparePart getValidSparePart() {
@@ -24,7 +25,7 @@ class TestSparePartService {
 		images.add("https://iili.io/Hv6b4OQ.png");
 		images.add("https://iili.io/Hv6b4OQ.png");
 		// Creating a valid Product object
-		SparePart sp = new SparePart("Bike", "Chain", 1000.0, 4, images, "alloy it is good");
+		SparePart sp = new SparePart("Bike", "Motor Bike", 2000.0, 4, images, "alloy it is agood");
 		return sp;
 	}
 
@@ -35,7 +36,7 @@ class TestSparePartService {
 		images.add("https://iili.io/Hv6Okvf.png");
 		images.add("https://iili.io/Hv6Okvf.png");
 		// Creating another valid Product object with a specific product ID
-		SparePart sp = new SparePart(1, "Car", "chain filter", 2000.0, 4, images, "alloy it is good");
+		SparePart sp = new SparePart(7, "Car", "Alternator Ford Motor", 2000.0, 4, images, "alloy it is good");
 		return sp;
 	}
 
@@ -52,7 +53,6 @@ class TestSparePartService {
 
 		// Asserting that the addProduct method returns true for the valid Product
 		Assertions.assertTrue(sparepart.addSparePart(p));
-
 	}
 
 	// Test for adding a product with invalid data (null name)
@@ -83,7 +83,7 @@ class TestSparePartService {
 	}
 
 	// Test for deleting a product
-	@Disabled
+
 	@Test
 	void testDeleteSparePart() throws DAOException, SQLException {
 		// Creating a valid Product instance with a specific product ID
@@ -119,7 +119,6 @@ class TestSparePartService {
 		}
 		// Creating a ProductService instance
 		// Asserting that the getProductDetail method returns true
-		
 	}
 	
 	@Test

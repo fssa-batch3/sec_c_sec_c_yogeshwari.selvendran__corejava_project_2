@@ -3,19 +3,13 @@ package com.fssa.liveon.model;
 import java.util.List;
 
 public class SparePart {
-	@Override
-	public String toString() {
-		return "SparePart [vehicleType=" + vehicleType + ", name=" + name + ", price=" + price + ", rating=" + rating
-				+ ", imageUrl=" + imageUrl + ", description=" + description + ", id=" + id + ", getVehicleType()="
-				+ getVehicleType() + ", getName()=" + getName() + ", getPrice()=" + getPrice() + ", getRating()="
-				+ getRating() + ", getImageUrl()=" + getImageUrl() + ", getDescription()=" + getDescription()
-				+ ", getId()=" + getId() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
-	}
+
+
 
 	/**
 	 * Declare instance variables for the Product class
 	 */
+	
 	private String vehicleType;
 	private String name;
 	private double price;
@@ -23,6 +17,18 @@ public class SparePart {
 	private List<String> imageUrl;
 	private String description;
 	private int id;
+	private boolean sparepartstatus;
+
+
+
+
+	@Override
+	public String toString() {
+		return "SparePart [vehicleType=" + vehicleType + ", name=" + name + ", price=" + price + ", rating=" + rating
+				+ ", imageUrl=" + imageUrl + ", description=" + description + ", id=" + id + ", sparepartstatus="
+				+ sparepartstatus + "]";
+	}
+
 
 	/**
 	 * Constructor with parameters for initializing all instance variables
@@ -47,8 +53,10 @@ public class SparePart {
 		this.rating = rating;
 		this.imageUrl = imageUrl;
 		this.description = description;
+		//this.sparepartstatus=sparepartstatus;
 	}
 
+	
 	/**
 	 * Constructor with parameters including productId for initializing all instance
 	 * variables
@@ -76,6 +84,7 @@ public class SparePart {
 		this.rating = rating;
 		this.imageUrl = imageUrl;
 		this.description = description;
+	//	this.sparepartstatus=sparepartstatus;
 	}
 
 	/**
@@ -147,6 +156,14 @@ public class SparePart {
 
 	public void setId(int productId) {
 		this.id = productId;
+	}
+	
+	public boolean getSparepartstatus() {
+		return sparepartstatus;
+	}
+
+	public void setSparepartstatus(boolean sparepartstatus) {
+		this.sparepartstatus = sparepartstatus;
 	}
 
 }

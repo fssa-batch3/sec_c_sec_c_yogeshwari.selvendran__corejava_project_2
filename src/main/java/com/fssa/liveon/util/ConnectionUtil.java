@@ -32,12 +32,13 @@ public class ConnectionUtil {
 		passWord = System.getenv("DATABASE_PASSWORD");
 
 		try {
-
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, userName, passWord);
 			logger.info("success");
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			throw new RuntimeException("Unable to connect to the database");
 		}
 		return con;

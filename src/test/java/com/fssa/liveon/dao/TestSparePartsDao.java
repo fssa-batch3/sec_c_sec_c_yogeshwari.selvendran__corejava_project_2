@@ -91,7 +91,7 @@ class TestSparePartsDao {
 			sparePartDao.addSparePart(productValidate());
 		} catch (DAOException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(SparePartsDaoErrors.INVALID_ADD_SPAREPART, e.getMessage());
+			Assertions.assertEquals(LiveOnDaoErrors.INVALID_ADD_SPAREPART, e.getMessage());
 		}
 	}
 
@@ -103,7 +103,7 @@ class TestSparePartsDao {
 			sparePartDao.updateSparePart(inValidProduct());
 		} catch (InvalidSparePartDetailsException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(SparePartsDaoErrors.INVALID_ID, e.getMessage());
+			Assertions.assertEquals(LiveOnDaoErrors.INVALID_ID, e.getMessage());
 		}
 	}
 
@@ -115,7 +115,7 @@ class TestSparePartsDao {
 			sparePartDao.deleteSparePart(inValidProduct().getId());
 		} catch (InvalidSparePartDetailsException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(SparePartsDaoErrors.INVALID_ID, e.getMessage());
+			Assertions.assertEquals(LiveOnDaoErrors.INVALID_ID, e.getMessage());
 		}
 	}
 	

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 import com.fssa.liveon.model.SparePart;
+import com.fssa.liveon.validator.*;
 
 class TestSparePartValidation {
 	
