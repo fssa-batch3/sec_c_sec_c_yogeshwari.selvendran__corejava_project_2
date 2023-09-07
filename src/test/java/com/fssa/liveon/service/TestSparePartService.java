@@ -3,11 +3,8 @@ package com.fssa.liveon.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.SparePart;
 import com.fssa.liveon.util.Logger;
@@ -16,16 +13,16 @@ class TestSparePartService {
 	/**
 	 * Helper method to create a valid Product instance for testing
 	 */
-	
 	static Logger logger = new Logger();
 	SparePartService sparepart = new SparePartService();
 	public SparePart getValidSparePart() {
 		// Creating a list of image URLs
 		List<String> images = new ArrayList<>();
-		images.add("https://iili.io/Hv6b4OQ.png");
-		images.add("https://iili.io/Hv6b4OQ.png");
+		
+		images.add("https://iili.io/HXVJmMJ.png");
+		images.add("https://iili.io/HXVJmMJ.png");
 		// Creating a valid Product object
-		SparePart sp = new SparePart("Bike", "Motor Bike", 2000.0, 4, images, "alloy it is agood");
+		SparePart sp = new SparePart("Car", "Automotive Brake Part", 2000.0, 4, images, "alloy it is agood");
 		return sp;
 	}
 
@@ -100,9 +97,9 @@ class TestSparePartService {
 	@Test
 	void testGetSparePartDetails() throws DAOException, SQLException {
 		// Creating a valid Product instance
-		SparePart p = getValidSparePart();
+		// SparePart p = getValidSparePart();
 		// Creating a ProductService instance
-		List<SparePart>  sparepartlist =sparepart.getSparepartDetails();
+		List<SparePart>  sparepartlist = sparepart.getSparepartDetails();
 		for(SparePart sp : sparepartlist){
 			logger.info(sp);
 		}

@@ -10,9 +10,9 @@ import com.fssa.liveon.model.User;
 import com.fssa.liveon.regexpattern.RegexPattern;
 
 public class UserValidation {
-	
+
 	public boolean validateUser(User user) {
-		if(user == null) {
+		if (user == null) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_ERROR_MESSAGE);
 		}
 		validFirstName(user.getFirstName());
@@ -23,6 +23,7 @@ public class UserValidation {
 		validPassword(user.getPassword());
 		return true;
 	}
+
 	public boolean validFirstName(String firstName) throws InvalidUserDetailsException {
 		if (firstName == null || "".equals(firstName.trim())) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
@@ -77,6 +78,7 @@ public class UserValidation {
 		Matcher matcher = pattern.matcher(password);
 		Boolean isMatch = matcher.matches();
 		if (isMatch.equals(Boolean.FALSE)) {
+
 			throw new InvalidUserDetailsException(UserValidationErrors.PASSWORD_ERROR_MESSAGE);
 
 		}
@@ -84,7 +86,6 @@ public class UserValidation {
 	}
 
 	public boolean validNumber(long number) throws InvalidUserDetailsException {
-	
 		String nameregex = RegexPattern.USER_MOBILE_NUMBER_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		String numberStr = String.valueOf(number);
@@ -93,24 +94,22 @@ public class UserValidation {
 		if (Boolean.FALSE.equals(isMatch)) {
 			throw new InvalidUserDetailsException(UserValidationErrors.MOBILE_NUMBER_ERROR_MESSAGE);
 		}
-		
 		return true;
 	}
 
-	public boolean validGender(String gender)throws InvalidUserDetailsException {
-		if(gender == null) {
+	public boolean validGender(String gender) throws InvalidUserDetailsException {
+		if (gender == null) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
 		}
 		for (GenderCategory category : GenderCategory.values()) {
 			if (category.getGender().equalsIgnoreCase(gender)) {
 				return true;
-
 			}
 		}
 		throw new InvalidUserDetailsException(UserValidationErrors.GENDER_ERROR_MESSAGE);
 	}
-//	TODO write a test case
-	public boolean validId(int id)throws InvalidUserDetailsException {
+
+	public boolean validId(int id) throws InvalidUserDetailsException {
 		if (id < 0) {
 			throw new InvalidUserDetailsException(UserValidationErrors.INVALID_USERID);
 		}

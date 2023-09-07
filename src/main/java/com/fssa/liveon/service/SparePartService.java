@@ -98,6 +98,7 @@ public class SparePartService {
 			 */
 
 			sparepartsDao.deleteSparePart(productId);
+			
 		}
 		return true;
 	}

@@ -39,6 +39,10 @@ public class User {
 		this.password = password;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

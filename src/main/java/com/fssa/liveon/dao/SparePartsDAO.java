@@ -32,7 +32,7 @@ public class SparePartsDAO {
 
 	public boolean addSparePart(SparePart sparepart) throws DAOException, SQLException {
 
-		String storedProcedureCall = "{call InsertSparepart(?, ?, ?, ?, ?, ?,?)}";
+		String storedProcedureCall = "{call InsertSparepart(?, ?, ?, ?, ?, ?)}";
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
@@ -45,12 +45,12 @@ public class SparePartsDAO {
 				callableStatement.setString(5, sparepart.getDescription());
 				String productImagesStr = String.join(",", sparepart.getImageUrl());
 				callableStatement.setString(6, productImagesStr);
-				callableStatement.setBoolean(7, sparepart.getSparepartstatus());
 				callableStatement.execute();
 
 			}
 		} catch (SQLException e) {
 
+			System.out.println(e.getMessage());
 			throw new DAOException(LiveOnDaoErrors.INVALID_ADD_SPAREPART);
 		}
 		return true;
@@ -121,7 +121,7 @@ public class SparePartsDAO {
 		        + "FROM Sparepart sp "
 		        + "WHERE sp.sparepartstatus = 1";
 
-
+        System.out.println(selectQuery);
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
@@ -141,6 +141,7 @@ public class SparePartsDAO {
 						product.setRating(rs.getInt(SPAREPART_RATING));
 						product.setDescription(rs.getString(SPAREPART_DESCRIPTION));
 						// Splitting and setting image URLs
+						
 						String imageUrlsdata = rs.getString(IMAGES_URL);
 						if (imageUrlsdata != null) {
 							String[] imageUrl = imageUrlsdata.split(",");
