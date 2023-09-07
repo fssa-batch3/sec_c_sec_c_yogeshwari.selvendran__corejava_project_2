@@ -18,7 +18,7 @@ Our project offers a comprehensive solution to the problem of vehicle breakdowns
 - **Spare Parts Store**: Visit our website to browse and purchase a wide range of spare parts for your vehicle. We offer competitive prices and convenient shipping options.
 
 ## Purchasing Spare Parts
-1. Visit our website at [Website URL].
+1. Visit our website at https://deploy-preview-1--livez-on.netlify.app/index.html.
 2. Browse our selection of spare parts for your vehicle.
 3. Add items to your cart and proceed to checkout.
 4. Choose your preferred shipping method.
