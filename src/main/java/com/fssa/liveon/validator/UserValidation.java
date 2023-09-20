@@ -23,7 +23,17 @@ public class UserValidation {
 		validPassword(user.getPassword());
 		return true;
 	}
-
+	public boolean validateUserUpdate(User user) {
+		if (user == null) {
+			throw new InvalidUserDetailsException(UserValidationErrors.USER_ERROR_MESSAGE);
+		}
+		validFirstName(user.getFirstName());
+		validLastName(user.getLastName());
+		validNumber(user.getNumber());
+		return true;
+	}
+	
+	
 	public boolean validFirstName(String firstName) throws InvalidUserDetailsException {
 		if (firstName == null || "".equals(firstName.trim())) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);

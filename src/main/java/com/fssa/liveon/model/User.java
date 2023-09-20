@@ -10,7 +10,6 @@ public class User {
 	private String password;
 	private int userId;
 
-
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", email=" + email
@@ -26,17 +25,14 @@ public class User {
 		this.number = number;
 		this.password = password;
 	}
-
-	public User(int userId, String firstName, String lastName, String gender, String email, long number,
-			String password) {
+    
+	public User(int userId, String firstName, String lastName, long number) {
 		super();
-		this.userId=userId;
+		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.gender = gender;
-		this.email = email;
 		this.number = number;
-		this.password = password;
+
 	}
 
 	public User() {
@@ -104,5 +100,4 @@ public class User {
 		return null;
 	}
 
-	
 }

@@ -28,6 +28,7 @@ public class SparePartValidation {
 		enamValidation.validVehicleType(sparepart.getVehicleType());
 		return true;
 	}
+	
 
 // Product Name validation
 	public  boolean validateSparePartName(String productName) throws InvalidSparePartDetailsException {
@@ -105,5 +106,4 @@ public class SparePartValidation {
 		}
 		return true;
 	}
-
 }

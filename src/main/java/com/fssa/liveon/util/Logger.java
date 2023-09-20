@@ -12,7 +12,7 @@ public class Logger {
 	 * 
 	 * @param obj
 	 */
-	public void info(Object obj) {
+	public static void info(Object obj) {
 		/**
 		 * Print the provided object to the console as an info message
 		 */

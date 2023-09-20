@@ -24,14 +24,12 @@ public class UserDAO {
 			for (byte b : hashBytes) {
 				hashsb.append(String.format("%02x", b));
 			}
-
 			return hashsb.toString();
 		} catch (NoSuchAlgorithmException e) {
-
 			throw new InvalidUserDetailsException(e.getMessage());
-
 		}
 	}
+	
 	public boolean addUserDetails(User user) throws DAOException, SQLException {
 		String selectQuery = "INSERT INTO USER (firstname, lastname, gender, mobile, email, password) VALUES (?, ?, ?, ?, ?, ?)";
 		try (Connection con = ConnectionUtil.getConnection()) {
@@ -55,16 +53,15 @@ public class UserDAO {
 		if (user.getUserId() <= 0) {
 			throw new InvalidUserDetailsException(LiveOnDaoErrors.INVALID_ID);
 		}
-		String updateQuery = "UPDATE USER SET firstname=?, lastname=?, gender=?, mobile=? WHERE id=?";
+		String updateQuery = "UPDATE USER SET firstname=?, lastname=?, mobile=? WHERE id=?";
 		try (Connection con = ConnectionUtil.getConnection()) {
 
 			try (PreparedStatement preparedStatement = con.prepareStatement(updateQuery)) {
-
 				preparedStatement.setString(1, user.getFirstName());
 				preparedStatement.setString(2, user.getLastName());
-				preparedStatement.setString(3, user.getGender());
-				preparedStatement.setLong(4, user.getNumber());
-				preparedStatement.setInt(5, user.getUserId());
+//				preparedStatement.setString(3, user.getGender());
+				preparedStatement.setLong(3, user.getNumber());
+				preparedStatement.setInt(4, user.getUserId());
 				preparedStatement.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -115,6 +112,37 @@ public class UserDAO {
 	                    }
 	                } else {
 	                    throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_USER);
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	      
+	        e.printStackTrace();
+	        
+	        throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_USER);
+	    }
+	    
+	    return user;
+	}
+	
+	public User getUserById(int id) throws SQLException, DAOException {
+		User user = null;
+	    String query = "SELECT * FROM USER WHERE id = ?";
+	    
+	    try (Connection con = ConnectionUtil.getConnection()) {
+	        try (PreparedStatement pst = con.prepareStatement(query)) {
+	            pst.setInt(1, id);
+	            
+	            try (ResultSet rs = pst.executeQuery()) {
+	                if (rs.next()) {
+	                   user = new User();
+	                    	user.setUserId(rs.getInt("id"));
+	                    user.setFirstName(rs.getString("firstname"));
+	                    user.setLastName(rs.getString("lastname"));
+	                    	user.setEmail(rs.getString("email"));
+	                    	user.setPassword(rs.getString("password"));
+	                    	user.setGender(rs.getString("gender"));
+	                    	user.setNumber(rs.getLong("mobile"));
 	                }
 	            }
 	        }

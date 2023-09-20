@@ -18,7 +18,11 @@ public boolean addUser(User user)throws DAOException, SQLException{
 	
 }
 public boolean updateUser(User user)throws DAOException, SQLException{
-	if(userValidation.validateUser(user)) {
+	if(userValidation.validateUserUpdate(user)) {
+//		User userObjInDb = userDao.findById(user.getUserId());
+//		userObjInDb.setFirstName(user.getFirstName());
+//		userObjInDb.setLastName(user.getLastName());
+//		userObjInDb.setNumber(user.getNumber());
 		userDao.updateUserDetails(user);
 	}
 	return true;
@@ -29,7 +33,11 @@ public boolean deleteUser(int user)throws DAOException, SQLException{
 	}
 	return true;
 }
-public User getUserByEmail(String email, String enteredPassword)throws DAOException, SQLException{
+public User getUserByEmailAndPassword(String email, String enteredPassword)throws DAOException, SQLException{
 	return userDao.getUserByEmailAndPassword(email, enteredPassword);
+}
+
+public User getUserById(int id) throws SQLException, DAOException {
+	return userDao.getUserById(id);
 }
 }

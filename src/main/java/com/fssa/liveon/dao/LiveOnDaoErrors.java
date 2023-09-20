@@ -36,4 +36,7 @@ public class LiveOnDaoErrors {
 	
 	public static final String INVALID_DELETE_USER = "The user delete details is Invalid.";
 	// public static final String INVALID_UPDATE_USER = "The user update details is invalid.";
+	public static final String INVALID_ORDER_PLACED = "The order is invalid.";
+	
+	public static final String INVALID_ORDER_HISTORY = "The user order history is invalid ";
 }

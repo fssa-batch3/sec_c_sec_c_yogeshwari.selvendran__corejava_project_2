@@ -15,5 +15,7 @@ public class RegexPattern {
 	public static final String USER_EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
 	public static final String USER_PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 	public static final String USER_MOBILE_NUMBER_REGEX = "(0/91)?[7-9][0-9]{9}";
-
+	public static final String USER_STREET_REGEX = "^[0-9A-Za-z\\s.,-]+$";
+	public static final String USER_CITY_REGEX = "^[A-Za-z\\s-]+$";
+	public static final String USER_POSTAL_CODE_REGEX ="^[1-9][0-9]{5}$";
 }
