@@ -13,6 +13,9 @@ public class BookingValidationErrors {
 	public static final String INVALID_USERNAME = "Name cannot be empty or null or name should be minimum 3 character";
 	public static final String INVALID_SERVICE = "element is null or empty";
 	public static final String INVALID_ADDRESS = "Address is null or empty";
+	public static final String INVALID_STREET_ADDRESS = " street Address is invalid";
+	public static final String INVALID_CITY_ADDRESS = " city Address is invalid";
+	public static final String INVALID_PINCODE_ADDRESS = " pincode Address is invalid";
 	public static final String INVALID_VEHICLETYPE = "Vehicle type is invalid";
 	public static final String INVALID_BIKESERVICE = "Bike service is invalid";
 	public static final String INVALID_CARSERVICE = "Car service is invalid";

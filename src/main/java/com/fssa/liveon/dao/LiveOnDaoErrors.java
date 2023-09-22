@@ -33,7 +33,10 @@ public class LiveOnDaoErrors {
 	public static final String INVALID_ADD_USER = "The user add details is invalid.";
 	
 	public static final String INVALID_UPDATE_USER = "The user update details is invalid.";
-	
+	public static final String INVALID_ADD_APPOINTMENT = "The user booking appointment is invalid.";
+	public static final String INVALID_UPDATE_APPOINTMENT = "The user update booking appointment is invalid";
+	public static final String INVALID_CANCELED_APPOINTMENT = "The user canceled is in valid";
+
 	public static final String INVALID_DELETE_USER = "The user delete details is Invalid.";
 	// public static final String INVALID_UPDATE_USER = "The user update details is invalid.";
 	public static final String INVALID_ORDER_PLACED = "The order is invalid.";

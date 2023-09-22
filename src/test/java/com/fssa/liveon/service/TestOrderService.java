@@ -20,8 +20,6 @@ public class TestOrderService {
 		Orders order = new Orders(1,1,"123 Main St","City","600001","Credit Card");
 		return order;
 	}
-	
-	
 	@Test
 	void testPlaceOrder() throws DAOException, SQLException{
 		Orders o = getValidOrder();

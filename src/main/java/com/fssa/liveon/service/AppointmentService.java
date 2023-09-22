@@ -1,6 +1,7 @@
 package com.fssa.liveon.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.fssa.liveon.dao.AppointmentDAO;
 import com.fssa.liveon.exceptions.DAOException;
@@ -36,5 +37,8 @@ public class AppointmentService {
 			appointmentDao.deleteAppointment(appointmentId);
 		}
 		return true;
+	}
+	public List<Appointment> getAppointmentsByUserId()throws DAOException, SQLException{
+		return appointmentDao.getAllAppointmentsByUserId(1);
 	}
 }

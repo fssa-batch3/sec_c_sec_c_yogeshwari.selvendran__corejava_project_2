@@ -155,4 +155,47 @@ public class UserDAO {
 	    
 	    return user;
 	}
+    
+    public static boolean getUserEmail(String email)throws SQLException, DAOException{
+    	try (Connection con = ConnectionUtil.getConnection()) {
+    	      try (PreparedStatement pst = con.prepareStatement("SELECT COUNT(*) as count FROM USER WHERE email = ?")) {
+    	    	  pst.setString(1, email);
+    	    	  try(ResultSet rs = pst.executeQuery()){
+    	    		  if (rs.next()) {
+                          int count = rs.getInt("count");
+                          return count > 0; // Return true if user with the email exists
+                      }
+    	    	  }
+    	      }
+    	} catch (SQLException e) {
+  	      
+	        e.printStackTrace();
+	        
+	        throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_USER);
+	    }
+	    
+	    return true;
+    }
+    
+    // Validate login using email and password
+    public static boolean validateLogin(String email, String password) throws SQLException, DAOException{
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            try (PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT COUNT(*) as count FROM USER WHERE email = ? AND password = ?")) {
+                stmt.setString(1, email);
+                stmt.setString(2, password);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        int count = rs.getInt("count");
+                        return count > 0;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+        	
+            e.printStackTrace();
+        }
+        return false; // Return false if login validation fails
+    }
+
 }

@@ -1,13 +1,13 @@
 package com.fssa.liveon.builder;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.fssa.liveon.model.Appointment;
 
 public class AppointmentBuilder {
     private LocalDate appointmentBookingDateForBuilder;
-    private LocalDateTime appointmentbookingTimeForBuilder;
+    private LocalTime appointmentbookingTimeForBuilder;
     private String appointmentvehicletypeForBuilder;
     private String appointmentvehicleserviceForBuilder;
     private String appointmentstreetAddressForBuilder;
@@ -16,13 +16,15 @@ public class AppointmentBuilder {
     private String appointmentpostalCodeForBuilder;
 //    private String appointmentcountryForBuilder;
     private int appointmentbookingIdForBuilder;
+    private int appointmentUserIdForBuilder;
+    private String  appointmentbookingStatusForBuilder;
 
     public AppointmentBuilder buildBookingDate(LocalDate bookingDate) {
         this.appointmentBookingDateForBuilder = bookingDate;
         return this;
     }
 
-    public AppointmentBuilder buildBookingTime(LocalDateTime bookingTime) {
+    public AppointmentBuilder buildBookingTime(LocalTime bookingTime) {
         this.appointmentbookingTimeForBuilder = bookingTime;
         return this;
     }
@@ -57,13 +59,17 @@ public class AppointmentBuilder {
         return this;
     }
 
-//    public AppointmentBuilder withCountry(String country) {
-//        this.appointmentcountryForBuilder = country;
-//        return this;
-//    }
+    public AppointmentBuilder buildbookingStatus(String bookingStatus) {
+        this.appointmentbookingStatusForBuilder = bookingStatus;
+        return this;
+    }
 
     public AppointmentBuilder buildBookingId(int bookingId) {
         this.appointmentbookingIdForBuilder = bookingId;
+        return this;
+    }
+    public AppointmentBuilder buildUserId(int userId) {
+        this.appointmentUserIdForBuilder = userId;
         return this;
     }
 
@@ -75,9 +81,9 @@ public class AppointmentBuilder {
     	appointment.setVehicleservice(appointmentvehicleserviceForBuilder);
     	appointment.setBookingId(appointmentbookingIdForBuilder);
     	appointment.setCity(appointmentcityForBuilder);
-  //  	appointment.setStateProvince(appointmentstateProvinceForBuilder);
+   	    appointment.setBookingStatus(appointmentbookingStatusForBuilder);
     	appointment.setPostalCode(appointmentpostalCodeForBuilder);
-   // 	appointment.setCountry(appointmentcountryForBuilder);
+    	appointment.setUserId(appointmentUserIdForBuilder);
     	appointment.setStreetAddress(appointmentstreetAddressForBuilder);
 
        return appointment;

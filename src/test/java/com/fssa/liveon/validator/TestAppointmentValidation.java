@@ -16,11 +16,16 @@ public class TestAppointmentValidation {
 	
 	@Test
 	void testBooking() {
-		LocalDate date = LocalDate.of(2023, 8, 3);
-		LocalDateTime time = LocalDateTime.of(2023, 8, 3, 12, 0);
 		Appointment booking1 = new AppointmentBuilder()
-				.buildBookingDate(date).buildBookingTime(time).buildVehicleType("Bike").buildVehicleService("Bike wash and polish")
-				.buildStreetAddress("northStreet").buildCity("Madurai").buildPostalCode("654321").build();
+				.buildBookingDate(LocalDate.of(2023, 9, 22))
+			    .buildBookingTime(LocalTime.of(16, 30))
+			    .buildVehicleType("Bike")
+			    .buildVehicleService("Bike wash and polish")
+			    .buildStreetAddress("northStreet")
+			    .buildCity("Madurai")
+			    .buildPostalCode("654321")
+			    .buildUserId(1)
+			    .build();
 		Assertions.assertTrue(booking.ValidateAppointment(booking1));
 	}
 	@Test
@@ -61,16 +66,16 @@ public class TestAppointmentValidation {
 		
 		@Test
 		public void testValidTime() {
-			LocalDateTime currentTime = LocalDateTime.now();
-			LocalDateTime validTime = currentTime.plusMinutes(30);
+			LocalTime currentTime = LocalTime.now();
+			LocalTime validTime = currentTime.plusMinutes(30);
 			Assertions.assertTrue(AppointmentValidation.validTime(validTime));
 		}
 
 	//invalid date
 		@Test
 		public void testInvalidTime() {
-			LocalDateTime currentTime = LocalDateTime.now();
-			LocalDateTime invalidTime = currentTime.minusMinutes(10);
+			LocalTime currentTime = LocalTime.now();
+			LocalTime invalidTime = currentTime.minusMinutes(10);
 			try {
 				AppointmentValidation.validTime(invalidTime);
 				Assertions.fail("Test case failed");
@@ -179,35 +184,4 @@ public class TestAppointmentValidation {
 			}
 		}
 		
-//		@Test
-//		public void testValidBikeService() {
-//			String BikeService = "Bike wash and polish";
-//			try {
-//				ValidBikeService(BikeService);
-//			} catch (InvalidBookingDetailException e) {
-//				Assertions.assertEquals(BookingValidationErrors.INVALID_BIKESERVICE, e.getMessage());
-//			}
-//
-//		}
-//
-//
-//	// test invalid bike service
-//		@Test
-//		public void testInvalidBikeService() {
-////		empty Bike Service
-//			try {
-//				ValidBikeService(null);
-//				Assertions.fail("Test case failed");
-//			} catch (InvalidBookingDetailException e) {
-//				Assertions.assertEquals(BookingValidationErrors.EMPTY_BIKESERVICE, e.getMessage());
-//			}
-////		invalid  Bike Service
-//			try {
-//				ValidBikeService("Wheel alignment");
-//				Assertions.fail("Test case failed");
-//
-//			} catch (InvalidBookingDetailException e) {
-//				Assertions.assertEquals(BookingValidationErrors.INVALID_BIKESERVICE, e.getMessage());
-//			}
-//		}
 }

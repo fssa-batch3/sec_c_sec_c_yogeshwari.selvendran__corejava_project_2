@@ -13,6 +13,7 @@ public class Orders {
 	    private String city;
 	    private String postalCode;
 	    private String paymentmethod;
+	    private SparePart sparepart;
 	    
 		public Orders( int sparepartId, int userId,
 		String streetAddress, String city, String postalCode, String paymentmethod) {
@@ -107,6 +108,13 @@ public class Orders {
 			// TODO Auto-generated method stub
 			
 		}
+	    public SparePart getSparepart() {
+	        return sparepart;
+	    }
+
+	    public void setSparepart(SparePart sparepart) {
+	        this.sparepart = sparepart;
+	    }
 
 	
 }
