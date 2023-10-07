@@ -126,6 +126,7 @@ public class SparePartService {
 		return sparepartsDao.findSparePartByVehicleType("Bike");
 
 	}
+	
 	public SparePart getSparePartDetailById(int id) throws DAOException {
 		/**
 		 * Call the getAllProduct method in ProductDao

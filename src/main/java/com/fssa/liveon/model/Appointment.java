@@ -15,6 +15,15 @@ public class Appointment {
 	private int bookingId;
 	private int userId;
 	private String bookingStatus;
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public LocalDate getBookingDate() {
 		return bookingDate;
@@ -95,4 +104,15 @@ public class Appointment {
 	public void setBookingStatus(String bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
+
+	@Override
+	public String toString() {
+		return "Appointment [bookingDate=" + bookingDate + ", bookingTime=" + bookingTime + ", vehicletype="
+				+ vehicletype + ", vehicleservice=" + vehicleservice + ", streetAddress=" + streetAddress + ", city="
+				+ city + ", postalCode=" + postalCode + ", bookingId=" + bookingId + ", userId=" + userId
+				+ ", bookingStatus=" + bookingStatus + "]";
+	}
+	
+	
+	
 }

@@ -50,6 +50,7 @@ public class UserValidation {
 	}
 
 	public boolean validLastName(String lastName) throws InvalidUserDetailsException {
+		String firstNameLowercase = lastName.toLowerCase();
 		if (lastName == null || "".equals(lastName.trim())) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
 		}

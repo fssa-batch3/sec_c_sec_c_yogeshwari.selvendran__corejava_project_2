@@ -51,7 +51,7 @@ public class SparePartsDAO {
 		} catch (SQLException e) {
 
 			System.out.println(e.getMessage());
-			throw new DAOException(LiveOnDaoErrors.INVALID_ADD_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_ADD_PRODUCT);
 		}
 		return true;
 	}
@@ -82,7 +82,7 @@ public class SparePartsDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_UPDATE_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_UPDATE_PRODUCT);
 
 		}
 		return true;
@@ -105,7 +105,7 @@ public class SparePartsDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_PRODUCT);
 
 		}
 		return true;
@@ -155,7 +155,7 @@ public class SparePartsDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_ALL_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_GET_ALL_PRODUCTS);
 		}
 		return sparePartList;
 	}
@@ -207,7 +207,7 @@ public class SparePartsDAO {
 
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_ALL_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_GET_ALL_PRODUCTS);
 		}
 
 		return sparePartList;
@@ -257,7 +257,7 @@ public  SparePart getSparePartDetailById(int id) throws DAOException {
 
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_ALL_SPAREPART);
+			throw new DAOException(LiveOnDaoErrors.INVALID_GET_ALL_PRODUCTS);
 		}
 		return readProduct;
 	}

@@ -34,7 +34,7 @@ public class TestAppointmentValidation {
 			booking.ValidateAppointment(null);
 			Assertions.fail("Test case failed");
 		} catch (InvalidBookingDetailException e) {
-			Assertions.assertEquals(BookingValidationErrors.INVALID_BOOKINGBEFOREDATE, e.getMessage());
+			Assertions.assertEquals(BookingValidationErrors.INVALID_BOOKING_OBJECT, e.getMessage());
 		}
 	}
 		@Test
@@ -52,14 +52,14 @@ public class TestAppointmentValidation {
 				AppointmentValidation.ValidDate(invalidDate);
 				Assertions.fail("Test case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.INVALID_BOOKINGBEFOREDATE, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.INVALID_BOOKING_BEFORE_DATE, e.getMessage());
 			}
 
 			try {
 				AppointmentValidation.ValidDate(null);
 				Assertions.fail("Test case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.EMPTY_BOOKINGDATE, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.EMPTY_BOOKING_DATE, e.getMessage());
 			}
 
 		}
@@ -80,13 +80,13 @@ public class TestAppointmentValidation {
 				AppointmentValidation.validTime(invalidTime);
 				Assertions.fail("Test case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.INVALID_BOOKINGBEFORETIME, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors. INVALID_BOOKING_BEFORE_TIME, e.getMessage());
 			}
 			try {
 				AppointmentValidation.validTime(null);
 				Assertions.fail("Test case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.EMPTY_BOOKINGTIME, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.EMPTY_BOOKING_TIME, e.getMessage());
 			}
 		}
 		@Test
@@ -101,7 +101,7 @@ public class TestAppointmentValidation {
 				AppointmentValidation.validStreetAddress(null);
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.EMPTY_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.EMPTY_STREET_ADDRESS , e.getMessage());
 			}
 
 			try {
@@ -109,7 +109,7 @@ public class TestAppointmentValidation {
 				
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.INVALID_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.INVALID_STREET_ADDRESS, e.getMessage());
 			}
 		}
 		
@@ -125,7 +125,7 @@ public class TestAppointmentValidation {
 				AppointmentValidation.validCity(null);
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.EMPTY_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.EMPTY_CITY_ADDRESS, e.getMessage());
 			}
 
 			try {
@@ -133,7 +133,7 @@ public class TestAppointmentValidation {
 				
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.INVALID_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.INVALID_CITY_ADDRESS, e.getMessage());
 			}
 		}
 
@@ -149,7 +149,7 @@ public class TestAppointmentValidation {
 				AppointmentValidation.validCity(null);
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.EMPTY_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.EMPTY_PINCODE_ADDRESS, e.getMessage());
 			}
 
 			try {
@@ -157,7 +157,7 @@ public class TestAppointmentValidation {
 				
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.INVALID_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.INVALID_PINCODE_ADDRESS, e.getMessage());
 			}
 		}
 		@Test
@@ -172,7 +172,7 @@ public class TestAppointmentValidation {
 				AppointmentValidation.validCity(null);
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.EMPTY_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.EMPTY_VEHICLE_TYPE, e.getMessage());
 			}
 
 			try {
@@ -180,7 +180,7 @@ public class TestAppointmentValidation {
 				
 				Assertions.fail("Tset case failed");
 			} catch (InvalidBookingDetailException e) {
-				Assertions.assertEquals(BookingValidationErrors.INVALID_USEREMAIL, e.getMessage());
+				Assertions.assertEquals(BookingValidationErrors.INVALID_VEHICLE_TYPE, e.getMessage());
 			}
 		}
 		

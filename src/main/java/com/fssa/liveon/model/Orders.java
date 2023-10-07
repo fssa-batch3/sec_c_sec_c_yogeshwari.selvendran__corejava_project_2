@@ -4,117 +4,136 @@ import java.security.Timestamp;
 
 public class Orders {
 
-	 private int orderID;
-	    private int sparepartId;
-	    private int userId;
-	    private Timestamp dateAdded;
-	    private String orderStatus;
-	    private String streetAddress;
-	    private String city;
-	    private String postalCode;
-	    private String paymentmethod;
-	    private SparePart sparepart;
-	    
-		public Orders( int sparepartId, int userId,
-		String streetAddress, String city, String postalCode, String paymentmethod) {
-			super();
-		//	this.orderID = orderID;
-			this.sparepartId = sparepartId;
-			this.userId = userId;
-			// this.dateAdded = dateAdded;
-		//	this.orderStatus = orderStatus;
-			this.streetAddress = streetAddress;
-			this.city = city;
-			this.postalCode = postalCode;
-			this.paymentmethod = paymentmethod;
-		}
+	private int orderID;
+	private int sparepartId;
+	private int userId;
+	private Timestamp dateAdded;
+	private String orderStatus;
+	private String streetAddress;
+	private String city;
+	private String postalCode;
+	private String paymentmethod;
+	private SparePart sparepart;
+	private User user;
 
-		public Orders() {
-			// TODO Auto-generated constructor stub
-		}
+	public Orders(int sparepartId, int userId, String streetAddress, String city, String postalCode,
+			String paymentmethod) {
+		super();
+		// this.orderID = orderID;
+		this.sparepartId = sparepartId;
+		this.userId = userId;
+		// this.dateAdded = dateAdded;
+		// this.orderStatus = orderStatus;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.postalCode = postalCode;
+		this.paymentmethod = paymentmethod;
+	}
 
-		public int getOrderID() {
-			return orderID;
-		}
+	public Orders() {
+		// TODO Auto-generated constructor stub
+	}
 
-		public void setOrderID(int orderID) {
-			this.orderID = orderID;
-		}
+	public int getOrderID() {
+		return orderID;
+	}
 
-		public int getSparepartId() {
-			return sparepartId;
-		}
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
+	}
 
-		public void setSparepartId(int sparepartId) {
-			this.sparepartId = sparepartId;
-		}
+	public int getSparepartId() {
+		return sparepartId;
+	}
 
-		public int getUserId() {
-			return userId;
-		}
+	public void setSparepartId(int sparepartId) {
+		this.sparepartId = sparepartId;
+	}
 
-		public void setUserId(int userId) {
-			this.userId = userId;
-		}
+	public int getUserId() {
+		return userId;
+	}
 
-		public Timestamp getDateAdded() {
-			return dateAdded;
-		}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-		public void setDateAdded(Timestamp dateAdded) {
-			this.dateAdded = dateAdded;
-		}
+	public Timestamp getDateAdded() {
+		return dateAdded;
+	}
 
-		public String getOrderStatus() {
-			return orderStatus;
-		}
+	public void setDateAdded(Timestamp dateAdded) {
+		this.dateAdded = dateAdded;
+	}
 
-		public void setOrderStatus(String orderStatus) {
-			this.orderStatus = orderStatus;
-		}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
 
-		public String getStreetAddress() {
-			return streetAddress;
-		}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 
-		public void setStreetAddress(String streetAddress) {
-			this.streetAddress = streetAddress;
-		}
+	public String getStreetAddress() {
+		return streetAddress;
+	}
 
-		public String getCity() {
-			return city;
-		}
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
 
-		public void setCity(String city) {
-			this.city = city;
-		}
+	public String getCity() {
+		return city;
+	}
 
-		public String getPostalCode() {
-			return postalCode;
-		}
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-		public void setPostalCode(String postalCode) {
-			this.postalCode = postalCode;
-		}
-		public String getPaymentmethod() {
-			return paymentmethod;
-		}
+	public String getPostalCode() {
+		return postalCode;
+	}
 
-		public void setPaymentmethod(String paymentmethod) {
-			this.paymentmethod = paymentmethod;
-		}
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
 
-		public void setDateAdded(java.sql.Timestamp timestamp) {
-			// TODO Auto-generated method stub
-			
-		}
-	    public SparePart getSparepart() {
-	        return sparepart;
-	    }
+	public String getPaymentmethod() {
+		return paymentmethod;
+	}
 
-	    public void setSparepart(SparePart sparepart) {
-	        this.sparepart = sparepart;
-	    }
+	public void setPaymentmethod(String paymentmethod) {
+		this.paymentmethod = paymentmethod;
+	}
+
+	public void setDateAdded(java.sql.Timestamp timestamp) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public SparePart getSparepart() {
+		return sparepart;
+	}
+
+	public void setSparepart(SparePart sparepart) {
+		this.sparepart = sparepart;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Orders [orderID=" + orderID + ", sparepartId=" + sparepartId + ", userId=" + userId + ", dateAdded="
+				+ dateAdded + ", orderStatus=" + orderStatus + ", streetAddress=" + streetAddress + ", city=" + city
+				+ ", postalCode=" + postalCode + ", paymentmethod=" + paymentmethod + ", sparepart=" + sparepart
+				+ ", user=" + user + "]";
+	}
 
 	
 }

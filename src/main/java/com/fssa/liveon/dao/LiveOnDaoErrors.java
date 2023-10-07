@@ -1,45 +1,89 @@
 package com.fssa.liveon.dao;
 
 /**
- * This class contains error messages related to product DAO operations.
+ * This class contains error messages related to product, user, and appointment DAO operations.
  */
 public class LiveOnDaoErrors {
-	private LiveOnDaoErrors() {
-		// private constructor
-	}
+    private LiveOnDaoErrors() {
+        // private constructor
+    }
 
-	/**
-	 * Error message for failed attempt to add product details to the database.
-	 */
-	public static final String INVALID_ADD_SPAREPART = "The attempt to add Product details to the database has failed.";
-	/**
-	 * Error message for failed attempt to update product details in the database.
-	 */
-	public static final String INVALID_UPDATE_SPAREPART = "The attempt to update Product details in the database has failed.";
-	/**
-	 * Error message for failed attempt to delete product details from the database.
-	 */
-	public static final String INVALID_DELETE_SPAREPART = "The attempt to delete Product details from the database has failed.";
-	/**
-	 * Error message for invalid product ID.
-	 */
-	public static final String INVALID_ID = "The provided Product ID is invalid.";
-	/**
-	 * Error message for failed attempt to retrieve all product details from the
-	 * database.
-	 */
-	public static final String INVALID_ALL_SPAREPART = "The attempt to retrieve all Product details from the database has failed.";
-	
-	public static final String INVALID_ADD_USER = "The user add details is invalid.";
-	
-	public static final String INVALID_UPDATE_USER = "The user update details is invalid.";
-	public static final String INVALID_ADD_APPOINTMENT = "The user booking appointment is invalid.";
-	public static final String INVALID_UPDATE_APPOINTMENT = "The user update booking appointment is invalid";
-	public static final String INVALID_CANCELED_APPOINTMENT = "The user canceled is in valid";
+    /**
+     * Error message for a failed attempt to add product details to the database.
+     */
+    public static final String INVALID_ADD_PRODUCT = "Failed to add product details to the database.";
 
-	public static final String INVALID_DELETE_USER = "The user delete details is Invalid.";
-	// public static final String INVALID_UPDATE_USER = "The user update details is invalid.";
-	public static final String INVALID_ORDER_PLACED = "The order is invalid.";
-	
-	public static final String INVALID_ORDER_HISTORY = "The user order history is invalid ";
+    /**
+     * Error message for a failed attempt to update product details in the database.
+     */
+    public static final String INVALID_UPDATE_PRODUCT = "Failed to update product details in the database.";
+
+    /**
+     * Error message for a failed attempt to delete product details from the database.
+     */
+    public static final String INVALID_DELETE_PRODUCT = "Failed to delete product details from the database.";
+
+    /**
+     * Error message for an invalid product ID.
+     */
+    public static final String INVALID_ID = "Invalid ID provided.";
+
+    /**
+     * Error message for a failed attempt to retrieve all product details from the database.
+     */
+    public static final String INVALID_GET_ALL_PRODUCTS = "Failed to retrieve all product details from the database.";
+
+    /**
+     * Error message for a failed attempt to add a user to the database.
+     */
+    public static final String INVALID_ADD_USER = "Failed to add user details to the database.";
+
+    /**
+     * Error message for a failed attempt to update user details in the database.
+     */
+    public static final String INVALID_UPDATE_USER = "Failed to update user details in the database.";
+
+    /**
+     * Error message for a failed attempt to add a booking appointment for a user.
+     */
+    public static final String INVALID_ADD_APPOINTMENT = "Failed to book an appointment for the user.";
+
+    /**
+     * Error message for a failed attempt to update a booking appointment for a user.
+     */
+    public static final String INVALID_UPDATE_APPOINTMENT = "Failed to update the booking appointment for the user.";
+
+    /**
+     * Error message for a failed attempt to cancel an appointment for a user.
+     */
+    public static final String INVALID_CANCEL_APPOINTMENT = "Failed to cancel the appointment for the user.";
+
+    /**
+     * Error message for an invalid user appointment history.
+     */
+    public static final String INVALID_APPOINTMENT_HISTORY = "Invalid user appointment history.";
+    /**
+     * Error message for a failed attempt to delete user details from the database.
+     */
+    public static final String INVALID_DELETE_USER = "Failed to delete user details from the database.";
+
+    /**
+     * Error message for a user with an existing email address.
+     */
+    public static final String USER_EMAIL_EXISTS = "A user with this email address already exists.";
+
+    /**
+     * Error message for an invalid order placement.
+     */
+    public static final String INVALID_ORDER_PLACEMENT = "Invalid order placement.";
+
+    /**
+     * Error message for an invalid user order history.
+     */
+    public static final String INVALID_ORDER_HISTORY = "Invalid order history.";
+
+    /**
+     * Error message for an email address that already exists.
+     */
+    public static final String EMAIL_ALREADY_EXISTS = "Email address already exists in the system.";
 }

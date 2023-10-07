@@ -29,9 +29,20 @@ public class TestOrderService {
 	@Test
 	void testOrdersByUserId()throws DAOException, SQLException{
 		Orders o = getValidOrder();
-		List<Orders> orderlist = orderDetails.getOrdersByUserId();
+		List<Orders> orderlist = orderDetails.getOrdersByUserId(1);
 		for(Orders p :orderlist) {
 			Logger.info(p);
 		}
 	}
+	
+	@Test
+	void testOrdersByAdmin()throws DAOException, SQLException{
+		Orders o = getValidOrder();
+		List<Orders> orderlist = orderDetails.getAllOrdersForAdmin();
+		for(Orders p :orderlist) {
+			Logger.info(p);
+		}
+	}
+	
+	
 }

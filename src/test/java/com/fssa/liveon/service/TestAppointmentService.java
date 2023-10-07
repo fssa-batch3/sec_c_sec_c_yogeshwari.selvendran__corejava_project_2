@@ -60,7 +60,7 @@ public class TestAppointmentService {
 	@Test
 	void testAppointmentsByUserId()throws DAOException, SQLException{
 		Appointment ap = getAppointment();
-		List<Appointment> bookinlist = service.getAppointmentsByUserId();
+		List<Appointment> bookinlist = service.getAppointmentsByUserId(1);
 		for(Appointment p : bookinlist) {
 			Logger.info(p);
 		}

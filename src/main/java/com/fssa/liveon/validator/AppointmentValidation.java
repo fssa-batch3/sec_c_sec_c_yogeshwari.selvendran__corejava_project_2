@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.fssa.liveon.enums.BikeService;
 import com.fssa.liveon.exceptions.InvalidBookingDetailException;
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
@@ -19,9 +18,9 @@ public class AppointmentValidation {
 
 // EnamValidation enamValidation = new EnamValidation();
 
-	public static boolean ValidateAppointment(Appointment appointment) throws InvalidBookingDetailException {
+	public static boolean ValidateAppointment(Appointment appointment) throws InvalidBookingDetailException{
 		if (appointment == null) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_BOOKINGOBJECT);
+			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_BOOKING_OBJECT);
 		}
 		ValidDate(appointment.getBookingDate());
 		validTime(appointment.getBookingTime());
@@ -31,17 +30,17 @@ public class AppointmentValidation {
 		validBokkingVehicleType(appointment.getVehicletype());
 	//	idValidate(appointment.getBookingId());
 		ValidBikeService(appointment.getVehicleservice());
-		// enamValidation.ValidCarService(appointment.getVehicleservice());
+   //  enamValidation.ValidCarService(appointment.getVehicleservice());
 		return true;
 	}
 
 	public static boolean ValidDate(LocalDate bookingDate) throws InvalidBookingDetailException {
 		LocalDate currentDate = LocalDate.now();
 		if (bookingDate == null) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.EMPTY_BOOKINGDATE);
+			throw new InvalidBookingDetailException(BookingValidationErrors.EMPTY_BOOKING_DATE);
 		}
 		if (bookingDate.isBefore(currentDate)) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_BOOKINGBEFOREDATE);
+			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_BOOKING_BEFORE_DATE);
 		}
 		return true;
 	}
@@ -51,10 +50,10 @@ public class AppointmentValidation {
 	public static boolean validTime(LocalTime bookingTime) throws InvalidBookingDetailException {
 		LocalTime currentTime = LocalTime.now();
 		if (bookingTime == null) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.EMPTY_BOOKINGTIME);
+			throw new InvalidBookingDetailException(BookingValidationErrors.EMPTY_BOOKING_TIME);
 		}
 		if (bookingTime.isBefore(currentTime)) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_BOOKINGBEFORETIME);
+			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_BOOKING_BEFORE_TIME);
 		}
 //	The time is valid
 		return true;
@@ -81,7 +80,7 @@ public class AppointmentValidation {
 		return true;
 	}
 
-	public static boolean validCity(String city) throws InvalidBookingDetailException {
+	public static boolean validCity(String city) throws InvalidBookingDetailException{
 		// Check if the address is not null and not empty
 		if (city == null || city.trim().isEmpty()) {
 			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_CITY_ADDRESS);
@@ -130,7 +129,7 @@ public class AppointmentValidation {
 
 	public static boolean validBokkingVehicleType(String vehicleType) throws InvalidBookingDetailException {
 		if (vehicleType == null) {
-			throw new InvalidSparePartDetailsException(BookingValidationErrors.EMPTY_VEHICLETYPE);
+			throw new InvalidSparePartDetailsException(BookingValidationErrors.EMPTY_VEHICLE_TYPE);
 		} 
 		else if (vehicleType.equals("Bike")) {
 			return true;

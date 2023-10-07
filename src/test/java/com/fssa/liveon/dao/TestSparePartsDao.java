@@ -91,7 +91,7 @@ class TestSparePartsDao {
 			sparePartDao.addSparePart(productValidate());
 		} catch (DAOException e) {
 			// Assert that the exception message matches the expected error message
-			Assertions.assertEquals(LiveOnDaoErrors.INVALID_ADD_SPAREPART, e.getMessage());
+			Assertions.assertEquals(LiveOnDaoErrors.INVALID_ADD_PRODUCT, e.getMessage());
 		}
 	}
 

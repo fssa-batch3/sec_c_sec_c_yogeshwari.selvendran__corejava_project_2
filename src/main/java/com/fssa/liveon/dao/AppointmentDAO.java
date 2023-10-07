@@ -9,12 +9,11 @@ import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidBookingDetailException;
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 import com.fssa.liveon.model.Appointment;
-import com.fssa.liveon.model.Orders;
+import com.fssa.liveon.model.User;
 import com.fssa.liveon.util.ConnectionUtil;
 
 public class AppointmentDAO {
@@ -93,79 +92,72 @@ public class AppointmentDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_CANCELED_APPOINTMENT);
+			throw new DAOException(LiveOnDaoErrors.INVALID_CANCEL_APPOINTMENT);
 		}
 		return true;
 	}
-	
+
 	public List<Appointment> getAllAppointmentsByUserId(int userId) throws DAOException, SQLException {
-	    String selectQuery = "SELECT * FROM appointments WHERE user_id = ?";
-	    List<Appointment> appointments = new ArrayList<>();
+		String selectQuery = "SELECT * FROM appointments WHERE user_id = ?";
+		List<Appointment> appointments = new ArrayList<>();
 
-	    try (Connection con = ConnectionUtil.getConnection();
-	         PreparedStatement preparedStatement = con.prepareStatement(selectQuery)) {
+		try (Connection con = ConnectionUtil.getConnection();
+				PreparedStatement preparedStatement = con.prepareStatement(selectQuery)) {
 
-	        preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(1, userId);
 
-	        try (ResultSet rs = preparedStatement.executeQuery()) {
-	            while (rs.next()) {
-	                Appointment booking = new Appointment();
-	                booking.setBookingId(rs.getInt("bookingId"));
-	                booking.setBookingDate(rs.getDate("bookingDate").toLocalDate()); // Convert to LocalDate
-	                booking.setBookingTime(rs.getTime("bookingTime").toLocalTime()); // Convert to LocalTime
-	                booking.setVehicletype(rs.getString("vehicletype"));
-	                booking.setVehicleservice(rs.getString("vehicleservice"));
-	                booking.setStreetAddress(rs.getString("streetAddress"));
-	                booking.setCity(rs.getString("city"));
-	                booking.setPostalCode(rs.getString("postalCode"));
+			try (ResultSet rs = preparedStatement.executeQuery()) {
+				while (rs.next()) {
+					Appointment booking = new Appointment();
+					booking.setBookingId(rs.getInt("bookingId"));
+					booking.setBookingDate(rs.getDate("bookingDate").toLocalDate()); // Convert to LocalDate
+					booking.setBookingTime(rs.getTime("bookingTime").toLocalTime()); // Convert to LocalTime
+					booking.setVehicletype(rs.getString("vehicletype"));
+					booking.setVehicleservice(rs.getString("vehicleservice"));
+					booking.setStreetAddress(rs.getString("streetAddress"));
+					booking.setCity(rs.getString("city"));
+					booking.setPostalCode(rs.getString("postalCode"));
+					appointments.add(booking);
+				}
+			}
+		} catch (SQLException e) {
+			throw new DAOException(LiveOnDaoErrors.INVALID_APPOINTMENT_HISTORY, e);
+		}
 
-	                appointments.add(booking);
-	            }
-	        }
-	    } catch (SQLException e) {
-	        throw new DAOException(LiveOnDaoErrors.INVALID_ORDER_HISTORY, e);
-	    }
-
-	    return appointments;
+		return appointments;
 	}
 
-//public List<Appointment> getAllAppointmentsByUserId(int userId)throws DAOException, SQLException {
-//	   String selectQuery = "SELECT * FROM appointments WHERE user_id = ?";
-//	    List<Orders> orders = new ArrayList<>();
-//
-//	    try (Connection con = ConnectionUtil.getConnection();
-//	         PreparedStatement preparedStatement = con.prepareStatement(selectQuery)) {
-//	    	
-//	        preparedStatement.setInt(1, userId);
-//
-//	        try (ResultSet rs = preparedStatement.executeQuery()) {
-//	            while (rs.next()) {
-//	                // Create an Order object and populate it with data from the ResultSet
-////	                Orders order = new Orders();
-//	            	Appointment booking = new Appointment();
-//	            	
-//	            	booking.setBookingId(rs.getInt("booking_id"));
-//					Date bookingUtilDate = Date.valueOf(booking.getBookingDate());
-//	            	booking.setBookingDate(rs.getDate(bookingUtilDate));
-//	        	    LocalTime time1 = booking.getBookingTime();
-//	        		Time timeTs1 = Time.valueOf(time1);
-//	        		booking.setBookingTime(rs.getTime(time1));
-//	        		booking.setVehicletype(rs.getString("vehicletype"));
-//	        		booking.setVehicleservice(rs.getString("vehicleservice"));
-//	        		booking.setStreetAddress(rs.getString("streetAddress"));
-//	        		booking.setCity(rs.getString("city"));
-//	        		booking.setPostalCode(rs.getString("postal_code"));
-//	                
-//	                // Add the order to the list
-//	                booking.add(booking);
-//	            }
-//	        }
-//	    } catch (SQLException e) {
-//	        throw new DAOException(LiveOnDaoErrors.INVALID_ORDER_HISTORY, e);
-//	    }
-//	    
-//	    return booking;
-//
-//}
+	public List<Appointment> getAllAppointmentsAdmin() throws DAOException, SQLException {
+		String query = "SELECT a.*, u.firstname, u.lastname, u.gender, u.mobile, u.email " + "FROM appointments a "
+				+ "JOIN USER u ON a.user_id = u.id";
+		List<Appointment> appointments = new ArrayList<>();
 
+		try (Connection con = ConnectionUtil.getConnection();
+				PreparedStatement preparedStatement = con.prepareStatement(query)) {
+
+			try (ResultSet rs = preparedStatement.executeQuery()) {
+				while (rs.next()) {
+					Appointment booking = new Appointment();
+					booking.setBookingId(rs.getInt("bookingId"));
+					booking.setBookingDate(rs.getDate("bookingDate").toLocalDate()); // Convert to LocalDate
+					booking.setBookingTime(rs.getTime("bookingTime").toLocalTime()); // Convert to LocalTime
+					booking.setVehicletype(rs.getString("vehicletype"));
+					booking.setVehicleservice(rs.getString("vehicleservice"));
+					booking.setStreetAddress(rs.getString("streetAddress"));
+					booking.setCity(rs.getString("city"));
+					booking.setPostalCode(rs.getString("postalCode"));
+					User user = new User();
+					user.setEmail(rs.getString("email"));
+					user.setFirstName(rs.getString("firstname"));
+					user.setNumber(rs.getLong("mobile"));
+					booking.setUser(user);
+					appointments.add(booking);
+				}
+			}
+		} catch (SQLException e) {
+			throw new DAOException(LiveOnDaoErrors.INVALID_APPOINTMENT_HISTORY, e);
+		}
+
+		return appointments;
+	}
 }

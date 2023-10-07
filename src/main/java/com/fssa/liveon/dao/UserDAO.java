@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 import com.fssa.liveon.exceptions.InvalidUserDetailsException;
@@ -45,7 +44,7 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 
-			throw new DAOException(LiveOnDaoErrors.INVALID_ADD_USER);
+			throw new DAOException(LiveOnDaoErrors.EMAIL_ALREADY_EXISTS);
 		}
 		return true;
 	}
@@ -163,7 +162,14 @@ public class UserDAO {
     	    	  try(ResultSet rs = pst.executeQuery()){
     	    		  if (rs.next()) {
                           int count = rs.getInt("count");
-                          return count > 0; // Return true if user with the email exists
+                          if(count ==1) {
+                        	  throw new DAOException(LiveOnDaoErrors.EMAIL_ALREADY_EXISTS);
+                        	  
+                          }
+                          else {
+                        	  return  false;
+                          }
+                        
                       }
     	    	  }
     	      }
@@ -171,7 +177,7 @@ public class UserDAO {
   	      
 	        e.printStackTrace();
 	        
-	        throw new DAOException(LiveOnDaoErrors.INVALID_DELETE_USER);
+	      //  throw new DAOException(LiveOnDaoErrors.INVALID_USER);
 	    }
 	    
 	    return true;
