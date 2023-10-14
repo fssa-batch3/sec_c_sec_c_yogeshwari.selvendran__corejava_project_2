@@ -31,22 +31,40 @@ public class SparePartValidation {
 	
 
 // Product Name validation
-	public  boolean validateSparePartName(String productName) throws InvalidSparePartDetailsException {
-		if (productName == null || "".equals(productName.trim())) {
-			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_NAME_NULL);
-		}
-		// minimum 2 character and max 35 character
-		String nameregex = RegexPattern.PRODUCT_NAME_REGEX;
-		Pattern pattern = Pattern.compile(nameregex);
-		Matcher matcher = pattern.matcher(productName);
-		Boolean isMatch = matcher.matches();
-
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_NAME);
-
-		}
-		return true;
+	public boolean validateSparePartName(String productName) throws InvalidSparePartDetailsException {
+	    if (productName == null || productName.trim().isEmpty()) {
+	        throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_NAME_NULL);
+	    }
+	    
+	    // Minimum 2 characters and maximum 35 characters
+	    String nameregex = RegexPattern.PRODUCT_NAME_REGEX;
+	    Pattern pattern = Pattern.compile(nameregex);
+	    Matcher matcher = pattern.matcher(productName);
+	    
+	    if (!matcher.matches()) {
+	        throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_NAME);
+	    }
+	    
+	    return true;
 	}
+	// Product description validation
+	public boolean validateSparePartDescription(String productDescription) throws InvalidSparePartDetailsException {
+	    if (productDescription == null || productDescription.trim().isEmpty()) {
+	        throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_DESCRIPTION_NULL);
+	    }
+	    
+	    // Minimum 2 characters and maximum 35 characters
+	    String nameregex = RegexPattern.PRODUCT_DESCRIPTION_REGEX;
+	    Pattern pattern = Pattern.compile(nameregex);
+	    Matcher matcher = pattern.matcher(productDescription);
+	    
+	    if (!matcher.matches()) {
+	        throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
+	    }
+	    
+	    return true;
+	}
+
 
 	// Product price validation
 	public  boolean validateSparePartPrice(double price) throws InvalidSparePartDetailsException {
@@ -65,23 +83,7 @@ public class SparePartValidation {
 
 	}
 
-	// Product description validation
-	public  boolean validateSparePartDescription(String productDescription) throws InvalidSparePartDetailsException {
-		if (productDescription == null || "".equals(productDescription.trim())) {
-			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_DESCRIPTION_NULL);
-		}
-		// minimum 2 character and max 35 character
-		String nameregex = RegexPattern.PRODUCT_DESCRIPTION_REGEX;
-		Pattern pattern = Pattern.compile(nameregex);
-		Matcher matcher = pattern.matcher(productDescription);
-		Boolean isMatch = matcher.matches();
 
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidSparePartDetailsException(SparePartValidationsErrors.INVALID_PRODUCT_DESCRIPTION);
-
-		}
-		return true;
-	}
 
 	// imageUrl validate
 	public  boolean sparePartImagesValidator(List<String> imageUrl) throws InvalidSparePartDetailsException {

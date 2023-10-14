@@ -41,14 +41,14 @@ public class BookingValidationErrors {
      * Error message for invalid street address.
      */
     public static final String INVALID_STREET_ADDRESS = "Invalid street address.";
-    public static final String EMPTY_CITY_ADDRESS = "Empty or null city address.";
+    public static final String EMPTY_CITY_NAME = "Empty or null city address.";
     public static final String EMPTY_PINCODE_ADDRESS = "Empty or null pincode address.";
     public static final String EMPTY_STREET_ADDRESS = "Empty or null Street address.";
 
     /**
      * Error message for invalid city address.
      */
-    public static final String INVALID_CITY_ADDRESS = "Invalid city address.";
+    public static final String INVALID_CITY_NAME = "Invalid city address.";
 
     /**
      * Error message for invalid pincode address.

@@ -13,13 +13,13 @@ public class UserService {
 UserDAO userDao = new UserDAO();
 UserValidation userValidation = new UserValidation();
 public boolean addUser(User user)throws DAOException, SQLException, InvalidUserDetailsException{
-	if(userValidation.validateUser(user) && !userDao.getUserEmail(user.getEmail())  ) {
+	if(userValidation.validateUser(user) && !userDao.getUserEmail(user.getEmail())){
 		userDao. addUserDetails(user);
 	}
-	return true;
-	
+	return true;	
 }
 public boolean updateUser(User user)throws DAOException, SQLException,InvalidUserDetailsException{
+	
 	if(userValidation.validateUserUpdate(user)) {
 		userDao.updateUserDetails(user);
 	}
@@ -40,7 +40,6 @@ public User getUserById(int id) throws SQLException, DAOException {
 public User getUserByEmailAndPassword(String email, String enteredPassword)throws DAOException, SQLException,InvalidUserDetailsException{
 
 	return userDao.getUserByEmailAndPassword(email,enteredPassword);
-
 }
 public  boolean validateUserEmail(String email) throws SQLException, DAOException,InvalidUserDetailsException{
 	boolean userExists =  userDao.getUserEmail(email);

@@ -11,11 +11,11 @@ import com.fssa.liveon.model.SparePart;
 import com.fssa.liveon.validator.*;
 
 class TestSparePartValidation {
-	
-	
+
 	SparePartValidation sparepartsValidation = new SparePartValidation();
-	
+
 	EnamValidation enamValidation = new EnamValidation();
+
 	// Valid test case for product details
 	@Test
 	void testValidateProduct() {

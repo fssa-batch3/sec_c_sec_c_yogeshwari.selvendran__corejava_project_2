@@ -60,65 +60,54 @@ public class AppointmentValidation {
 	}
 
 	public static boolean validStreetAddress(String street) throws InvalidBookingDetailException {
-		// Check if the address is not null and not empty
-		if (street == null || street.trim().isEmpty()) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_ADDRESS);
-		}
-		// Define the regex pattern for a simple street address
-		String regexPattern = RegexPattern.USER_STREET_REGEX;
-
-		// Create a Pattern object
-		Pattern pattern = Pattern.compile(regexPattern);
-
-		// Create a Matcher object
-		Matcher matcher = pattern.matcher(street);
-		Boolean isMatch = matcher.matches();
-		// Check if the street address matches the pattern
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidSparePartDetailsException(BookingValidationErrors.INVALID_STREET_ADDRESS);
-		}
-		return true;
+	    if (street == null || street.trim().isEmpty()) {
+	        throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_ADDRESS);
+	    }
+	    
+	    String regexPattern = RegexPattern.USER_STREET_REGEX;
+	    Pattern pattern = Pattern.compile(regexPattern);
+	    Matcher matcher = pattern.matcher(street);
+	    
+	    if (!matcher.matches()) {
+	        throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_STREET_ADDRESS);
+	    }
+	    
+	    return true;
 	}
 
-	public static boolean validCity(String city) throws InvalidBookingDetailException{
-		// Check if the address is not null and not empty
-		if (city == null || city.trim().isEmpty()) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_CITY_ADDRESS);
-		}
-		// Define your regex pattern for a valid city name here
-		String regexPattern = RegexPattern.USER_CITY_REGEX;
-
-		// Create a Pattern object
-		Pattern pattern = Pattern.compile(regexPattern);
-
-		// Create a Matcher object
-		Matcher matcher = pattern.matcher(city);
-		Boolean isMatch = matcher.matches();
-		// Check if the street address matches the pattern
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_ADDRESS);
-		}
-		return true;
+	public static boolean validCity(String city) throws InvalidBookingDetailException {
+	    if (city == null || city.trim().isEmpty()) {
+	        throw new InvalidBookingDetailException(BookingValidationErrors.EMPTY_CITY_NAME);
+	    }
+	    
+	    String regexPattern = RegexPattern.USER_CITY_REGEX;
+	    Pattern pattern = Pattern.compile(regexPattern);
+	    Matcher matcher = pattern.matcher(city);
+	    
+	    if (!matcher.matches()) {
+	        throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_CITY_NAME);
+	    }
+	    
+	    return true;
 	}
 
 	public static boolean validPostalCode(String postalCode) throws InvalidBookingDetailException {
-		// Check if the address is not null and not empty
-		if (postalCode == null || postalCode.trim().isEmpty()) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_PINCODE_ADDRESS);
-		}
-		// Define a regex pattern for a postal code (adjust the pattern as needed)
-		String regexPattern = RegexPattern.USER_POSTAL_CODE_REGEX;
-		// Compile the regex pattern
-		Pattern pattern = Pattern.compile(regexPattern);
-		// Create a Matcher object and check if the postal code matches the pattern
-		Matcher matcher = pattern.matcher(postalCode);
-		Boolean isMatch = matcher.matches();
-		// Check if the street address matches the pattern
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_ADDRESS);
-		}
-		return true;
+	    if (postalCode == null || postalCode.trim().isEmpty()) {
+	        throw new InvalidBookingDetailException(BookingValidationErrors.EMPTY_PINCODE_ADDRESS);
+	    }
+	    
+	    String regexPattern = RegexPattern.USER_POSTAL_CODE_REGEX;
+	    Pattern pattern = Pattern.compile(regexPattern);
+	    Matcher matcher = pattern.matcher(postalCode);
+	    
+	    if (!matcher.matches()) {
+	        throw new InvalidBookingDetailException(BookingValidationErrors.INVALID_PINCODE_ADDRESS);
+	    }
+	    
+	    return true;
 	}
+
+	
 
 	public static boolean idValidate(int id) throws InvalidBookingDetailException {
 		if (id <= 0) {

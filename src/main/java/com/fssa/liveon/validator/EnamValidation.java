@@ -1,10 +1,7 @@
 package com.fssa.liveon.validator;
 
-import com.fssa.liveon.enums.BikeService;
-import com.fssa.liveon.enums.BookingVehicleType;
-import com.fssa.liveon.enums.CarService;
 import com.fssa.liveon.enums.Category;
-import com.fssa.liveon.exceptions.InvalidBookingDetailException;
+
 import com.fssa.liveon.exceptions.InvalidSparePartDetailsException;
 
 public  class EnamValidation {

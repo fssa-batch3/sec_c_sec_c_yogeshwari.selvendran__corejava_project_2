@@ -23,6 +23,7 @@ public class UserValidation {
 		validPassword(user.getPassword());
 		return true;
 	}
+
 	public boolean validateUserUpdate(User user) {
 		if (user == null) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_ERROR_MESSAGE);
@@ -32,67 +33,68 @@ public class UserValidation {
 		validNumber(user.getNumber());
 		return true;
 	}
-	
-	
+
 	public boolean validFirstName(String firstName) throws InvalidUserDetailsException {
-		if (firstName == null || "".equals(firstName.trim())) {
+		if (firstName == null || firstName.trim().isEmpty()) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
 		}
+
 		String nameregex = RegexPattern.USER_FIRST_NAME_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(firstName);
-		Boolean isMatch = matcher.matches();
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidUserDetailsException(UserValidationErrors.USER_FIRST_NAME_ERROR_MESSAGE);
 
+		if (!matcher.matches()) {
+			throw new InvalidUserDetailsException(UserValidationErrors.USER_FIRST_NAME_ERROR_MESSAGE);
 		}
+
 		return true;
 	}
 
 	public boolean validLastName(String lastName) throws InvalidUserDetailsException {
-		String firstNameLowercase = lastName.toLowerCase();
-		if (lastName == null || "".equals(lastName.trim())) {
+		if (lastName == null || lastName.trim().isEmpty()) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
 		}
+
 		String nameregex = RegexPattern.USER_LAST_NAME_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(lastName);
-		Boolean isMatch = matcher.matches();
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidUserDetailsException(UserValidationErrors.USER_LAST_NAME_ERROR_MESSAGE);
 
+		if (!matcher.matches()) {
+			throw new InvalidUserDetailsException(UserValidationErrors.USER_LAST_NAME_ERROR_MESSAGE);
 		}
+
 		return true;
 	}
 
 	public boolean validEmail(String email) throws InvalidUserDetailsException {
-		if (email == null || "".equals(email.trim())) {
-			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
-		}
-		String nameregex = RegexPattern.USER_EMAIL_REGEX;
-		Pattern pattern = Pattern.compile(nameregex);
-		Matcher matcher = pattern.matcher(email);
-		Boolean isMatch = matcher.matches();
-		if (isMatch.equals(Boolean.FALSE)) {
-			throw new InvalidUserDetailsException(UserValidationErrors.INVALID_EMAIL_MESSAGE);
-
-		}
-		return true;
+	    if (email == null || email.trim().isEmpty()) {
+	        throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
+	    }
+	    
+	    String nameregex = RegexPattern.USER_EMAIL_REGEX;
+	    Pattern pattern = Pattern.compile(nameregex);
+	    Matcher matcher = pattern.matcher(email);
+	    
+	    if (!matcher.matches()) {
+	        throw new InvalidUserDetailsException(UserValidationErrors.INVALID_EMAIL_MESSAGE);
+	    }
+	    
+	    return true;
 	}
 
 	public boolean validPassword(String password) throws InvalidUserDetailsException {
-		if (password == null || "".equals(password.trim())) {
+		if (password == null || password.trim().isEmpty()) {
 			throw new InvalidUserDetailsException(UserValidationErrors.USER_NULL_ERROR_MESSAGE);
 		}
+
 		String nameregex = RegexPattern.USER_PASSWORD_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(password);
-		Boolean isMatch = matcher.matches();
-		if (isMatch.equals(Boolean.FALSE)) {
 
+		if (!matcher.matches()) {
 			throw new InvalidUserDetailsException(UserValidationErrors.PASSWORD_ERROR_MESSAGE);
-
 		}
+
 		return true;
 	}
 
@@ -101,10 +103,11 @@ public class UserValidation {
 		Pattern pattern = Pattern.compile(nameregex);
 		String numberStr = String.valueOf(number);
 		Matcher matcher = pattern.matcher(numberStr);
-		Boolean isMatch = matcher.matches();
-		if (Boolean.FALSE.equals(isMatch)) {
+
+		if (!matcher.matches()) {
 			throw new InvalidUserDetailsException(UserValidationErrors.MOBILE_NUMBER_ERROR_MESSAGE);
 		}
+
 		return true;
 	}
 
