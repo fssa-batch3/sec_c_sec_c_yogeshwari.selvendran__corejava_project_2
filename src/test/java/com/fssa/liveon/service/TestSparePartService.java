@@ -10,9 +10,6 @@ import com.fssa.liveon.model.SparePart;
 import com.fssa.liveon.util.Logger;
 
 class TestSparePartService {
-	/**
-	 * Helper method to create a valid Product instance for testing
-	 */
 	static Logger logger = new Logger();
 	SparePartService sparepart = new SparePartService();
 	public SparePart getValidSparePart() {

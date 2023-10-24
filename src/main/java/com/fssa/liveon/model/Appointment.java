@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Appointment {
+	
 	private LocalDate bookingDate;
 	private LocalTime bookingTime;
 	private String vehicletype;

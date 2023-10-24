@@ -12,13 +12,12 @@ public class PartnerService {
 	PartnerDAO partnerDao = new PartnerDAO();
 	PartnerValidation partnerValidation = new PartnerValidation();
 
-	public boolean addPartner(Partners partner) throws DAOException, SQLException, InvalidPartnerDetailsException {
+	public  boolean addPartner(Partners partner) throws DAOException, SQLException, InvalidPartnerDetailsException {
 		if (partnerValidation.validatePartner(partner) && !partnerDao.getPartnerEmail(partner.getEmail())) {
 			partnerDao.addPartnerDetails(partner);
 		}
 		return true;
 	}
-
 	public boolean updatePartner(Partners partner) throws DAOException, SQLException, InvalidPartnerDetailsException {
 		if (partnerValidation.validatePartnerUpdate(partner)) {
 			partnerDao.updatePartnerDetails(partner);
@@ -27,7 +26,7 @@ public class PartnerService {
 	}
 
 	public Partners getPartnerById(int id) throws SQLException, DAOException, InvalidPartnerDetailsException {
-		return partnerDao.getPartnerById(0);
+		return partnerDao.getPartnerById(id);
 	}
 
 	public Partners getPartnerByEmailAndPassword(String email, String enteredPassword)

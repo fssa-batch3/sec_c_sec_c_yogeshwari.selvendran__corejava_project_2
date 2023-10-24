@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Shop {
 	private int shopId;
+	private int partnerId;
 	private String shopName;
 	private List<String> imageUrl;
 	private long shopNumber;
@@ -13,6 +14,16 @@ public class Shop {
 	private String postalCode;
 	private String vehicleType;
 	private String shopDetails;
+	private Partners partners;
+	private boolean shopStatus;
+	
+
+	public Partners getPartners() {
+		return partners;
+	}
+	public void setPartners(Partners partners) {
+		this.partners = partners;
+	}
 	public int getShopId() {
 		return shopId;
 	}
@@ -73,14 +84,25 @@ public class Shop {
 	public void setShopDetails(String shopDetails) {
 		this.shopDetails = shopDetails;
 	}
-	
+	public int getPartnerId() {
+		return partnerId;
+	}
+	public void setPartnerId(int partnerId) {
+		this.partnerId = partnerId;
+	}
+	public boolean isSparepartstatus() {
+		return shopStatus;
+	}
+	public void setSparepartstatus(boolean sparepartstatus) {
+		this.shopStatus = sparepartstatus;
+	}
 	@Override
 	public String toString() {
-		return "Shop [shopId=" + shopId + ", shopName=" + shopName + ", imageUrl=" + imageUrl + ", shopNumber="
-				+ shopNumber + ", shopLicenceNumber=" + shopLicenceNumber + ", streetAddress=" + streetAddress
-				+ ", city=" + city + ", postalCode=" + postalCode + ", vehicleType=" + vehicleType + ", shopDetails="
-				+ shopDetails + "]";
+		return "Shop [shopId=" + shopId + ", partnerId=" + partnerId + ", shopName=" + shopName + ", imageUrl="
+				+ imageUrl + ", shopNumber=" + shopNumber + ", shopLicenceNumber=" + shopLicenceNumber
+				+ ", streetAddress=" + streetAddress + ", city=" + city + ", postalCode=" + postalCode
+				+ ", vehicleType=" + vehicleType + ", shopDetails=" + shopDetails + ", partners=" + partners
+				+ ", shopstatus=" + shopStatus + "]";
 	}
-	
 	
 }

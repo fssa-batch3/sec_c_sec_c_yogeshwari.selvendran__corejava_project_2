@@ -6,7 +6,7 @@ public enum ServicedVehicleType {
 	 * Define two enum constants: BIKE and Car
 	 */
 
-	BIKE("Bike"), CAR("Car");
+	BIKE("Bike"), CAR("Car"), BOTH("Both");
 
 	/**
 	 * Declare a private final instance variable to store the vehicle type

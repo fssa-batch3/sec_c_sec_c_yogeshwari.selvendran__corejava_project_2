@@ -19,8 +19,8 @@ public class TestPartnerService {
 	PartnerService partnerService = new PartnerService();
 	
 	Partners getValidPartner() {
-		Partners partner = new PartnerBuilder().buildPartnerId(1).buildPartnerFirstName("Yogi").buildPartnerLastName("S")
-				.buildPartnerGender("Female").buildPartnerEmail("yogeshwari@gmail.com").buildPartnerNumber(9876543210l)
+		Partners partner = new PartnerBuilder().buildPartnerFirstName("sethu").buildPartnerLastName("S")
+				.buildPartnerGender("Female").buildPartnerEmail("sethu@gmail.com").buildPartnerNumber(9876543210l)
 				.buildPartnerPassword("Yogi@123").build();
 		return partner;
 	}
@@ -43,8 +43,8 @@ public class TestPartnerService {
 	
 	@Test
 	void testGetPartnerByEmailAndPass() throws DAOException, SQLException{
-		 String email = "yogiYOGI@gmail.com";
-		    String password = "YogiS@123";
+		 String email = "yogeshwari@gmail.com";
+		    String password = "Yogi@123";
 		    Partners u=	partnerService.getPartnerByEmailAndPassword(email, password );
 	logger.info(u);
 	assertNotNull(u);
@@ -52,7 +52,7 @@ public class TestPartnerService {
 	}
 	@Test
 	void testGetPartnerByEmail() throws DAOException, SQLException{
-	Partners u=	partnerService.getPartnerById(1);
+	Partners u=	partnerService.getPartnerById(2);
 	logger.info(u);
 	}
 	

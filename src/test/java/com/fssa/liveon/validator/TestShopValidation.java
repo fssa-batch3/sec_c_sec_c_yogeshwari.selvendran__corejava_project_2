@@ -16,10 +16,10 @@ public class TestShopValidation {
 	void testShops() {
 		List<String> items = Arrays.asList("https://iili.io/Hv6Okvf.png", "https://iili.io/Hv6Okvf.png",
 				"https://iili.io/Hv6Okvf.png");
-		Shop shop = new ShopBuilder().buildShopId(1).buildShopName("Mechanic shop").buildShopLicenceNumber("Tn123")
+		Shop shop = new ShopBuilder().buildShopId(1).buildPartnerId(1).buildShopName("Mechanic shop").buildShopLicenceNumber("ABC123")
 				.buildShopServicedVehicleType("car").buildShopDetails("The shop details").buildImageUrl(items)
 				.buildShopNumber(9876543210l).buildStreetAddress("north street").buildCity("madurai")
-				.buildPostalCode("654321").build();
+				.buildPostalCode("654321").buildPartnerId(1).build();
 		
 		Assertions.assertTrue(shops.validateShop(shop));
 	}
@@ -131,7 +131,14 @@ public class TestShopValidation {
 			// Asserting that the exception message matches the expected error message
 			Assertions.assertEquals(ShopValivationErrors.INVALID_VEHICLETYPE, e.getMessage());
 		}
+		String VehicleType3 = "Both";
 
+		try {
+			shops.validVehicleType(VehicleType3);
+		} catch (InvalidShopDetailsException e) {
+			// Asserting that the exception message matches the expected error message
+			Assertions.assertEquals(ShopValivationErrors.INVALID_VEHICLETYPE, e.getMessage());
+		}
 	}
 
 // Test invalid vehicle type
@@ -150,6 +157,13 @@ public class TestShopValidation {
 //	invalid vehicle type
 		try {
 			shops.validVehicleType("Truck");
+			Assertions.fail("Test case failed");
+		} catch (InvalidShopDetailsException e) {
+			// Asserting that the exception message matches the expected error message
+			Assertions.assertEquals(ShopValivationErrors.INVALID_VEHICLETYPE, e.getMessage());
+		}
+		try {
+			shops.validVehicleType("Auto");
 			Assertions.fail("Test case failed");
 		} catch (InvalidShopDetailsException e) {
 			// Asserting that the exception message matches the expected error message
@@ -192,5 +206,4 @@ public class TestShopValidation {
 			Assertions.assertEquals(ShopValivationErrors.INVALID_IMAGE_URL_ERROR_MESSAGE, e.getMessage());
 		}
 	}
-
 }

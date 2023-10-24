@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.model.Orders;
 import com.fssa.liveon.model.SparePart;
@@ -168,18 +167,14 @@ public class OrderDAO {
 	                // If there are no image URLs, you can set an empty list or handle it as needed.
 	                sparePart.setImageUrl(new ArrayList<>());
 	            }
-
 	            order.setSparepart(sparePart);
-
 	            User user = new User();
 	            user.setFirstName(rs.getString("userFirstName"));
 	            user.setLastName(rs.getString("userLastName"));
 	            user.setGender(rs.getString("userGender"));
-	           // user.setMobile(rs.getLong("userMobile"));
+	            user.setNumber(rs.getLong("userMobile"));
 	            user.setEmail(rs.getString("userEmail"));
-
 	            order.setUser(user);
-
 	            ordersList.add(order);
 	        }
 	    } catch (SQLException e) {
@@ -188,7 +183,14 @@ public class OrderDAO {
 
 	    return ordersList;
 	}
-
-
+//public static void main(String[] args) throws DAOException, SQLException {
+//	OrderDAO o = new OrderDAO();
+//	List <Orders> sum=o.getAllOrdersForAdmin();
+//	for(Orders e: sum) {
+//		System.out.println(e);
+//		
+//	}
+//	
+//}
 	
 	}

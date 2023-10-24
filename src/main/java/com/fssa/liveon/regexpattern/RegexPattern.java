@@ -18,6 +18,8 @@ public class RegexPattern {
 	public static final String USER_STREET_REGEX = "^[0-9A-Za-z\\s.,-]+$";
 	public static final String USER_CITY_REGEX = "^[A-Za-z\\s-]+$";
 	public static final String USER_POSTAL_CODE_REGEX ="^[1-9][0-9]{5}$";
+	public static final String SHOP_NAME_REGEX ="^[a-zA-Z ]{2,35}$";
 	public static final String SHOP_NUMBER_REGEX ="^[1-9]\\d*$";
 	public static final String SHOP_LICENCE_REGEX ="^[A-Za-z0-9]*$";
+
 }

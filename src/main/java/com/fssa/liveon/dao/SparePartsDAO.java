@@ -87,6 +87,7 @@ public class SparePartsDAO {
 		}
 		return true;
 	}
+
 	// Method to delete a product from the database
 	public boolean deleteSparePart(int productId) throws DAOException, SQLException {
 		// Checking if the product ID is valid
@@ -117,11 +118,10 @@ public class SparePartsDAO {
 
 		// SQL query to retrieve product details along with image URLs
 		String selectQuery = "SELECT sp.*, "
-		        + "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
-		        + "FROM Sparepart sp "
-		        + "WHERE sp.sparepartstatus = 1";
+				+ "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
+				+ "FROM Sparepart sp " + "WHERE sp.sparepartstatus = 1";
 
-        System.out.println(selectQuery);
+		System.out.println(selectQuery);
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
@@ -141,7 +141,7 @@ public class SparePartsDAO {
 						product.setRating(rs.getInt(SPAREPART_RATING));
 						product.setDescription(rs.getString(SPAREPART_DESCRIPTION));
 						// Splitting and setting image URLs
-						
+
 						String imageUrlsdata = rs.getString(IMAGES_URL);
 						if (imageUrlsdata != null) {
 							String[] imageUrl = imageUrlsdata.split(",");
@@ -160,7 +160,7 @@ public class SparePartsDAO {
 		return sparePartList;
 	}
 
-	public  List<SparePart> findSparePartByVehicleType(String vehicleType) throws DAOException, SQLException {
+	public List<SparePart> findSparePartByVehicleType(String vehicleType) throws DAOException, SQLException {
 
 		List<SparePart> sparePartList = new ArrayList<>();
 
@@ -213,20 +213,18 @@ public class SparePartsDAO {
 		return sparePartList;
 
 	}
-	
 
-public  SparePart getSparePartDetailById(int id) throws DAOException {
+	public SparePart getSparePartDetailById(int id) throws DAOException {
 		// SQL query to retrieve product details along with image URLs
 
 		String selectQuery = "SELECT sp.*, "
-	            + "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
-	            + "FROM Sparepart sp " + "WHERE sp.id = ?";
-		SparePart readProduct =null;
-
+				+ "(SELECT GROUP_CONCAT(imageUrl) FROM SparePartImages spi WHERE spi.SparePart_Id = sp.id) AS imageUrls "
+				+ "FROM Sparepart sp " + "WHERE sp.id = ?";
+		SparePart readProduct = null;
 		try (Connection con = ConnectionUtil.getConnection()) {
 
 			try (PreparedStatement preparedStatement = con.prepareStatement(selectQuery)) {
-				  preparedStatement.setInt(1, id);
+				preparedStatement.setInt(1, id);
 
 				try (ResultSet ys = preparedStatement.executeQuery()) {
 
@@ -250,7 +248,6 @@ public  SparePart getSparePartDetailById(int id) throws DAOException {
 							readProduct.setImageUrl(new ArrayList<>());
 						}
 						// Logging retrieved product details
-
 					}
 				}
 			}

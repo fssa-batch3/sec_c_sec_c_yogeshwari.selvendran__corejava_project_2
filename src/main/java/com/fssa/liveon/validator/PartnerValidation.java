@@ -17,18 +17,53 @@ import com.fssa.liveon.regexpattern.RegexPattern;
 
 public class PartnerValidation {
 	public boolean validatePartner(Partners partners) {
-		if (partners == null) {
-			throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_PARTNER_ERROR_MESSAGE);
-		}
-		validFirstName(partners.getFirstName());
-		validLastName(partners.getLastName());
-		validEmail(partners.getEmail());
-		validPassword(partners.getPassword());
-		validNumber(partners.getNumber());
-		validGender(partners.getGender());
-		idValidate(partners.getPartnerId());
-		return true;
+	    if (partners == null) {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_PARTNER_ERROR_MESSAGE);
+	    }
+
+	    if (partners.getFirstName() != null) {
+	        validFirstName(partners.getFirstName());
+	    } else {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_FIRST_NAME_ERROR_MESSAGE);
+	    }
+
+	    if (partners.getLastName() != null) {
+	        validLastName(partners.getLastName());
+	    } else {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_LAST_NAME_ERROR_MESSAGE);
+	    }
+
+	    if (partners.getEmail() != null) {
+	        validEmail(partners.getEmail());
+	    } else {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_EMAIL_ERROR_MESSAGE);
+	    }
+
+	    if (partners.getPassword() != null) {
+	        validPassword(partners.getPassword());
+	    } else {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_PASSWORD_ERROR_MESSAGE);
+	    }
+
+	    Long number = partners.getNumber(); // Using Long instead of long
+
+	    if (number == null) {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.INVALID_NUMBER_ERROR_MESSAGE);
+	    } else {
+	        validNumber(number);
+	    }
+
+	    if (partners.getGender() != null) {
+	        validGender(partners.getGender());
+	    } else {
+	        throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_GENDER_ERROR_MESSAGE);
+	    }
+
+	    // Additional validation for specific fields can be added here.
+
+	    return true;
 	}
+
 	public boolean validatePartnerUpdate(Partners partners) {
 		if (partners == null) {
 			throw new InvalidPartnerDetailsException(PartnerValidationError.EMPTY_PARTNER_ERROR_MESSAGE);
@@ -37,6 +72,7 @@ public class PartnerValidation {
 		validLastName(partners.getLastName());
 		validNumber(partners.getNumber());
 		validGender(partners.getGender());
+
 	
 		return true;
 	}
@@ -219,12 +255,12 @@ public class PartnerValidation {
 
 	
 
-	public boolean idValidate(int id) throws InvalidPartnerDetailsException {
-		if (id <= 0) {
-			throw new InvalidPartnerDetailsException(PartnerValidationError.INVALID_PARTNER_ID_ERROR_MESSAGE);
-		}
-		return true;
-	}
+//	public boolean idValidate(int id) throws InvalidPartnerDetailsException {
+//		if (id <= 0) {
+//			throw new InvalidPartnerDetailsException(PartnerValidationError.INVALID_PARTNER_ID_ERROR_MESSAGE);
+//		}
+//		return true;
+//	}
 	
 	
 }

@@ -19,7 +19,7 @@ public class TestPartnerValidation {
 	@Test
 	void testPartners() {
 
-		Partners partner = new PartnerBuilder().buildPartnerId(3).buildPartnerFirstName("Yogi").buildPartnerLastName("S")
+		Partners partner = new PartnerBuilder().buildPartnerFirstName("Yogi").buildPartnerLastName("S")
 				.buildPartnerGender("Female").buildPartnerEmail("yogeshwari@gmail.com").buildPartnerNumber(9876543210l)
 				.buildPartnerPassword("Yogi@123").build();
 
@@ -140,19 +140,19 @@ public class TestPartnerValidation {
 		}
 	}
 
-	@Test
-	void testValidPartnerId() {
-		Assertions.assertTrue(partners.idValidate(3));
-	}
-
-	@Test
-	void testInvalidPartnerId() {
-		try {
-			partners.idValidate(-2);
-		} catch (InvalidPartnerDetailsException e) {
-			Assertions.assertEquals(PartnerValidationError.INVALID_PARTNER_ID_ERROR_MESSAGE, e.getMessage());
-		}
-	}
+//	@Test
+//	void testValidPartnerId() {
+//		Assertions.assertTrue(partners.idValidate(3));
+//	}
+//
+//	@Test
+//	void testInvalidPartnerId() {
+//		try {
+//			partners.idValidate(-2);
+//		} catch (InvalidPartnerDetailsException e) {
+//			Assertions.assertEquals(PartnerValidationError.INVALID_PARTNER_ID_ERROR_MESSAGE, e.getMessage());
+//		}
+//	}
 
 	
 }

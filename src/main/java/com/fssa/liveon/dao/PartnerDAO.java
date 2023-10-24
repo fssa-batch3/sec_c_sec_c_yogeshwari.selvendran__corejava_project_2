@@ -7,12 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.fssa.liveon.exceptions.DAOException;
 import com.fssa.liveon.exceptions.InvalidPartnerDetailsException;
 import com.fssa.liveon.exceptions.InvalidUserDetailsException;
 import com.fssa.liveon.model.Partners;
-import com.fssa.liveon.model.User;
 import com.fssa.liveon.util.ConnectionUtil;
 
 public class PartnerDAO {
@@ -109,7 +107,7 @@ public class PartnerDAO {
 
 	public Partners getPartnerById(int id) throws SQLException, DAOException {
 		Partners partner = null;
-		String query = "SELECT * FROM Partners WHERE partnerId = ?";
+		String query =  "SELECT * FROM Partners WHERE partnerId = ?";
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 			try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -117,14 +115,15 @@ public class PartnerDAO {
 
 				try (ResultSet rs = pst.executeQuery()) {
 					if (rs.next()) {
-						partner = new Partners();
-						partner.setPartnerId(rs.getInt("partnerId"));
-						partner.setFirstName(rs.getString("firstname"));
-						partner.setLastName(rs.getString("lastname"));
-						partner.setEmail(rs.getString("email"));
-						partner.setPassword(rs.getString("password"));
-						partner.setGender(rs.getString("gender"));
-						partner.setNumber(rs.getLong("mobile"));
+						   partner = new Partners();
+		                    partner.setPartnerId(rs.getInt("partnerId"));
+		                    partner.setFirstName(rs.getString("firstName"));
+		                    partner.setLastName(rs.getString("lastName"));
+		                    partner.setGender(rs.getString("gender"));
+		                    partner.setEmail(rs.getString("email"));
+		                    partner.setNumber(rs.getLong("number"));
+		                    partner.setPassword(rs.getString("password"));
+		                  
 					}
 				}
 			}
@@ -138,29 +137,32 @@ public class PartnerDAO {
 		return partner;
 	}
 
-	public static boolean getPartnerEmail(String email) throws SQLException, DAOException {
-		try (Connection con = ConnectionUtil.getConnection()) {
-			try (PreparedStatement pst = con
-					.prepareStatement("SELECT COUNT(*) as count FROM Partners WHERE email = ?")) {
-				pst.setString(1, email);
-				try (ResultSet rs = pst.executeQuery()) {
-					if (rs.next()) {
-						int count = rs.getInt("count");
-						if (count == 1) {
-							throw new DAOException(LiveOnDaoErrors.EMAIL_ALREADY_EXISTS);
+	public static boolean getPartnerEmail(String email) throws DAOException {
+	    try (Connection con = ConnectionUtil.getConnection();
+	         PreparedStatement pst = con.prepareStatement("SELECT COUNT(*) as count FROM Partners WHERE email = ?")) {
+	        pst.setString(1, email);
+	        try (ResultSet rs = pst.executeQuery()) {
+	            if (rs.next()) {
+	                int count = rs.getInt("count");
+	                if (count == 1) {
+	                    throw new DAOException(LiveOnDaoErrors.EMAIL_ALREADY_EXISTS);
+	                } else {
+	                    return false;
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new DAOException(LiveOnDaoErrors.INVALID_ADD_PARTNER);
+	    }
+	    return true;
+	}
+	
 
-						} else {
-							return false;
-						}
-
-					}
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			// throw new DAOException(LiveOnDaoErrors.INVALID_USER);
-		}
-		return true;
+	public static void main(String[] args) throws SQLException, DAOException {
+		PartnerDAO s = new PartnerDAO();
+	//	s.getPartnerById(1);
+		System.out.print(s.getPartnerById(1));
 	}
 
 }

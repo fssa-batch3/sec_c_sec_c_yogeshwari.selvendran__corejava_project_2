@@ -18,13 +18,32 @@ public class ShopValidation {
 		}
 		
 		shopImagesValidator(shop.getImageUrl());
-		shopIdValidate(shop.getShopId());
+		partnerIdValidate(shop.getPartnerId());
+		validateShoptName(shop.getShopName());
+		validateShopDetails(shop.getShopDetails());
 		validShopNumber(shop.getShopNumber());
 		validShopLicenceNumber(shop.getShopLicenceNumber());
 		validVehicleType(shop.getVehicleType());
 		validStreetAddress(shop.getStreetAddress());
 		validCity(shop.getCity());
 		validPostalCode(shop.getPostalCode());
+		return true;
+	}
+	public boolean updateShop(Shop shop) {
+		if (shop == null) {
+			throw new InvalidPartnerDetailsException(ShopValivationErrors.EMPTY_SHOP_ERROR_MESSAGE);
+		}
+		
+	
+		shopIdValidate(shop.getShopId());
+		validateShoptName(shop.getShopName());
+		validShopNumber(shop.getShopNumber());
+		validStreetAddress(shop.getStreetAddress());
+		validCity(shop.getCity());
+		validPostalCode(shop.getPostalCode());
+		validVehicleType(shop.getVehicleType());
+		validateShopDetails(shop.getShopDetails());
+		shopImagesValidator(shop.getImageUrl());
 		return true;
 	}
 
@@ -34,7 +53,12 @@ public class ShopValidation {
 		}
 		return true;
 	}
-
+	public boolean partnerIdValidate(int id) throws InvalidShopDetailsException {
+		if (id <= 0) {
+			throw new InvalidShopDetailsException(ShopValivationErrors.INVALID_SHOP_ID_ERROR_MESSAGE);
+		}
+		return true;
+	}
 	public boolean validShopNumber(long number) throws InvalidShopDetailsException {
 
 		String nameregex = RegexPattern.SHOP_NUMBER_REGEX;
@@ -50,13 +74,13 @@ public class ShopValidation {
 	}
 
 	// Product Name validation
-	public boolean validateSparePartName(String shopName) throws InvalidShopDetailsException {
+	public boolean validateShoptName(String shopName) throws InvalidShopDetailsException {
 		if (shopName == null || shopName.trim().isEmpty()) {
 			throw new InvalidShopDetailsException(ShopValivationErrors.EMPTY_SHOP_NAME);
 		}
 
 		// Minimum 2 characters and maximum 35 characters
-		String nameregex = RegexPattern.PRODUCT_NAME_REGEX;
+		String nameregex = RegexPattern.SHOP_NAME_REGEX;
 		Pattern pattern = Pattern.compile(nameregex);
 		Matcher matcher = pattern.matcher(shopName);
 
@@ -68,7 +92,7 @@ public class ShopValidation {
 	}
 
 	// Product description validation
-	public boolean validateSparePartDescription(String shopDetails) throws InvalidShopDetailsException {
+	public boolean validateShopDetails(String shopDetails) throws InvalidShopDetailsException {
 		if (shopDetails == null || shopDetails.trim().isEmpty()) {
 			throw new InvalidShopDetailsException(ShopValivationErrors.EMPTY_SHOP_DETAILS);
 		}

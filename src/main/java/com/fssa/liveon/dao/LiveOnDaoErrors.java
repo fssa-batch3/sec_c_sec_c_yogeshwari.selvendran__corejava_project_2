@@ -6,9 +6,10 @@ package com.fssa.liveon.dao;
  */
 public class LiveOnDaoErrors {
 	private LiveOnDaoErrors() {
-		// private constructor
+		// private constructor      
 	}
 
+	public static final String INVALID_UPDATE_SHOP = "If the update operation fails. ";
 	public static final String INVALID_PASSWORD = "Invalid password. Please try again.";
 	public static final String EMAIL_NOT_FOUND = "Email not found. Please register or check your email.";
 	public static final String DATABASE_ERROR = "Database error. Please try again later.";
@@ -94,4 +95,5 @@ public class LiveOnDaoErrors {
 	 * Error message for an email address that already exists.
 	 */
 	public static final String EMAIL_ALREADY_EXISTS = "Email address already exists in the system.";
+	public static final String INVALID_GET_SHOP_DETAILS = "The get shop detsails is invalid";
 }
